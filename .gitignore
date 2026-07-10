@@ -1,0 +1,15 @@
+# OS / editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Local environment and Vercel metadata
+.env
+.env.*
+.vercel/
+
+# Temporary files
+*.log
+*.tmp
+*.bak
