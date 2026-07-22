@@ -40,6 +40,7 @@
     if (!mobileNav || !menuToggle) return;
     mobileNav.hidden = true;
     menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.setAttribute('aria-label', 'Open menu');
   };
 
   menuToggle?.addEventListener('click', () => {
@@ -47,6 +48,7 @@
     const shouldOpen = mobileNav.hidden;
     mobileNav.hidden = !shouldOpen;
     menuToggle.setAttribute('aria-expanded', String(shouldOpen));
+    menuToggle.setAttribute('aria-label', shouldOpen ? 'Close menu' : 'Open menu');
   });
 
   mobileNav?.querySelectorAll('a').forEach((link) => {
@@ -58,6 +60,12 @@
     const target = event.target;
     if (!(target instanceof Node)) return;
     if (!mobileNav.contains(target) && !menuToggle?.contains(target)) closeMobileNav();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape' || !mobileNav || mobileNav.hidden) return;
+    closeMobileNav();
+    menuToggle?.focus();
   });
 
   // ------------------------------
