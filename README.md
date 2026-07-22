@@ -1,6 +1,6 @@
 # Mohamed Bassam — AI Engineer Portfolio
 
-A premium, responsive AI engineer portfolio built with vanilla HTML, CSS, and JavaScript. It showcases my end-to-end AI work across machine learning, deep learning, computer vision, NLP, forecasting, automation, REST APIs, dashboards, and deployment.
+A premium, responsive AI engineer portfolio built with vanilla HTML, CSS, and JavaScript. It showcases my end-to-end work across agentic AI, hybrid retrieval, machine learning, deep learning, computer vision, NLP, forecasting, secure SaaS engineering, automation, APIs, and deployment.
 
 ## Live Portfolio
 
@@ -11,7 +11,8 @@ A premium, responsive AI engineer portfolio built with vanilla HTML, CSS, and Ja
 - ICE-first visual identity with optional Night mode
 - Animated neural-network canvas and interactive background effects
 - AI → ML → DL profile hierarchy
-- Dedicated SmartInvest AI V2 flagship case study
+- Dedicated Dark Agent primary flagship case study
+- SmartInvest AI V2 flagship finance case study
 - Interactive project previews and modal gallery
 - Responsive layouts for desktop, tablet, and mobile
 - Accessibility-minded keyboard navigation and reduced-motion support
@@ -19,6 +20,9 @@ A premium, responsive AI engineer portfolio built with vanilla HTML, CSS, and Ja
 - Production deployment on Vercel
 
 ## Featured Projects
+
+### Dark Agent — Governed Multi-Agent AI Mission Control
+A V1.0 release candidate for an inspectable, governed multi-agent AI platform with LangGraph orchestration, hybrid BM25 + pgvector retrieval, Reciprocal Rank Fusion, adversarial Red Team validation, WebSocket telemetry, tenant isolation, secure SaaS billing, and Azure-ready infrastructure.
 
 ### SmartInvest AI V2 — AI Stock Market Analysis & Paper Trading Platform
 LSTM forecasting, supporting ML models, technical indicators, explainable BUY/SELL/HOLD decisions, confidence scoring, backtesting, walk-forward validation, risk controls, and Alpaca paper-trading integration.
@@ -34,10 +38,12 @@ Full-stack AI writing product with Flask, SQLite, authentication, persistent his
 
 ## Tech Stack
 
-**Frontend:** HTML5, CSS3, JavaScript  
-**AI/ML:** Python, TensorFlow, Keras, PyTorch, Scikit-learn, YOLO11, OpenCV, Hugging Face, LSTM, BART  
-**Backend & Product:** Flask, REST APIs, SQLite, JSON, Chart.js  
-**Automation & Deployment:** n8n, Webhooks, CUDA, PythonAnywhere, Vercel, GitHub
+- **Frontend:** HTML5, CSS3, JavaScript, Next.js 16, TypeScript
+- **Agentic AI & Retrieval:** LangGraph, multi-agent orchestration, hybrid RAG, PostgreSQL/pgvector, BM25, RRF, MCP, OpenAI API, Anthropic API
+- **AI/ML:** Python, TensorFlow, Keras, PyTorch, Scikit-learn, YOLO11, OpenCV, Hugging Face, LSTM, BART
+- **Backend & Product:** FastAPI, Flask, Pydantic, WebSockets, PostgreSQL, SQLite, Clerk, Stripe, REST APIs, Pytest
+- **Cloud & Security:** Docker, Azure Service Bus, Azure Key Vault, tenant isolation, rate limiting, idempotent webhooks, tool allowlists
+- **Automation & Deployment:** APScheduler, n8n, Webhooks, CUDA, PythonAnywhere, Vercel, GitHub
 
 ## Project Structure
 
@@ -57,6 +63,7 @@ Full-stack AI writing product with Flask, SQLite, authentication, persistent his
     ├── ai-study-assistant.png
     ├── ai-writer.png
     ├── university-certificate.jpeg
+    ├── dark-agent-01.png ... dark-agent-13.png
     └── smartinvest-1.png ... smartinvest-5.png
 ```
 
