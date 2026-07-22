@@ -54,6 +54,7 @@ body.ice {
 html {
   scroll-behavior: smooth;
   scrollbar-color: var(--blue-2) var(--bg);
+  overflow-x: hidden;
 }
 
 body {
