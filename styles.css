@@ -2953,6 +2953,10 @@ body.ice .intelligence-chain {
   scroll-margin-top: calc(var(--header-h) + 18px);
 }
 
+.dark-agent-section + .flagship-section {
+  margin-top: clamp(28px, 4vw, 56px);
+}
+
 body.ice .dark-agent-section {
   box-shadow: 0 38px 110px rgba(18, 101, 136, 0.18), inset 0 1px rgba(255, 255, 255, 0.025);
 }
