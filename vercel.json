@@ -1,6 +1,17 @@
 {
+  "framework": null,
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "installCommand": "npm ci",
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/assets/Mohamed_Bassam_Normal_CV.pdf",
+      "destination": "/assets/MohamedBassam%20CV%20Improved%20.pdf",
+      "permanent": false
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",

@@ -1,91 +1,66 @@
-# Mohamed Bassam — AI Engineer Portfolio
+﻿# Mohamed Bassam — AI Engineer
 
-A premium, responsive AI engineer portfolio built with vanilla HTML, CSS, and JavaScript. It showcases my end-to-end work across agentic AI, hybrid retrieval, machine learning, deep learning, computer vision, NLP, forecasting, secure SaaS engineering, automation, APIs, and deployment.
+[mohamed-bassam.vercel.app](https://mohamed-bassam.vercel.app)
 
-## Live Portfolio
+A personal AI engineering portfolio built with semantic HTML, CSS, and small, dependency-free browser scripts. The experience connects actual projects, engineering decisions, and product interfaces through an editorial system index.
 
-**[mohamed-bassam.vercel.app](https://mohamed-bassam.vercel.app)**
+## Experience
 
-## Highlights
+- An interactive work map introduces Mohamed and his current flagship.
+- A portrait-led profile and engineering practice track replace repeated cards.
+- Five capability domains connect technologies to responsibilities and evidence.
+- Dark Agent combines a progressive nine-stage architecture, selectable agent roles, hybrid retrieval, adversarial validation, a pinned product-screen narrative, release evidence, and a decision log.
+- SmartInvest has its own financial-intelligence atmosphere and five-stage market-data-to-paper-execution walkthrough.
+- A six-project index exposes large real screenshots, source links, and engineering context.
+- ICE and NIGHT themes retain the existing saved preference.
 
-- ICE-first visual identity with optional Night mode
-- Animated neural-network canvas and interactive background effects
-- AI → ML → DL profile hierarchy
-- Dedicated Dark Agent primary flagship case study
-- SmartInvest AI V2 flagship finance case study
-- Interactive project previews and modal gallery
-- Responsive layouts for desktop, tablet, and mobile
-- Accessibility-minded keyboard navigation and reduced-motion support
-- Persistent theme preference
-- Production deployment on Vercel
+Dark Agent remains **V1.0 Release Candidate**, with **Azure-ready infrastructure / Azure deployment preparation**. Its private source repository is not linked. The 309 backend tests are documented Dark Agent evidence, separate from this portfolio's tests. SmartInvest demonstrates paper trading, not claimed live investment performance.
 
-## Featured Projects
+## Development
 
-### Dark Agent — Governed Multi-Agent AI Mission Control
-A V1.0 release candidate for an inspectable, governed multi-agent AI platform with LangGraph orchestration, hybrid BM25 + pgvector retrieval, Reciprocal Rank Fusion, adversarial Red Team validation, WebSocket telemetry, tenant isolation, secure SaaS billing, and Azure-ready infrastructure.
+Requires Node.js 22 or newer.
 
-### SmartInvest AI V2 — AI Stock Market Analysis & Paper Trading Platform
-LSTM forecasting, supporting ML models, technical indicators, explainable BUY/SELL/HOLD decisions, confidence scoring, backtesting, walk-forward validation, risk controls, and Alpaca paper-trading integration.
-
-### AI Industrial Safety Monitoring System
-Real-time workplace safety monitoring using YOLO11 and OpenCV for PPE detection, safe/danger-zone logic, evidence capture, automated alerts, and CUDA-accelerated inference.
-
-### AI Study Assistant
-Transformer-based summarization using BART, Hugging Face, Flask, PDF processing, and chunking for long documents.
-
-### AI Writer Web Application
-Full-stack AI writing product with Flask, SQLite, authentication, persistent history, REST APIs, and deployment.
-
-## Tech Stack
-
-- **Frontend:** HTML5, CSS3, JavaScript, Next.js 16, TypeScript
-- **Agentic AI & Retrieval:** LangGraph, multi-agent orchestration, hybrid RAG, PostgreSQL/pgvector, BM25, RRF, MCP, OpenAI API, Anthropic API
-- **AI/ML:** Python, TensorFlow, Keras, PyTorch, Scikit-learn, YOLO11, OpenCV, Hugging Face, LSTM, BART
-- **Backend & Product:** FastAPI, Flask, Pydantic, WebSockets, PostgreSQL, SQLite, Clerk, Stripe, REST APIs, Pytest
-- **Cloud & Security:** Docker, Azure Service Bus, Azure Key Vault, tenant isolation, rate limiting, idempotent webhooks, tool allowlists
-- **Automation & Deployment:** APScheduler, n8n, Webhooks, CUDA, PythonAnywhere, Vercel, GitHub
-
-## Project Structure
-
-```text
-.
-├── index.html
-├── styles.css
-├── script.js
-├── vercel.json
-├── README.md
-├── .gitignore
-└── assets/
-    ├── personal-photo.jpeg
-    ├── Mohamed_Bassam_Normal_CV.pdf
-    ├── industrial-safety-system.png
-    ├── stock-prediction.png
-    ├── ai-study-assistant.png
-    ├── ai-writer.png
-    ├── university-certificate.jpeg
-    ├── dark-agent-01.png ... dark-agent-13.png
-    └── smartinvest-1.png ... smartinvest-5.png
+```sh
+npm ci
+npm run dev
 ```
 
-## Run Locally
+Open `http://localhost:8000`. The static source can also be served directly by any ordinary HTTP server.
 
-```bash
-python -m http.server 8000
+```sh
+npm run build
+npm run preview
+npm test
 ```
 
-Then open `http://localhost:8000`.
+The build validates HTML, JavaScript, local assets, anchors, image dimensions, metadata, and CV consistency, then produces `dist/` with minified CSS and JavaScript. Tests run against this production output. On Windows, the test configuration uses installed Chrome. On other systems, install the Playwright Chromium browser with `npx playwright install chromium`.
+
+`PORT` changes the preview server port. `PORTFOLIO_TEST_URL` runs browser checks against an existing preview or deployment.
+
+## Structure
+
+| File                | Responsibility                                                          |
+| ------------------- | ----------------------------------------------------------------------- |
+| `index.html`        | Complete content, semantic scenes, project evidence, and metadata       |
+| `styles.css`        | Theme tokens, compositions, responsive rules, and reduced motion        |
+| `script.js`         | Navigation, tabs, storytelling, preview dialog, and copy email          |
+| `theme.js`          | Small pre-paint preference loader with storage-error fallback           |
+| `assets/optimized/` | Optimized display images; full-resolution originals remain in `assets/` |
+| `assets/fonts/`     | Self-hosted Inter and IBM Plex Mono, with licenses                      |
+| `tools/`            | Static build, validation, asset preparation, and local HTTP preview     |
+| `tests/`            | Responsive, keyboard, dialog, gallery, theme, and accessibility checks  |
+| `docs/`             | Design rationale and verification record                                |
+
+Run `npm run assets` to regenerate optimized images and fonts. There is no frontend framework, canvas loop, external font request, third-party analytics, or animation library.
+
+## Accessibility and interaction
+
+Native scrolling is preserved. Desktop pinning is limited to the architecture and screenshot stories; mobile uses normal document flow and touch controls. Tab interfaces support arrow keys, Home, and End. A native dialog with explicit keyboard containment supports Escape and restores focus. Preview links still open the original image without JavaScript. Reduced motion removes smooth scrolling, pointer depth, and diagram transitions.
+
+All resume links reference the single current `assets/MohamedBassam CV Improved .pdf`. The former PDF URL redirects to it, preserving existing shared links.
 
 ## Deployment
 
-This is a static site and can be deployed directly to Vercel, GitHub Pages, Netlify, or any static host.
+The existing repository's `main` branch remains connected to the existing Vercel project and **https://mohamed-bassam.vercel.app**. `vercel.json` runs `npm ci` and `npm run build`, serves `dist/`, and retains the existing security headers. Development files, reports, and private configuration are not part of the generated public output.
 
-## Contact
-
-**Mohamed Bassam**  
-AI Engineer — Dubai, UAE  
-Portfolio: [mohamed-bassam.vercel.app](https://mohamed-bassam.vercel.app)  
-GitHub: [github.com/mohamedbassam-1](https://github.com/mohamedbassam-1)
-
----
-
-Built and designed by Mohamed Bassam. All rights reserved. © 2026
+Built and designed by Mohamed Bassam. © 2026
