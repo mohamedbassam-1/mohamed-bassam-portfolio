@@ -1888,60 +1888,11 @@ details strong {
 .validation-demo.is-playing .validation-signal {
   animation: validation-light 2.3s ease both;
 }
-.release-section {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 90px;
-  padding-block: 120px 100px;
-}
-.release-section h2 {
-  font-size: clamp(38px, 4vw, 58px);
-}
-.release-section > div > p:last-child {
-  font-size: 13px;
-  margin-top: 24px;
-}
-.release-numbers {
-  display: flex;
-  gap: 65px;
-  margin-bottom: 35px;
-}
-.release-numbers strong {
-  display: block;
-  font-size: 80px;
-  line-height: 1;
-  letter-spacing: -0.075em;
-  font-weight: 650;
-  background: linear-gradient(#d4fff0, #7dafac);
-  color: transparent;
-  background-clip: text;
-}
-.release-numbers span {
-  font-size: 12px;
-  color: #9caebf;
-  display: block;
-  margin-top: 13px;
-}
-.release-log {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px 20px;
-}
-.release-log li {
-  font-size: 11px;
-  color: #a4b8cc;
-  display: flex;
-  align-items: start;
-  gap: 9px;
-}
-.release-log li > span {
-  color: #8ad3b6;
-}
 .decisions-section {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
   gap: 100px;
-  padding-block: 90px 40px;
+  padding-block: 0 40px;
 }
 .decisions-section h2 {
   font-size: clamp(38px, 3.6vw, 54px);
@@ -2592,44 +2543,6 @@ details strong {
   }
 }
 /* Motion and preview dialog. */
-.context-cursor {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: 1px solid #4d99b7b0;
-  background: #67c6dc16;
-  z-index: 80;
-  pointer-events: none;
-  opacity: 0;
-  display: grid;
-  place-items: center;
-  transition:
-    width 0.2s,
-    height 0.2s,
-    background 0.2s,
-    opacity 0.2s;
-  transform: translate(-100px, -100px);
-}
-.context-cursor.is-context {
-  width: 66px;
-  height: 66px;
-  background: #122a3fe8;
-  border-color: #a4d5df42;
-  box-shadow: 0 10px 30px #12324822;
-  backdrop-filter: blur(8px);
-}
-.context-cursor span {
-  font-size: 9px;
-  color: #e7f7ff;
-  font-weight: 550;
-  letter-spacing: 0.04em;
-}
-.context-cursor.is-visible {
-  opacity: 1;
-}
 .js-reveals [data-reveal] {
   opacity: 0;
   transform: translateY(24px);
@@ -2922,7 +2835,6 @@ details strong {
     grid-template-columns: 140px 1fr;
     gap: 25px;
   }
-  .release-section,
   .decisions-section {
     gap: 60px;
   }
@@ -3393,26 +3305,8 @@ details strong {
   .validation-top > .mono {
     font-size: 7px;
   }
-  .release-section {
-    gap: 35px;
-    padding-block: 90px 60px;
-  }
-  .release-numbers {
-    gap: 40px;
-  }
-  .release-numbers strong {
-    font-size: 66px;
-  }
-  .release-log {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-  .release-section h2 {
-    font-size: 38px;
-  }
   .decisions-section {
     gap: 45px;
-    padding-top: 65px;
   }
   .decisions-section h2 {
     font-size: 36px;
@@ -3511,9 +3405,6 @@ details strong {
   }
   .site-footer > span {
     font-size: 8px;
-  }
-  .context-cursor {
-    display: none;
   }
 }
 /* Mobile is a separate composition, with normal scrolling and broad touch targets. */
@@ -4269,38 +4160,10 @@ details strong {
   .check-label {
     font-size: 12px;
   }
-  .release-section {
-    grid-template-columns: 1fr;
-    gap: 40px;
-    padding-block: 60px 45px;
-  }
-  .release-section h2 {
-    font-size: 40px;
-  }
-  .release-section > div > p:last-child {
-    font-size: 12px;
-  }
-  .release-numbers {
-    gap: 60px;
-    margin-bottom: 35px;
-  }
-  .release-numbers strong {
-    font-size: 77px;
-  }
-  .release-numbers span {
-    font-size: 12px;
-  }
-  .release-log {
-    grid-template-columns: 1fr 1fr;
-    gap: 15px 18px;
-  }
-  .release-log li {
-    font-size: 12px;
-  }
   .decisions-section {
     grid-template-columns: 1fr;
     gap: 25px;
-    padding-block: 45px 10px;
+    padding-block: 0 10px;
   }
   .decisions-section h2 {
     font-size: 39px;
@@ -4701,9 +4564,6 @@ details strong {
     gap: 12px;
     padding-top: 13px;
   }
-  .context-cursor {
-    display: none;
-  }
   .data-pulse {
     animation-duration: 20s;
   }
@@ -4738,9 +4598,6 @@ details strong {
   }
 }
 @media (pointer: coarse) {
-  .context-cursor {
-    display: none;
-  }
   .image-affordance {
     opacity: 1;
     transform: none;
@@ -4765,9 +4622,6 @@ details strong {
   }
   .sculpture-space {
     transform: none !important;
-  }
-  .context-cursor {
-    display: none;
   }
   .chart-trace {
     stroke-dashoffset: 0;

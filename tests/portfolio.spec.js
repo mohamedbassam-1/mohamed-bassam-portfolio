@@ -432,5 +432,4 @@ test("motion responds to preferences and validation can be replayed", async ({
     opacity: getComputedStyle(el).opacity,
   }));
   expect(result).toEqual({ animation: "none", opacity: "1" });
-  await expect(page.locator(".context-cursor")).not.toBeVisible();
 });

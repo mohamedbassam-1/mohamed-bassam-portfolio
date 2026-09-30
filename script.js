@@ -516,54 +516,6 @@
     });
   }
 
-  function setupCursor() {
-    const cursor = document.querySelector(".context-cursor"),
-      label = cursor.querySelector("span");
-    let frame = 0;
-    document.addEventListener(
-      "pointermove",
-      (event) => {
-        if (
-          !finePointer.matches ||
-          !desktop.matches ||
-          reducedMotion.matches ||
-          event.pointerType !== "mouse"
-        ) {
-          cursor.classList.remove("is-visible");
-          return;
-        }
-        cancelAnimationFrame(frame);
-        frame = requestAnimationFrame(() => {
-          const target = event.target.closest("a,button,summary");
-          let text = "";
-          if (target) {
-            text = target.hasAttribute("data-architecture-node")
-              ? "Inspect"
-              : target.hasAttribute("data-preview")
-                ? "Expand"
-                : target.dataset.cursor || "Open";
-          }
-          label.textContent = text;
-          cursor.classList.toggle("is-context", Boolean(text));
-          const offset = text ? 33 : 6;
-          cursor.style.transform =
-            "translate(" +
-            (event.clientX - offset) +
-            "px," +
-            (event.clientY - offset) +
-            "px)";
-          cursor.classList.add("is-visible");
-        });
-      },
-      { passive: true },
-    );
-    document.addEventListener("pointerout", (event) => {
-      if (!event.relatedTarget) cursor.classList.remove("is-visible");
-    });
-    document.addEventListener("keydown", () =>
-      cursor.classList.remove("is-visible"),
-    );
-  }
   setupTheme();
   setupNavigation();
   setupTabs();
@@ -571,5 +523,4 @@
   setupCopy();
   setupScroll();
   setupAtmosphere();
-  setupCursor();
 })();

@@ -55,7 +55,7 @@ Run `npm run assets` to regenerate optimized images and fonts. There is no front
 
 ## Accessibility and interaction
 
-Native scrolling is preserved. Desktop pinning is limited to the Dark Agent screenshot story; mobile uses normal document flow, a vertical architecture path, and touch controls. Tab interfaces and architecture inspection support arrow keys, Home, and End. A native dialog with explicit keyboard containment supports Escape and restores focus. Preview links still open the original image without JavaScript. Reduced motion removes smooth scrolling, pointer depth, contextual cursor, and transitions. Decorative animation pauses offscreen, and the native cursor remains available.
+Native scrolling is preserved. Desktop pinning is limited to the Dark Agent screenshot story; mobile uses normal document flow, a vertical architecture path, and touch controls. Tab interfaces and architecture inspection support arrow keys, Home, and End. A native dialog with explicit keyboard containment supports Escape and restores focus. Preview links still open the original image without JavaScript. Reduced motion removes smooth scrolling, pointer depth, and transitions. Decorative animation pauses offscreen. All interactions use the native browser cursor.
 
 All resume links reference the single current `assets/MohamedBassam CV Improved .pdf`. The former PDF URL redirects to it, preserving existing shared links.
 
