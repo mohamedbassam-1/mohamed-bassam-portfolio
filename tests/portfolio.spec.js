@@ -16,7 +16,7 @@ for (const width of widths) {
     });
     await page.goto("/");
     await page.evaluate(() => document.fonts.ready);
-    await expect(page.locator("h1")).toContainText("model to");
+    await expect(page.locator("h1")).toContainText("Real product.");
     for (const id of [
       "top",
       "about",
@@ -40,6 +40,7 @@ for (const width of widths) {
               const box = el.getBoundingClientRect();
               return (
                 box.width &&
+                !el.closest('[aria-hidden="true"]') &&
                 (box.right > width + 2 || box.left < -2) &&
                 getComputedStyle(el).position !== "absolute"
               );
@@ -65,7 +66,7 @@ for (const width of widths) {
         ].includes(id)
       ) {
         await page.screenshot({
-          path: `.qa/screens/${width}-${id}.png`,
+          path: `.qa/v4/test-${width}-${id}.png`,
           animations: "disabled",
         });
       }
@@ -111,7 +112,7 @@ test("all tab interfaces support keyboard selection and expose connected panels"
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
   for (const id of [
-    "work-map",
+    "hero-system",
     "capabilities",
     "agent-roles",
     "finance-pipeline",
@@ -141,7 +142,7 @@ test("mobile navigation, Escape, focus return, and anchor navigation", async ({
   await page.setViewportSize({ width: 390, height: 844 });
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
-  const button = page.getByRole("button", { name: "Open navigation index" });
+  const button = page.getByRole("button", { name: "Open menu" });
   await button.click();
   await expect(page.getByRole("navigation")).toBeVisible();
   await page.keyboard.press("Escape");
@@ -150,7 +151,7 @@ test("mobile navigation, Escape, focus return, and anchor navigation", async ({
   await button.click();
   await page
     .getByRole("navigation")
-    .getByRole("link", { name: "04 Dark Agent" })
+    .getByRole("link", { name: "Dark Agent" })
     .click();
   await expect(page).toHaveURL(/#dark-agent$/);
   await expect(page.getByRole("navigation")).not.toBeVisible();
@@ -193,9 +194,12 @@ test("screen storytelling and all original image evidence remain inspectable", a
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
   const steps = page.locator("[data-screen-step]");
-  await steps
-    .last()
-    .evaluate((element) => element.scrollIntoView({ block: "start" }));
+  await page.locator(".screen-story").evaluate((el) =>
+    scrollTo({
+      top: scrollY + el.getBoundingClientRect().bottom - innerHeight + 150,
+      behavior: "instant",
+    }),
+  );
   await expect(page.locator("#darkScreen")).toHaveAttribute(
     "data-preview",
     /dark-agent-07\.png/,
@@ -259,6 +263,14 @@ test("reduced motion, storage failure, and no JavaScript retain usable content",
     nojs.getByRole("heading", { name: "Don’t chat. Command." }),
   ).toBeVisible();
   await expect(nojs.locator("#project-index-panel-5")).toBeVisible();
+  await nojs.setViewportSize({ width: 390, height: 844 });
+  await expect(nojs.getByRole("navigation")).toBeVisible();
+  await expect(nojs.locator("#architecture-detail-8")).toBeVisible();
+  expect(
+    await nojs.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
   await context.close();
 });
 
@@ -273,9 +285,7 @@ test("architecture progresses and the latest CV, email, and skip link work", asy
   ).toBeFocused();
   await page.keyboard.press("Enter");
   await expect(page.locator("#main")).toBeFocused();
-  await page
-    .locator('[data-architecture-step="8"]')
-    .evaluate((element) => element.scrollIntoView({ block: "start" }));
+  await page.locator('[data-architecture-node="8"]').click();
   await expect(page.locator('[data-architecture-node="8"]')).toHaveAttribute(
     "aria-current",
     "step",
@@ -317,3 +327,108 @@ for (const theme of ["ice", "night"]) {
     ).toEqual([]);
   });
 }
+
+test("hero sculpture previews real projects on hover and navigates to their story", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/");
+  const sculpture = page.locator('[data-tabs="hero-system"]');
+  await sculpture
+    .getByRole("tab", { name: "SmartInvest", exact: true })
+    .hover();
+  await expect(sculpture.getByRole("tabpanel")).toHaveAttribute(
+    "id",
+    "hero-system-panel-1",
+  );
+  const preview = sculpture.getByRole("tabpanel").getByRole("link");
+  await expect(preview).toHaveAttribute("href", "#smartinvest");
+  await preview.click();
+  await expect(page).toHaveURL(/#smartinvest$/);
+  await expect(page.locator(".site-header")).toHaveAttribute(
+    "data-world",
+    "dark",
+  );
+});
+
+test("architecture supports direct inspection and keyboard traversal", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/");
+  const redTeam = page.locator('[data-architecture-node="6"]');
+  await redTeam.click();
+  await expect(page.locator("#architecture-detail-6")).toBeVisible();
+  await expect(page.locator("#architecture-detail-6")).toContainText(
+    "Adversarial evaluation",
+  );
+  await page.keyboard.press("End");
+  await expect(page.locator('[data-architecture-node="8"]')).toBeFocused();
+  await expect(page.locator("#architecture-detail-8")).toContainText(
+    "Database transactions",
+  );
+  await page.keyboard.press("Home");
+  await expect(page.locator("#architecture-detail-0")).toBeVisible();
+});
+
+test("touch swipe changes the project without opening its image", async ({
+  browser,
+  baseURL,
+}) => {
+  const context = await browser.newContext({
+    baseURL,
+    viewport: { width: 390, height: 844 },
+    isMobile: true,
+    hasTouch: true,
+    reducedMotion: "reduce",
+  });
+  const page = await context.newPage();
+  await page.goto("/");
+  const gallery = page.locator('[data-tabs="project-index"]');
+  const image = gallery.getByRole("tabpanel").locator(".project-visual");
+  await image.evaluate((el) =>
+    scrollTo({
+      top: scrollY + el.getBoundingClientRect().top - 160,
+      behavior: "instant",
+    }),
+  );
+  const box = await image.boundingBox();
+  const session = await context.newCDPSession(page);
+  const y = box.y + box.height / 2;
+  await session.send("Input.dispatchTouchEvent", {
+    type: "touchStart",
+    touchPoints: [{ x: 310, y }],
+  });
+  for (const x of [270, 220, 160, 100])
+    await session.send("Input.dispatchTouchEvent", {
+      type: "touchMove",
+      touchPoints: [{ x, y }],
+    });
+  await session.send("Input.dispatchTouchEvent", {
+    type: "touchEnd",
+    touchPoints: [],
+  });
+  await expect(page.locator("#project-index-tab-1")).toHaveAttribute(
+    "aria-selected",
+    "true",
+  );
+  await expect(page.getByRole("dialog")).not.toBeVisible();
+  await context.close();
+});
+
+test("motion responds to preferences and validation can be replayed", async ({
+  page,
+}) => {
+  await page.goto("/");
+  await page.locator("[data-replay]").click();
+  await expect(page.locator("[data-validation]")).toHaveClass(/is-playing/);
+  await expect(page.locator("[data-validation] li")).toHaveCount(5);
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await expect(page.locator("html")).not.toHaveClass(/js-reveals/);
+  const result = await page.locator(".validation-result").evaluate((el) => ({
+    animation: getComputedStyle(el).animationName,
+    opacity: getComputedStyle(el).opacity,
+  }));
+  expect(result).toEqual({ animation: "none", opacity: "1" });
+  await expect(page.locator(".context-cursor")).not.toBeVisible();
+});

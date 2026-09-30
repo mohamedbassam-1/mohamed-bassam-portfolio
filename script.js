@@ -1,26 +1,27 @@
-﻿(() => {
+(() => {
   "use strict";
-
   const root = document.documentElement;
-  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const desktop = window.matchMedia("(min-width: 900px)");
-  const finePointer = window.matchMedia("(pointer: fine)");
+  const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+  const desktop = matchMedia("(min-width: 901px)");
+  const finePointer = matchMedia("(pointer: fine)");
   const announce = (message) => {
     document.getElementById("announcement").textContent = message;
   };
+  const clamp = (value, min = 0, max = 1) =>
+    Math.min(max, Math.max(min, value));
 
   function setupTheme() {
     const button = document.getElementById("themeToggle");
     const apply = (theme) => {
       root.dataset.theme = theme;
-      const destination = theme === "night" ? "ICE" : "NIGHT";
+      const destination = theme === "night" ? "Ice" : "Night";
       button.querySelector(".theme-label").textContent = destination;
       button.setAttribute(
         "aria-label",
-        `Switch to ${destination.toLowerCase()} theme`,
+        "Switch to " + destination.toLowerCase() + " theme",
       );
       document.querySelector('meta[name="theme-color"]').content =
-        theme === "night" ? "#0d1921" : "#edf1f3";
+        theme === "night" ? "#0b1222" : "#f3f6fc";
     };
     apply(root.dataset.theme === "night" ? "night" : "ice");
     button.addEventListener("click", () => {
@@ -29,27 +30,25 @@
       try {
         localStorage.setItem("mb-portfolio-theme-final", theme);
       } catch {
-        /* Theme switching still works for this visit. */
+        /* The control remains usable without storage. */
       }
     });
   }
 
   function setupNavigation() {
     const button = document.getElementById("menuToggle");
-    const nav = document.getElementById("siteIndex");
-    const close = (restoreFocus = false) => {
+    const nav = document.getElementById("siteNav");
+    const close = (restore = false) => {
       nav.classList.remove("is-open");
       button.setAttribute("aria-expanded", "false");
-      button.setAttribute("aria-label", "Open navigation index");
-      button.querySelector("span").textContent = "+";
-      if (restoreFocus) button.focus({ preventScroll: true });
+      button.setAttribute("aria-label", "Open menu");
+      if (restore) button.focus({ preventScroll: true });
     };
     button.addEventListener("click", () => {
       if (nav.classList.contains("is-open")) return close();
       nav.classList.add("is-open");
       button.setAttribute("aria-expanded", "true");
-      button.setAttribute("aria-label", "Close navigation index");
-      button.querySelector("span").textContent = "−";
+      button.setAttribute("aria-label", "Close menu");
     });
     nav.addEventListener("click", (event) => {
       if (event.target.closest("a")) close();
@@ -71,56 +70,115 @@
         close();
     });
     desktop.addEventListener("change", () => close());
-    document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    document.querySelectorAll('a[href^="#"]').forEach((link) =>
       link.addEventListener("click", () => {
         const target = document.getElementById(link.hash.slice(1));
         if (!target) return;
         target.setAttribute("tabindex", "-1");
         requestAnimationFrame(() => target.focus({ preventScroll: true }));
-      });
-    });
+      }),
+    );
   }
 
   function setupTabs() {
     document.querySelectorAll("[data-tabs]").forEach((group) => {
       const tabs = [...group.querySelectorAll('[role="tab"]')];
       const panels = [...group.querySelectorAll('[role="tabpanel"]')];
+      let current = 0;
       const activate = (index, focus = false) => {
-        tabs.forEach((tab, position) => {
-          const selected = index === position;
-          tab.setAttribute("aria-selected", String(selected));
-          tab.tabIndex = selected ? 0 : -1;
-          panels[position].hidden = !selected;
+        const changed = index !== current;
+        current = index;
+        tabs.forEach((tab, i) => {
+          tab.setAttribute("aria-selected", String(i === index));
+          tab.tabIndex = i === index ? 0 : -1;
+          panels[i].hidden = i !== index;
         });
+        if (changed && !reducedMotion.matches)
+          panels[index].animate(
+            [
+              { opacity: 0.3, transform: "translateY(7px)" },
+              { opacity: 1, transform: "translateY(0)" },
+            ],
+            { duration: 380, easing: "cubic-bezier(.2,.8,.2,1)" },
+          );
         if (focus) tabs[index].focus({ preventScroll: true });
       };
       tabs.forEach((tab, index) => {
         tab.addEventListener("click", () => activate(index));
+        if (group.hasAttribute("data-hover-tabs"))
+          tab.addEventListener("pointerenter", (event) => {
+            if (
+              event.pointerType === "mouse" &&
+              !group.contains(document.activeElement)
+            )
+              activate(index);
+          });
         tab.addEventListener("keydown", (event) => {
-          const keys = [
-            "ArrowRight",
-            "ArrowDown",
-            "ArrowLeft",
-            "ArrowUp",
-            "Home",
-            "End",
-          ];
-          if (!keys.includes(event.key)) return;
+          const delta = {
+            ArrowRight: 1,
+            ArrowDown: 1,
+            ArrowLeft: -1,
+            ArrowUp: -1,
+          }[event.key];
+          if (
+            delta === undefined &&
+            event.key !== "Home" &&
+            event.key !== "End"
+          )
+            return;
           event.preventDefault();
-          let next = index;
-          if (event.key === "ArrowRight" || event.key === "ArrowDown")
-            next = (index + 1) % tabs.length;
-          if (event.key === "ArrowLeft" || event.key === "ArrowUp")
-            next = (index - 1 + tabs.length) % tabs.length;
-          if (event.key === "Home") next = 0;
-          if (event.key === "End") next = tabs.length - 1;
+          const next =
+            event.key === "Home"
+              ? 0
+              : event.key === "End"
+                ? tabs.length - 1
+                : (index + delta + tabs.length) % tabs.length;
           activate(next, true);
         });
       });
-      activate(0);
+      if (group.hasAttribute("data-swipe")) {
+        let start = null,
+          suppressClick = false;
+        const surface = group.querySelector(".tab-panels");
+        surface.addEventListener(
+          "touchstart",
+          (event) => {
+            const t = event.touches[0];
+            start = { x: t.clientX, y: t.clientY };
+          },
+          { passive: true },
+        );
+        surface.addEventListener(
+          "touchend",
+          (event) => {
+            if (!start) return;
+            const t = event.changedTouches[0],
+              dx = t.clientX - start.x,
+              dy = t.clientY - start.y;
+            start = null;
+            if (Math.abs(dx) < 55 || Math.abs(dx) < Math.abs(dy) * 1.3) return;
+            suppressClick = true;
+            activate((current + (dx < 0 ? 1 : -1) + tabs.length) % tabs.length);
+            announce("Project " + tabs[current].textContent.trim());
+            setTimeout(() => {
+              suppressClick = false;
+            }, 350);
+          },
+          { passive: true },
+        );
+        surface.addEventListener(
+          "click",
+          (event) => {
+            if (suppressClick) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+          },
+          true,
+        );
+      }
     });
   }
-
   function setupPreview() {
     const dialog = document.getElementById("previewModal");
     const image = document.getElementById("modalImage");
@@ -195,7 +253,7 @@
           announce("Email address copied to clipboard.");
           clearTimeout(timer);
           timer = setTimeout(() => {
-            button.textContent = "Copy email ⧉";
+            button.textContent = "Copy email";
           }, 2400);
         } catch {
           announce(
@@ -207,189 +265,311 @@
     });
   }
 
-  function setupStorytelling() {
-    const chapters = [...document.querySelectorAll("[data-chapter]")];
-    const links = [...document.querySelectorAll("[data-chapter-link]")];
-    const progress = document.getElementById("scrollProgress");
-    const chapterLabel = document.getElementById("currentChapter");
-    const architecture = document.querySelector(".architecture-story");
-    const steps = [...document.querySelectorAll("[data-architecture-step]")];
-    const nodes = [...document.querySelectorAll("[data-architecture-node]")];
-    const screens = [...document.querySelectorAll("[data-screen-step]")];
-    const screenStory = document.querySelector(".screen-story");
-    const screen = document.getElementById("darkScreen");
-    const screenImage = screen.querySelector("img");
-    const visibleStories = new Set();
-    let currentChapter = "";
-    let currentNode = -1;
-    let currentScreen = 0;
-    let scheduled = false;
-
-    const selectScreen = (index) => {
-      if (index === currentScreen) return;
-      currentScreen = index;
-      const selected = screens[index];
-      screens.forEach((button, position) => {
-        button.classList.toggle("is-active", position === index);
-        button.setAttribute("aria-pressed", String(position === index));
+  function setupProductStory() {
+    const buttons = [...document.querySelectorAll("[data-screen-step]")];
+    const link = document.getElementById("darkScreen");
+    const image = link.querySelector("img");
+    const story = document.querySelector(".screen-story");
+    let selected = 0,
+      version = 0,
+      manualAt = -Infinity;
+    const select = (index, manual = false) => {
+      if (manual) manualAt = window.scrollY;
+      if (index === selected) return;
+      selected = index;
+      const ticket = ++version,
+        button = buttons[index];
+      buttons.forEach((item, i) => {
+        item.classList.toggle("is-active", i === index);
+        item.setAttribute("aria-pressed", String(i === index));
       });
-      const title = selected
-        .querySelector(".mono")
-        .textContent.replace(/^\d+ \/ /, "");
-      const description = selected.querySelector(
-        ".screen-description",
-      ).textContent;
-      screenImage.src = selected.dataset.optimized;
-      if (!reducedMotion.matches)
-        screenImage.animate([{ opacity: 0.5 }, { opacity: 1 }], {
-          duration: 220,
-          easing: "ease-out",
-        });
-      screenImage.alt = `Dark Agent ${title.toLowerCase()} — ${description}`;
-      screen.dataset.preview = selected.dataset.file;
-      screen.href = selected.dataset.file;
-      screen.dataset.title = `Dark Agent — ${title}`;
-      screen.setAttribute(
-        "aria-label",
-        `Open full resolution: Dark Agent ${title.toLowerCase()}`,
-      );
-      document.getElementById("darkScreenCount").textContent =
-        `${String(index + 1).padStart(2, "0")} / 06`;
-      document.getElementById("darkScreenCaption").textContent = description;
+      const preload = new Image();
+      preload.src = button.dataset.optimized;
+      const apply = () => {
+        if (ticket !== version) return;
+        image.src = button.dataset.optimized;
+        image.alt = "Dark Agent — " + button.dataset.title;
+        link.href = link.dataset.preview = button.dataset.file;
+        link.dataset.title = "Dark Agent — " + button.dataset.title;
+        link.setAttribute(
+          "aria-label",
+          "Expand Dark Agent " + button.dataset.title,
+        );
+        document.getElementById("darkScreenCount").textContent =
+          String(index + 1).padStart(2, "0") + " / 06";
+        document.getElementById("darkScreenCaption").textContent =
+          button.dataset.description;
+        if (!reducedMotion.matches)
+          image.animate(
+            [
+              { opacity: 0.3, transform: "scale(1.012)" },
+              { opacity: 1, transform: "scale(1)" },
+            ],
+            { duration: 500, easing: "ease-out" },
+          );
+      };
+      preload.decode().then(apply, apply);
     };
-    screens.forEach((button, index) =>
-      button.addEventListener("click", () => selectScreen(index)),
+    buttons.forEach((button, i) =>
+      button.addEventListener("click", () => select(i, true)),
     );
-
-    const stageAt = (elements, line) => {
-      let selected = 0;
-      elements.forEach((element, index) => {
-        if (element.getBoundingClientRect().top <= line) selected = index;
-      });
-      return selected;
+    return () => {
+      if (!desktop.matches || Math.abs(window.scrollY - manualAt) < 140) return;
+      const rect = story.getBoundingClientRect();
+      if (rect.top > window.innerHeight || rect.bottom < 0) return;
+      const travel = Math.max(1, rect.height - window.innerHeight + 100);
+      select(Math.min(5, Math.floor(clamp((110 - rect.top) / travel) * 6)));
     };
-    const update = () => {
-      scheduled = false;
-      const headerHeight = parseFloat(
-        getComputedStyle(root).getPropertyValue("--header"),
+  }
+
+  function setupArchitecture() {
+    const nodes = [...document.querySelectorAll("[data-architecture-node]")];
+    const panels = [...document.querySelectorAll("[data-architecture-step]")];
+    const map = document.querySelector(".architecture-map");
+    let current = 0,
+      manualAt = -Infinity;
+    const select = (index, manual = false) => {
+      if (manual) manualAt = window.scrollY;
+      if (current === index) return;
+      current = index;
+      nodes.forEach((node, i) => {
+        node.classList.toggle("is-current", i === index);
+        node.classList.toggle("is-past", i < index);
+        node.setAttribute("aria-pressed", String(i === index));
+        if (i === index) node.setAttribute("aria-current", "step");
+        else node.removeAttribute("aria-current");
+        panels[i].hidden = i !== index;
+      });
+      if (manual)
+        announce(
+          nodes[index].querySelector("strong").textContent +
+            ". " +
+            panels[index].querySelector("h3").textContent,
+        );
+    };
+    nodes.forEach((node, i) => {
+      const insight = document.createElement("span");
+      insight.className = "node-insight";
+      insight.textContent = panels[i].querySelector("h3").textContent;
+      insight.setAttribute("aria-hidden", "true");
+      node.append(insight);
+      node.addEventListener("click", () => select(i, true));
+      node.addEventListener("pointerenter", (event) => {
+        if (event.pointerType === "mouse") select(i, true);
+      });
+      node.addEventListener("keydown", (event) => {
+        const delta = {
+          ArrowRight: 1,
+          ArrowDown: 1,
+          ArrowLeft: -1,
+          ArrowUp: -1,
+        }[event.key];
+        if (delta === undefined && event.key !== "Home" && event.key !== "End")
+          return;
+        event.preventDefault();
+        const index =
+          event.key === "Home"
+            ? 0
+            : event.key === "End"
+              ? 8
+              : (i + delta + 9) % 9;
+        select(index, true);
+        nodes[index].focus({ preventScroll: true });
+      });
+    });
+    nodes[0].setAttribute("aria-current", "step");
+    return () => {
+      if (Math.abs(window.scrollY - manualAt) < 120) return;
+      const rect = map.getBoundingClientRect();
+      if (rect.top > innerHeight * 0.85 || rect.bottom < 0) return;
+      const progress = clamp(
+        (innerHeight * 0.6 - rect.top) / (rect.height + innerHeight * 0.15),
       );
-      const readingLine =
-        headerHeight + (window.innerHeight - headerHeight) * 0.35;
-      const chapter = chapters[stageAt(chapters, readingLine)];
-      if (chapter.id !== currentChapter) {
-        currentChapter = chapter.id;
+      select(Math.min(8, Math.floor(progress * 9)));
+    };
+  }
+
+  function setupScroll() {
+    const header = document.querySelector(".site-header");
+    const progress = document.getElementById("scrollProgress");
+    const chapters = [...document.querySelectorAll("main > section")];
+    const links = [...document.querySelectorAll("[data-chapter-link]")];
+    const screenUpdate = setupProductStory(),
+      architectureUpdate = setupArchitecture();
+    let queued = false,
+      lastChapter = "";
+    const update = () => {
+      queued = false;
+      header.classList.toggle("is-scrolled", scrollY > 60);
+      progress.style.transform =
+        "scaleX(" +
+        clamp(scrollY / Math.max(1, root.scrollHeight - innerHeight)) +
+        ")";
+      let current = chapters[0];
+      for (const chapter of chapters)
+        if (chapter.getBoundingClientRect().top < innerHeight * 0.35)
+          current = chapter;
+      if (current.id !== lastChapter) {
+        lastChapter = current.id;
+        header.dataset.world = ["dark-agent", "smartinvest"].includes(
+          current.id,
+        )
+          ? "dark"
+          : "light";
         links.forEach((link) => {
-          if (link.dataset.chapterLink === chapter.id)
+          if (link.dataset.chapterLink === current.id)
             link.setAttribute("aria-current", "location");
           else link.removeAttribute("aria-current");
         });
-        chapterLabel.textContent = chapter.dataset.chapter;
       }
-      const maxScroll = root.scrollHeight - window.innerHeight;
-      progress.style.transform = `scaleX(${maxScroll > 0 ? Math.min(1, Math.max(0, window.scrollY / maxScroll)) : 0})`;
-      if (!desktop.matches) return;
-      if (visibleStories.has(architecture)) {
-        const selected = stageAt(steps, readingLine);
-        if (selected !== currentNode) {
-          currentNode = selected;
-          nodes.forEach((node, index) => {
-            node.classList.toggle("is-current", index === selected);
-            node.classList.toggle("is-past", index < selected);
-            if (index === selected) node.setAttribute("aria-current", "step");
-            else node.removeAttribute("aria-current");
-          });
-          document.getElementById("architectureCount").textContent =
-            `${String(selected + 1).padStart(2, "0")} / 09`;
-        }
-      }
-      if (visibleStories.has(screenStory))
-        selectScreen(stageAt(screens, readingLine));
+      screenUpdate();
+      architectureUpdate();
     };
     const schedule = () => {
-      if (scheduled) return;
-      scheduled = true;
-      requestAnimationFrame(update);
+      if (!queued) {
+        queued = true;
+        requestAnimationFrame(update);
+      }
     };
-    if ("IntersectionObserver" in window) {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) visibleStories.add(entry.target);
-          else visibleStories.delete(entry.target);
-        });
-        schedule();
-      });
-      observer.observe(architecture);
-      observer.observe(screenStory);
-    } else {
-      visibleStories.add(architecture);
-      visibleStories.add(screenStory);
-    }
-    window.addEventListener("scroll", schedule, { passive: true });
-    window.addEventListener("resize", schedule, { passive: true });
-    desktop.addEventListener("change", schedule);
+    addEventListener("scroll", schedule, { passive: true });
+    addEventListener("resize", schedule, { passive: true });
     document.fonts.ready.then(schedule);
     schedule();
   }
 
-  function setupMapDepth() {
-    const map = document.querySelector("[data-depth]");
+  function setupAtmosphere() {
+    const sculpture = document.querySelector("[data-depth]");
     let frame = 0;
     const reset = () => {
       cancelAnimationFrame(frame);
-      map.style.setProperty("--depth-x", "0px");
-      map.style.setProperty("--depth-y", "0px");
+      sculpture.style.setProperty("--rotate-x", "0deg");
+      sculpture.style.setProperty("--rotate-y", "0deg");
     };
-    map.addEventListener(
+    sculpture.addEventListener(
       "pointermove",
       (event) => {
         if (reducedMotion.matches || !finePointer.matches || !desktop.matches)
           return;
         cancelAnimationFrame(frame);
         frame = requestAnimationFrame(() => {
-          const rect = map.getBoundingClientRect();
-          map.style.setProperty(
-            "--depth-x",
-            `${((event.clientX - rect.left) / rect.width - 0.5) * 5}px`,
-          );
-          map.style.setProperty(
-            "--depth-y",
-            `${((event.clientY - rect.top) / rect.height - 0.5) * 5}px`,
-          );
+          const rect = sculpture.getBoundingClientRect(),
+            x = (event.clientX - rect.left) / rect.width,
+            y = (event.clientY - rect.top) / rect.height;
+          sculpture.style.setProperty("--rotate-x", (y - 0.5) * -3 + "deg");
+          sculpture.style.setProperty("--rotate-y", (x - 0.5) * 4 + "deg");
+          sculpture.style.setProperty("--pointer-x", x * 100 + "%");
+          sculpture.style.setProperty("--pointer-y", y * 100 + "%");
         });
       },
       { passive: true },
     );
-    map.addEventListener("pointerleave", reset);
+    sculpture.addEventListener("pointerleave", reset);
     reducedMotion.addEventListener("change", reset);
     desktop.addEventListener("change", reset);
-  }
-
-  function setupDiagramMotion() {
     if (!("IntersectionObserver" in window)) return;
+    if (!reducedMotion.matches) root.classList.add("js-reveals");
+    const motionObserver = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((entry) =>
+          entry.target.classList.toggle(
+            "is-motion-visible",
+            entry.isIntersecting,
+          ),
+        ),
+      { threshold: 0.05 },
+    );
+    document
+      .querySelectorAll(".hero,.skill-ecosystem,.architecture-map,.build-chain")
+      .forEach((el) => motionObserver.observe(el));
     const observer = new IntersectionObserver(
-      (entries) => {
+      (entries) =>
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
           entry.target.classList.add("is-in-view");
+          if (
+            entry.target.matches("[data-validation]") &&
+            !reducedMotion.matches
+          )
+            entry.target.classList.add("is-playing");
           observer.unobserve(entry.target);
-        });
-      },
-      { threshold: 0.25 },
+        }),
+      { threshold: 0.12, rootMargin: "0px 0px -20px 0px" },
     );
     document
-      .querySelectorAll(".rag-flow, .challenge-flow")
-      .forEach((diagram) => {
-        diagram.classList.add("diagram-motion");
-        observer.observe(diagram);
-      });
+      .querySelectorAll(
+        "[data-reveal], [data-validation], .finance-heading, .experience-entry",
+      )
+      .forEach((el) => observer.observe(el));
+    document.querySelector("[data-replay]").addEventListener("click", () => {
+      const demo = document.querySelector("[data-validation]");
+      demo.classList.remove("is-playing");
+      if (!reducedMotion.matches)
+        requestAnimationFrame(() =>
+          requestAnimationFrame(() => demo.classList.add("is-playing")),
+        );
+      announce(
+        "Illustrated validation workflow: claims, evidence, logic, contradictions, and assumptions.",
+      );
+    });
+    reducedMotion.addEventListener("change", () => {
+      if (reducedMotion.matches) root.classList.remove("js-reveals");
+    });
   }
 
+  function setupCursor() {
+    const cursor = document.querySelector(".context-cursor"),
+      label = cursor.querySelector("span");
+    let frame = 0;
+    document.addEventListener(
+      "pointermove",
+      (event) => {
+        if (
+          !finePointer.matches ||
+          !desktop.matches ||
+          reducedMotion.matches ||
+          event.pointerType !== "mouse"
+        ) {
+          cursor.classList.remove("is-visible");
+          return;
+        }
+        cancelAnimationFrame(frame);
+        frame = requestAnimationFrame(() => {
+          const target = event.target.closest("a,button,summary");
+          let text = "";
+          if (target) {
+            text = target.hasAttribute("data-architecture-node")
+              ? "Inspect"
+              : target.hasAttribute("data-preview")
+                ? "Expand"
+                : target.dataset.cursor || "Open";
+          }
+          label.textContent = text;
+          cursor.classList.toggle("is-context", Boolean(text));
+          const offset = text ? 33 : 6;
+          cursor.style.transform =
+            "translate(" +
+            (event.clientX - offset) +
+            "px," +
+            (event.clientY - offset) +
+            "px)";
+          cursor.classList.add("is-visible");
+        });
+      },
+      { passive: true },
+    );
+    document.addEventListener("pointerout", (event) => {
+      if (!event.relatedTarget) cursor.classList.remove("is-visible");
+    });
+    document.addEventListener("keydown", () =>
+      cursor.classList.remove("is-visible"),
+    );
+  }
   setupTheme();
   setupNavigation();
   setupTabs();
   setupPreview();
   setupCopy();
-  setupStorytelling();
-  setupMapDepth();
-  setupDiagramMotion();
+  setupScroll();
+  setupAtmosphere();
+  setupCursor();
 })();

@@ -1,56 +1,59 @@
-# Verification record — 30 September 2026
+# V4 verification — 30 September 2026
 
-## Production checks
+## Build and implementation
 
-- `npm run build`: passed. Validates HTML semantics, JavaScript syntax, anchors, local image paths and dimensions, structured data, the single current CV, and Vercel configuration. Produces a static `dist/` with minified CSS and JavaScript.
-- `npm test`: **16 passed**, against the generated production output in Chrome/Chromium.
-- `git diff --check`: passed.
-- Dependency audit after removing the temporary Lighthouse installation: **0 vulnerabilities**.
-- Public-output scan: **68 files**, with no environment files, credentials, private keys, local machine paths, debug logging, or development/test directories detected.
+- Production build passes semantic HTML, JavaScript syntax, anchors, local assets, image dimensions, CV consistency, structured data, and Vercel configuration checks.
+- The old side index, editorial compositions, stylesheet, and index-specific JavaScript were replaced. No legacy stylesheet is loaded and no runtime framework or animation library was introduced.
+- Production output contains only static site files and assets. Development tools, tests, documentation, local reports, and environment files are excluded.
+- `git diff --check` passes. Runtime dependency audit reports zero vulnerabilities; there are no production package dependencies.
 
-## Responsive and interaction coverage
+## Browser and interaction checks
 
-Viewport widths: **375, 390, 430, 768, 1024, 1440, and 1920 px**. Each passes overflow and image checks through all major scenes. Representative screenshots at every width were visually inspected.
+**20 tests pass** against the generated production output in Chrome/Chromium. Additional targeted checks cover the final no-JavaScript fallback and hero layout cleanup.
 
-Browser checks cover:
+Responsive widths: **375, 390, 430, 768, 1024, 1440, and 1920 px**. All major scenes pass overflow, image loading, and browser-error checks. Screenshots at each width were inspected.
 
-- ICE/NIGHT destination labels and persistence after reload.
-- Storage-unavailable fallback and reduced motion.
-- All five tab interfaces, including arrow keys, Home, End, selected state, and panel associations.
-- Mobile menu, Escape, focus return, and chapter navigation.
-- Native image dialog, explicit keyboard containment, Escape, and focus restoration.
-- Dark Agent scroll-selected screens, touch selection, and all 13 full-resolution original screenshots.
-- Nine-stage architecture progression.
-- Current CV HTTP delivery and PDF signature; all CV links use one file.
-- Email copying and keyboard skip link.
-- No-JavaScript access to project content; image links retain original-image destinations.
-- Automated WCAG A/AA checks in both themes, including the experimental visible-label/accessibility-name comparison.
+Coverage includes:
+
+- ICE/NIGHT switching, destination labels, saved preference, and storage-unavailable fallback.
+- Floating navigation, mobile overlay, Escape, focus return, anchor navigation, and adaptive dock color.
+- All five tab interfaces with arrow keys, Home, End, correct selection, and associated panels.
+- Hero hover previews and navigation to the selected real project.
+- Architecture selection, keyboard traversal, and visible explanations from identity through settlement.
+- Scroll-selected Dark Agent screens, touch selection, and all 13 full-resolution originals.
+- Native image dialog focus containment, Escape, and focus restoration.
+- Real emulated touch swipes through the project gallery without accidentally opening an image.
+- Replayable illustrated validation, live reduced-motion preference changes, and cursor removal under reduced motion.
+- Current CV HTTP delivery and PDF signature, email copying, and skip navigation.
+- No-JavaScript access to projects, architecture explanations, image originals, and mobile navigation without overflow.
+- Automated WCAG A/AA checks in both themes, including visible-label/accessibility-name matching: **zero violations**.
 
 ## Performance
 
-Lighthouse **12.8.2**, local production preview with minified assets and HTTP compression. These are laboratory measurements, not field-user measurements.
+Lighthouse **12.8.2**, local production preview with minified CSS/JavaScript and HTTP compression. These are lab measurements, not field-user measurements.
 
-| Category | Mobile | Desktop |
-| --- | ---: | ---: |
-| Performance | 98 | 100 |
-| Accessibility | 100 | 100 |
-| Best practices | 100 | 100 |
-| SEO | 100 | 100 |
-| Largest Contentful Paint | 1.9 s | 0.4 s |
-| Cumulative Layout Shift | 0 | 0 |
+| Category                 | Mobile | Desktop |
+| ------------------------ | -----: | ------: |
+| Performance              |     99 |     100 |
+| Accessibility            |    100 |     100 |
+| Best practices           |    100 |     100 |
+| SEO                      |    100 |     100 |
+| Largest Contentful Paint |  1.9 s |   0.4 s |
+| Cumulative Layout Shift  |      0 |       0 |
+| Total Blocking Time      |  50 ms |    0 ms |
 
-The hero image is about 16 KB. The browser interaction script is about 8 KB minified. Optimized display images total about 1 MB and load lazily below the fold. Original screenshots are fetched when opened. Fonts are self-hosted, and there are no runtime framework or animation dependencies.
+The hero screenshot is about 16 KB, interaction JavaScript about 11 KB minified, and optimized display images about 1 MB in total. Below-the-fold images load lazily; originals load on demand. Fonts are self-hosted. Decorative animation pauses outside the viewport. Scroll and pointer work is scheduled through requestAnimationFrame rather than a perpetual rendering loop. No Three.js, WebGL, particle canvas, analytics, external font request, or third-party browser script is shipped.
 
-## Links and content
+## Content preservation
 
-The GitHub profile, all five public project repositories, certificate folder, WhatsApp link, and existing production URL returned HTTP 200. The two original Kaggle notebook links could not be fetched in this environment and remain unchanged.
+An inventory comparison found **no missing original external or asset links**. All 18 original Dark Agent and SmartInvest screenshots remain intact. Person, website, and project structured metadata is unchanged. Every CV link still uses `assets/MohamedBassam CV Improved .pdf`; the old PDF URL keeps its existing Vercel redirect.
 
-Dark Agent is described as **V1.0 Release Candidate**, with **Azure-ready infrastructure / Azure deployment preparation**. No public Dark Agent source link was introduced. SmartInvest remains a paper-trading project. Existing factual project evidence, including Dark Agent's 309 backend tests, was preserved.
+Personal identity, Dubai location, Golden Visa, availability, experience, education, project facts, GitHub, email, WhatsApp, certificates, and notebook links remain. Dark Agent retains V1.0 Release Candidate / Azure-ready infrastructure / Azure deployment preparation wording, and no private source link is introduced. The 309 backend tests are project evidence, not portfolio test results. SmartInvest is a paper-trading product. The Red Team sequence is explicitly an illustrated workflow; decorative finance lines imply no measured financial results.
 
-The newer `MohamedBassam CV Improved .pdf` supplied in the workspace is the only resume referenced by the interface. The former PDF URL has a Vercel redirect to the current document.
+## Deployment and limits
 
-## Limits
+The repository, main branch, GitHub connection, Vercel project, and `https://mohamed-bassam.vercel.app` domain remain unchanged. The existing pipeline builds `dist/` from main. Final push and live verification are reported with the release commit.
 
-Browser testing used Chromium with responsive viewport emulation. Physical phones, Safari, and Firefox were not available for direct verification. Lighthouse and automated accessibility checks supplement the manual visual and keyboard review; they are not a complete accessibility certification.
+Testing used Chromium and responsive/touch emulation. Physical phones, Safari, and Firefox were not directly tested. The two original Kaggle links remain unchanged but could not be independently fetched in the earlier environment. Automated checks complement visual and keyboard review; they do not constitute accessibility certification.
 
-Raw browser screenshots, Lighthouse reports, and test artifacts are kept locally in ignored `.qa/`, `test-results/`, and `playwright-report/` directories. They are excluded from production output.
+Raw screenshots, audit JSON, and browser traces are local ignored artifacts under `.qa/`, `test-results/`, and `playwright-report/` and are not published.

@@ -2,16 +2,16 @@
 
 [mohamed-bassam.vercel.app](https://mohamed-bassam.vercel.app)
 
-A personal AI engineering portfolio built with semantic HTML, CSS, and small, dependency-free browser scripts. The experience connects actual projects, engineering decisions, and product interfaces through an editorial system index.
+A personal AI engineering portfolio built with semantic HTML, CSS, and small, dependency-free browser scripts. V4 connects real project interfaces through an atmospheric, spatial experience with a floating navigation dock.
 
 ## Experience
 
-- An interactive work map introduces Mohamed and his current flagship.
-- A portrait-led profile and engineering practice track replace repeated cards.
-- Five capability domains connect technologies to responsibilities and evidence.
-- Dark Agent combines a progressive nine-stage architecture, selectable agent roles, hybrid retrieval, adversarial validation, a pinned product-screen narrative, release evidence, and a decision log.
-- SmartInvest has its own financial-intelligence atmosphere and five-stage market-data-to-paper-execution walkthrough.
-- A six-project index exposes large real screenshots, source links, and engineering context.
+- A pointer-responsive intelligence sculpture connects five real project previews, led by Dark Agent.
+- A large portrait and floating personal facts introduce Mohamed; a timeline preserves his experience.
+- Six connected capability branches reveal technologies and project evidence. Data and automation remain available as the connective layer.
+- Dark Agent combines full-width product screens, a flowing nine-stage architecture, selectable agent roles, hybrid retrieval, an illustrated Red Team validation sequence, release evidence, and engineering decisions.
+- SmartInvest has its own financial atmosphere and six-stage market-data-to-paper-execution walkthrough.
+- A six-project visual gallery supports keyboard selection and touch swiping.
 - ICE and NIGHT themes retain the existing saved preference.
 
 Dark Agent remains **V1.0 Release Candidate**, with **Azure-ready infrastructure / Azure deployment preparation**. Its private source repository is not linked. The 309 backend tests are documented Dark Agent evidence, separate from this portfolio's tests. SmartInvest demonstrates paper trading, not claimed live investment performance.
@@ -55,7 +55,7 @@ Run `npm run assets` to regenerate optimized images and fonts. There is no front
 
 ## Accessibility and interaction
 
-Native scrolling is preserved. Desktop pinning is limited to the architecture and screenshot stories; mobile uses normal document flow and touch controls. Tab interfaces support arrow keys, Home, and End. A native dialog with explicit keyboard containment supports Escape and restores focus. Preview links still open the original image without JavaScript. Reduced motion removes smooth scrolling, pointer depth, and diagram transitions.
+Native scrolling is preserved. Desktop pinning is limited to the Dark Agent screenshot story; mobile uses normal document flow, a vertical architecture path, and touch controls. Tab interfaces and architecture inspection support arrow keys, Home, and End. A native dialog with explicit keyboard containment supports Escape and restores focus. Preview links still open the original image without JavaScript. Reduced motion removes smooth scrolling, pointer depth, contextual cursor, and transitions. Decorative animation pauses offscreen, and the native cursor remains available.
 
 All resume links reference the single current `assets/MohamedBassam CV Improved .pdf`. The former PDF URL redirects to it, preserving existing shared links.
 
