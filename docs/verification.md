@@ -28,6 +28,8 @@ Coverage includes:
 - No-JavaScript access to projects, architecture explanations, image originals, and mobile navigation without overflow.
 - Automated WCAG A/AA checks in both themes, including visible-label/accessibility-name matching: **zero violations**.
 
+The first live run exposed an initial reveal transition timing issue in the ICE contrast scan. Reveal transitions now apply only when content enters view; automated contrast checks use reduced motion so all sections, including off-screen content, are inspected at full opacity.
+
 ## Performance
 
 Lighthouse **12.8.2**, local production preview with minified CSS/JavaScript and HTTP compression. These are lab measurements, not field-user measurements.

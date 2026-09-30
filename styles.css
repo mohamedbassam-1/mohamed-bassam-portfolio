@@ -2633,13 +2633,13 @@ details strong {
 .js-reveals [data-reveal] {
   opacity: 0;
   transform: translateY(24px);
-  transition:
-    opacity 0.85s var(--ease),
-    transform 0.85s var(--ease);
 }
 .js-reveals [data-reveal].is-in-view {
   opacity: 1;
   transform: none;
+  transition:
+    opacity 0.85s var(--ease),
+    transform 0.85s var(--ease);
 }
 .modal-open {
   overflow: hidden;

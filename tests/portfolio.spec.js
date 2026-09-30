@@ -309,6 +309,8 @@ test("architecture progresses and the latest CV, email, and skip link work", asy
 
 for (const theme of ["ice", "night"]) {
   test(`WCAG automated checks in ${theme} theme`, async ({ page }) => {
+    // Inspect every section at full opacity, including off-screen reveal content.
+    await page.emulateMedia({ reducedMotion: "reduce" });
     await page.goto("/");
     if (theme === "night")
       await page.getByRole("button", { name: "Switch to night theme" }).click();
