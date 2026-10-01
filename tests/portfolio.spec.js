@@ -16,7 +16,7 @@ for (const width of widths) {
     });
     await page.goto("/");
     await page.evaluate(() => document.fonts.ready);
-    await expect(page.locator("h1")).toContainText("Real product.");
+    await expect(page.locator("h1")).toContainText("real product.");
     for (const id of [
       "top",
       "about",
@@ -112,12 +112,15 @@ test("all tab interfaces support keyboard selection and expose connected panels"
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
   for (const id of [
-    "hero-system",
     "capabilities",
     "agent-roles",
     "finance-pipeline",
     "project-index",
   ]) {
+    if (id === "agent-roles")
+      await page.locator(".case-note > summary").first().click();
+    if (id === "finance-pipeline")
+      await page.locator(".finance-explainer > summary").click();
     const group = page.locator(`[data-tabs="${id}"]`);
     const tabs = group.getByRole("tab");
     await tabs.first().focus();
@@ -314,6 +317,9 @@ for (const theme of ["ice", "night"]) {
     await page.goto("/");
     if (theme === "night")
       await page.getByRole("button", { name: "Switch to night theme" }).click();
+    await page
+      .locator(".case-note, .finance-explainer")
+      .evaluateAll((items) => items.forEach((el) => (el.open = true)));
     const results = await new AxeBuilder({ page })
       .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"])
       .options({ rules: { "label-content-name-mismatch": { enabled: true } } })
@@ -330,23 +336,29 @@ for (const theme of ["ice", "night"]) {
   });
 }
 
-test("hero sculpture previews real projects on hover and navigates to their story", async ({
+test("hero responds subtly, has no dashboard controls, and links to real work", async ({
   page,
 }) => {
-  await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
-  const sculpture = page.locator('[data-tabs="hero-system"]');
-  await sculpture
-    .getByRole("tab", { name: "SmartInvest", exact: true })
-    .hover();
-  await expect(sculpture.getByRole("tabpanel")).toHaveAttribute(
-    "id",
-    "hero-system-panel-1",
-  );
-  const preview = sculpture.getByRole("tabpanel").getByRole("link");
-  await expect(preview).toHaveAttribute("href", "#smartinvest");
-  await preview.click();
-  await expect(page).toHaveURL(/#smartinvest$/);
+  await expect(page.locator("#top [role=tab]")).toHaveCount(0);
+  await expect(
+    page.locator(".context-cursor, [data-cursor], .release-section"),
+  ).toHaveCount(0);
+  const art = page.locator("[data-depth]");
+  const box = await art.boundingBox();
+  await page.mouse.move(box.x + box.width * 0.8, box.y + box.height * 0.3);
+  await expect
+    .poll(() => art.evaluate((el) => el.style.getPropertyValue("--rotate-y")))
+    .not.toBe("");
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await expect
+    .poll(() => art.evaluate((el) => el.style.getPropertyValue("--rotate-y")))
+    .toBe("0deg");
+  await page
+    .locator("#top")
+    .getByRole("link", { name: "Explore Dark Agent" })
+    .click();
+  await expect(page).toHaveURL(/#dark-agent$/);
   await expect(page.locator(".site-header")).toHaveAttribute(
     "data-world",
     "dark",
@@ -418,18 +430,29 @@ test("touch swipe changes the project without opening its image", async ({
   await context.close();
 });
 
-test("motion responds to preferences and validation can be replayed", async ({
+test("deeper evidence remains available and reel controls work", async ({
   page,
 }) => {
-  await page.goto("/");
-  await page.locator("[data-replay]").click();
-  await expect(page.locator("[data-validation]")).toHaveClass(/is-playing/);
-  await expect(page.locator("[data-validation] li")).toHaveCount(5);
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await expect(page.locator("html")).not.toHaveClass(/js-reveals/);
-  const result = await page.locator(".validation-result").evaluate((el) => ({
-    animation: getComputedStyle(el).animationName,
-    opacity: getComputedStyle(el).opacity,
-  }));
-  expect(result).toEqual({ animation: "none", opacity: "1" });
+  await page.goto("/");
+  await page.locator(".case-note > summary").nth(2).click();
+  await expect(page.locator(".validation-demo")).toContainText(
+    "Illustrated workflow",
+  );
+  await expect(page.locator(".validation-demo li")).toHaveCount(5);
+  await page.locator(".finance-explainer > summary").click();
+  await page.getByRole("tab", { name: "Decision", exact: false }).click();
+  await expect(page.locator("#finance-pipeline-panel-3")).toContainText(
+    "confidence",
+  );
+  await page.getByRole("button", { name: "Next project", exact: true }).click();
+  await expect(page.locator("#project-index-panel-1")).toBeVisible();
+  await page
+    .getByRole("button", { name: "Previous project", exact: true })
+    .click();
+  await expect(page.locator("#project-index-panel-0")).toBeVisible();
+  await page
+    .getByRole("button", { name: "Previous project", exact: true })
+    .click();
+  await expect(page.locator("#project-index-panel-5")).toBeVisible();
 });

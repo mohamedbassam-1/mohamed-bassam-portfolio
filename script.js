@@ -21,7 +21,7 @@
         "Switch to " + destination.toLowerCase() + " theme",
       );
       document.querySelector('meta[name="theme-color"]').content =
-        theme === "night" ? "#0b1222" : "#f3f6fc";
+        theme === "night" ? "#0c1524" : "#f2f5f9";
     };
     apply(root.dataset.theme === "night" ? "night" : "ice");
     button.addEventListener("click", () => {
@@ -93,26 +93,29 @@
           tab.tabIndex = i === index ? 0 : -1;
           panels[i].hidden = i !== index;
         });
+        const position = group.querySelector(".reel-position");
+        if (position)
+          position.textContent = String(index + 1).padStart(2, "0") + " / 06";
         if (changed && !reducedMotion.matches)
           panels[index].animate(
             [
-              { opacity: 0.3, transform: "translateY(7px)" },
-              { opacity: 1, transform: "translateY(0)" },
+              {
+                opacity: 0.2,
+                transform: group.hasAttribute("data-swipe")
+                  ? "translateX(18px)"
+                  : "translateY(4px)",
+              },
+              { opacity: 1, transform: "translate(0)" },
             ],
-            { duration: 380, easing: "cubic-bezier(.2,.8,.2,1)" },
+            {
+              duration: group.hasAttribute("data-swipe") ? 650 : 300,
+              easing: "cubic-bezier(.2,.75,.2,1)",
+            },
           );
         if (focus) tabs[index].focus({ preventScroll: true });
       };
       tabs.forEach((tab, index) => {
         tab.addEventListener("click", () => activate(index));
-        if (group.hasAttribute("data-hover-tabs"))
-          tab.addEventListener("pointerenter", (event) => {
-            if (
-              event.pointerType === "mouse" &&
-              !group.contains(document.activeElement)
-            )
-              activate(index);
-          });
         tab.addEventListener("keydown", (event) => {
           const delta = {
             ArrowRight: 1,
@@ -136,6 +139,16 @@
           activate(next, true);
         });
       });
+      const stepProject = (delta) => {
+        activate((current + delta + tabs.length) % tabs.length);
+        announce("Project " + tabs[current].textContent.trim());
+      };
+      group
+        .querySelector("[data-reel-prev]")
+        ?.addEventListener("click", () => stepProject(-1));
+      group
+        .querySelector("[data-reel-next]")
+        ?.addEventListener("click", () => stepProject(1));
       if (group.hasAttribute("data-swipe")) {
         let start = null,
           suppressClick = false;
@@ -348,11 +361,6 @@
         );
     };
     nodes.forEach((node, i) => {
-      const insight = document.createElement("span");
-      insight.className = "node-insight";
-      insight.textContent = panels[i].querySelector("h3").textContent;
-      insight.setAttribute("aria-hidden", "true");
-      node.append(insight);
       node.addEventListener("click", () => select(i, true));
       node.addEventListener("pointerenter", (event) => {
         if (event.pointerType === "mouse") select(i, true);
@@ -397,10 +405,16 @@
     const screenUpdate = setupProductStory(),
       architectureUpdate = setupArchitecture();
     let queued = false,
+      lastScroll = 0,
       lastChapter = "";
     const update = () => {
       queued = false;
       header.classList.toggle("is-scrolled", scrollY > 60);
+      header.classList.toggle(
+        "is-descending",
+        scrollY > lastScroll && scrollY > 250,
+      );
+      lastScroll = scrollY;
       progress.style.transform =
         "scaleX(" +
         clamp(scrollY / Math.max(1, root.scrollHeight - innerHeight)) +
@@ -455,10 +469,8 @@
           const rect = sculpture.getBoundingClientRect(),
             x = (event.clientX - rect.left) / rect.width,
             y = (event.clientY - rect.top) / rect.height;
-          sculpture.style.setProperty("--rotate-x", (y - 0.5) * -3 + "deg");
-          sculpture.style.setProperty("--rotate-y", (x - 0.5) * 4 + "deg");
-          sculpture.style.setProperty("--pointer-x", x * 100 + "%");
-          sculpture.style.setProperty("--pointer-y", y * 100 + "%");
+          sculpture.style.setProperty("--rotate-x", (y - 0.5) * -2 + "deg");
+          sculpture.style.setProperty("--rotate-y", (x - 0.5) * 3 + "deg");
         });
       },
       { passive: true },
@@ -479,38 +491,20 @@
       { threshold: 0.05 },
     );
     document
-      .querySelectorAll(".hero,.skill-ecosystem,.architecture-map,.build-chain")
+      .querySelectorAll(".hero,.architecture-map")
       .forEach((el) => motionObserver.observe(el));
     const observer = new IntersectionObserver(
       (entries) =>
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
           entry.target.classList.add("is-in-view");
-          if (
-            entry.target.matches("[data-validation]") &&
-            !reducedMotion.matches
-          )
-            entry.target.classList.add("is-playing");
           observer.unobserve(entry.target);
         }),
       { threshold: 0.12, rootMargin: "0px 0px -20px 0px" },
     );
     document
-      .querySelectorAll(
-        "[data-reveal], [data-validation], .finance-heading, .experience-entry",
-      )
+      .querySelectorAll("[data-reveal], .finance-heading, .experience-entry")
       .forEach((el) => observer.observe(el));
-    document.querySelector("[data-replay]").addEventListener("click", () => {
-      const demo = document.querySelector("[data-validation]");
-      demo.classList.remove("is-playing");
-      if (!reducedMotion.matches)
-        requestAnimationFrame(() =>
-          requestAnimationFrame(() => demo.classList.add("is-playing")),
-        );
-      announce(
-        "Illustrated validation workflow: claims, evidence, logic, contradictions, and assumptions.",
-      );
-    });
     reducedMotion.addEventListener("change", () => {
       if (reducedMotion.matches) root.classList.remove("js-reveals");
     });

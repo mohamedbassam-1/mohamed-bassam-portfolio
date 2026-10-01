@@ -151,9 +151,6 @@
         .screen-stage {
           position: static !important;
         }
-        .hero-sculpture [data-panel][hidden] {
-          display: none !important;
-        }
       </style></noscript
     >
   </head>
@@ -167,7 +164,7 @@
         ></a
       >
       <nav class="site-nav" id="siteNav" aria-label="Main navigation">
-        <a href="#projects" data-chapter-link="projects">Projects</a
+        <a href="#projects" data-chapter-link="projects">Work</a
         ><a href="#dark-agent" data-chapter-link="dark-agent">Dark Agent</a
         ><a href="#smartinvest" data-chapter-link="smartinvest">SmartInvest</a
         ><a href="#about" data-chapter-link="about">About</a
@@ -183,7 +180,7 @@
           aria-label="Switch to night theme"
         >
           <svg class="theme-symbol" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M20 14A8 8 0 0 1 10 4a8 8 0 1 0 10 10Z" /></svg
+            <path d="M20 14A8 8 0 0 1 10 4a8 8 0 1 0 10 10Z"></path></svg
           ><span class="theme-label">Night</span></button
         ><a
           class="header-cv"
@@ -191,7 +188,7 @@
           target="_blank"
           rel="noreferrer"
           >CV<svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M5 12h14m-6-6 6 6-6 6" /></svg></a
+            <path d="M5 12h14m-6-6 6 6-6 6"></path></svg></a
         ><button
           class="menu-toggle"
           id="menuToggle"
@@ -209,312 +206,223 @@
     </header>
     <main id="main" tabindex="-1">
       <section class="hero scene" id="top" aria-labelledby="heroTitle">
-        <div class="hero-atmosphere" aria-hidden="true">
-          <div class="light-field light-field-one"></div>
-          <div class="light-field light-field-two"></div>
-          <div class="hero-grid"></div>
-        </div>
+        <div class="hero-atmosphere" aria-hidden="true"></div>
         <div class="hero-layout wrap">
           <div class="hero-copy">
-            <p class="availability-pill">
-              <span class="status-dot" aria-hidden="true"></span>Available
-              immediately <span class="pill-divider"></span> Dubai, UAE
+            <p class="hero-identity">
+              Mohamed Bassam<span>AI Engineer · Dubai</span>
             </p>
-            <p class="hero-identity">Mohamed Bassam <span>AI Engineer</span></p>
             <h1 id="heroTitle">
-              <span class="hero-premise">I build AI systems that move from</span
-              ><span class="model-word"
-                >Model<span class="word-connector" aria-hidden="true"
-                  ><svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M5 12h14m-6-6 6 6-6 6" /></svg></span></span
-              ><span class="sr-only">to </span
-              ><span class="hero-product">Real product.</span>
+              <span class="hero-intro">I build AI systems that move from</span
+              ><span class="hero-model"
+                >model <span aria-hidden="true">↗</span></span
+              ><span class="hero-product"
+                ><span class="sr-only">to </span>real product.</span
+              >
             </h1>
-            <p class="hero-description">
-              Intelligence is one part of the system.<br />I build the rest of
-              it, too.
+            <p class="hero-disciplines">
+              Agentic AI · Machine Learning<br />Computer Vision · NLP · AI
+              Products
             </p>
             <div class="hero-actions">
               <a class="button primary" href="#dark-agent"
-                >Explore Dark Agent<svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M5 12h14m-6-6 6 6-6 6" /></svg></a
+                >Explore Dark Agent
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M5 12h14m-6-6 6 6-6 6"></path></svg></a
               ><a class="button secondary" href="#projects">View Projects</a
               ><a
                 class="quiet-link"
                 href="assets/MohamedBassam%20CV%20Improved%20.pdf"
                 target="_blank"
                 rel="noreferrer"
-                >Open CV<svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M5 12h14m-6-6 6 6-6 6" /></svg
+                >Open CV
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M5 12h14m-6-6 6 6-6 6"></path></svg
               ></a>
             </div>
-            <p class="hero-footnote">
-              Agentic AI. Machine learning. Products that work.
-            </p>
           </div>
-          <div class="hero-sculpture" data-depth>
-            <div class="sculpture-space">
-              <div
-                class="architecture-plane plane-back"
-                aria-hidden="true"
-              ></div>
-              <div
-                class="architecture-plane plane-mid"
-                aria-hidden="true"
-              ></div>
-              <svg
-                class="sculpture-paths"
-                viewBox="0 0 680 620"
-                aria-hidden="true"
-              >
+          <div class="intelligence-art" data-depth="" aria-hidden="true">
+            <div class="intelligence-light"></div>
+            <svg class="intelligence-flow" viewBox="0 0 820 660">
+              <defs>
+                <linearGradient id="signalInk" x1="0" y1="0" x2="1" y2="1">
+                  <stop stop-color="#569cb5"></stop>
+                  <stop offset=".42" stop-color="#176fa6"></stop>
+                  <stop offset=".72" stop-color="#7e8fc5"></stop>
+                  <stop offset="1" stop-color="#75bcbf"></stop>
+                </linearGradient>
+                <linearGradient id="signalWash" x1="0" y1="0" x2="1" y2="1">
+                  <stop stop-color="#a9dae2" stop-opacity=".03"></stop>
+                  <stop
+                    offset=".5"
+                    stop-color="#74b6cd"
+                    stop-opacity=".22"
+                  ></stop>
+                  <stop
+                    offset="1"
+                    stop-color="#adb9dc"
+                    stop-opacity=".04"
+                  ></stop>
+                </linearGradient>
+              </defs>
+              <path
+                class="flow-wash"
+                d="M30 105C200 25 250 120 375 225S515 465 785 305L785 438C515 598 520 416 375 306S200 272 30 352Z"
+              ></path>
+              <g class="flow-strands">
                 <path
-                  d="M130 155 Q130 310 330 310 T560 465M150 485Q150 310 330 310T540 165M330 80V540"
-                />
+                  d="M30 105 C200 25 250 120 375 225 S515 465 785 305"
+                  style="--strand: 0"
+                ></path>
                 <path
-                  class="data-pulse"
-                  d="M130 155 Q130 310 330 310 T560 465M150 485Q150 310 330 310T540 165"
-                />
-              </svg>
-              <div
-                class="tabs sculpture-tabs"
-                data-tabs="hero-system"
-                data-hover-tabs
-              >
-                <div class="tab-list" role="tablist" aria-label="hero system">
-                  <button
-                    type="button"
-                    role="tab"
-                    id="hero-system-tab-0"
-                    aria-controls="hero-system-panel-0"
-                    aria-selected="true"
-                    tabindex="0"
-                    data-tab="0"
-                  >
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <path
-                        d="M6 8V6h12v12H6V8m3 1h6v6H9zm-6 0h3m12 0h3M3 15h3m12 0h3M9 3v3m6-3v3M9 18v3m6-3v3"
-                      /></svg
-                    ><span>Dark Agent</span
-                    ><span class="node-light" aria-hidden="true"></span></button
-                  ><button
-                    type="button"
-                    role="tab"
-                    id="hero-system-tab-1"
-                    aria-controls="hero-system-panel-1"
-                    aria-selected="false"
-                    tabindex="-1"
-                    data-tab="1"
-                  >
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <path d="M4 4v16h16M7 14l4-4 4 2 5-7" /></svg
-                    ><span>SmartInvest</span
-                    ><span class="node-light" aria-hidden="true"></span></button
-                  ><button
-                    type="button"
-                    role="tab"
-                    id="hero-system-tab-2"
-                    aria-controls="hero-system-panel-2"
-                    aria-selected="false"
-                    tabindex="-1"
-                    data-tab="2"
-                  >
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <path
-                        d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12m13 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0"
-                      /></svg
-                    ><span>Computer Vision</span
-                    ><span class="node-light" aria-hidden="true"></span></button
-                  ><button
-                    type="button"
-                    role="tab"
-                    id="hero-system-tab-3"
-                    aria-controls="hero-system-panel-3"
-                    aria-selected="false"
-                    tabindex="-1"
-                    data-tab="3"
-                  >
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <path d="M5 4h14v16H5zm3 4h8m-8 4h8m-8 4h5" /></svg
-                    ><span>NLP</span
-                    ><span class="node-light" aria-hidden="true"></span></button
-                  ><button
-                    type="button"
-                    role="tab"
-                    id="hero-system-tab-4"
-                    aria-controls="hero-system-panel-4"
-                    aria-selected="false"
-                    tabindex="-1"
-                    data-tab="4"
-                  >
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <path
-                        d="m12 3 10 6-10 6L2 9zm-9 10 9 5 9-5M3 17l9 5 9-5"
-                      /></svg
-                    ><span>ML Systems</span
-                    ><span class="node-light" aria-hidden="true"></span>
-                  </button>
-                </div>
-                <div class="tab-panels">
-                  <div
-                    role="tabpanel"
-                    id="hero-system-panel-0"
-                    aria-labelledby="hero-system-tab-0"
-                    tabindex="0"
-                    data-panel="0"
-                  >
-                    <a class="sculpture-preview" href="#dark-agent"
-                      ><div class="preview-chrome">
-                        <span class="mini-lights" aria-hidden="true"></span
-                        ><span>Dark Agent</span
-                        ><span class="preview-tag">V1.0 RC</span>
-                      </div>
-                      <img
-                        src="assets/optimized/dark-agent-hero.webp"
-                        width="960"
-                        height="471"
-                        alt="Dark Agent mission control — governed multi-agent workspace"
-                        fetchpriority="high"
-                        decoding="async" />
-                      <div class="sculpture-caption">
-                        <strong>Dark Agent</strong
-                        ><span>Governed multi-agent mission control</span
-                        ><svg viewBox="0 0 24 24" aria-hidden="true">
-                          <path d="M5 12h14m-6-6 6 6-6 6" />
-                        </svg></div
-                    ></a>
-                  </div>
-                  <div
-                    role="tabpanel"
-                    id="hero-system-panel-1"
-                    aria-labelledby="hero-system-tab-1"
-                    tabindex="0"
-                    data-panel="1"
-                    hidden
-                  >
-                    <a class="sculpture-preview" href="#smartinvest"
-                      ><div class="preview-chrome">
-                        <span class="mini-lights" aria-hidden="true"></span
-                        ><span>SmartInvest</span
-                        ><span class="preview-tag">Project</span>
-                      </div>
-                      <img
-                        src="assets/optimized/smartinvest-1.webp"
-                        width="418"
-                        height="831"
-                        alt="From forecast to guarded paper execution"
-                        class=""
-                        loading="lazy"
-                        decoding="async" />
-                      <div class="sculpture-caption">
-                        <strong>SmartInvest</strong
-                        ><span>From forecast to guarded paper execution</span
-                        ><svg viewBox="0 0 24 24" aria-hidden="true">
-                          <path d="M5 12h14m-6-6 6 6-6 6" />
-                        </svg></div
-                    ></a>
-                  </div>
-                  <div
-                    role="tabpanel"
-                    id="hero-system-panel-2"
-                    aria-labelledby="hero-system-tab-2"
-                    tabindex="0"
-                    data-panel="2"
-                    hidden
-                  >
-                    <a class="sculpture-preview" href="#projects"
-                      ><div class="preview-chrome">
-                        <span class="mini-lights" aria-hidden="true"></span
-                        ><span>Computer Vision</span
-                        ><span class="preview-tag">Project</span>
-                      </div>
-                      <img
-                        src="assets/optimized/industrial-safety-system.webp"
-                        width="1302"
-                        height="711"
-                        alt="Real-time industrial safety monitoring"
-                        class=""
-                        loading="lazy"
-                        decoding="async" />
-                      <div class="sculpture-caption">
-                        <strong>Computer Vision</strong
-                        ><span>Real-time industrial safety monitoring</span
-                        ><svg viewBox="0 0 24 24" aria-hidden="true">
-                          <path d="M5 12h14m-6-6 6 6-6 6" />
-                        </svg></div
-                    ></a>
-                  </div>
-                  <div
-                    role="tabpanel"
-                    id="hero-system-panel-3"
-                    aria-labelledby="hero-system-tab-3"
-                    tabindex="0"
-                    data-panel="3"
-                    hidden
-                  >
-                    <a class="sculpture-preview" href="#projects"
-                      ><div class="preview-chrome">
-                        <span class="mini-lights" aria-hidden="true"></span
-                        ><span>NLP</span
-                        ><span class="preview-tag">Project</span>
-                      </div>
-                      <img
-                        src="assets/optimized/ai-study-assistant.webp"
-                        width="1440"
-                        height="717"
-                        alt="Language connected to useful workflows"
-                        class=""
-                        loading="lazy"
-                        decoding="async" />
-                      <div class="sculpture-caption">
-                        <strong>NLP</strong
-                        ><span>Language connected to useful workflows</span
-                        ><svg viewBox="0 0 24 24" aria-hidden="true">
-                          <path d="M5 12h14m-6-6 6 6-6 6" />
-                        </svg></div
-                    ></a>
-                  </div>
-                  <div
-                    role="tabpanel"
-                    id="hero-system-panel-4"
-                    aria-labelledby="hero-system-tab-4"
-                    tabindex="0"
-                    data-panel="4"
-                    hidden
-                  >
-                    <a class="sculpture-preview" href="#projects"
-                      ><div class="preview-chrome">
-                        <span class="mini-lights" aria-hidden="true"></span
-                        ><span>ML Systems</span
-                        ><span class="preview-tag">Project</span>
-                      </div>
-                      <img
-                        src="assets/optimized/stock-prediction.webp"
-                        width="1440"
-                        height="712"
-                        alt="Forecasting, evaluation, product engineering"
-                        class=""
-                        loading="lazy"
-                        decoding="async" />
-                      <div class="sculpture-caption">
-                        <strong>ML Systems</strong
-                        ><span
-                          >Forecasting, evaluation, product engineering</span
-                        ><svg viewBox="0 0 24 24" aria-hidden="true">
-                          <path d="M5 12h14m-6-6 6 6-6 6" />
-                        </svg></div
-                    ></a>
-                  </div>
-                </div>
-              </div>
-            </div>
+                  d="M30 113.5 C200 33.5 250 122.80000000000001 375 227.8 S515 469.6 785 309.6"
+                  style="--strand: 1"
+                ></path>
+                <path
+                  d="M30 122 C200 42 250 125.6 375 230.6 S515 474.2 785 314.2"
+                  style="--strand: 2"
+                ></path>
+                <path
+                  d="M30 130.5 C200 50.5 250 128.4 375 233.4 S515 478.8 785 318.8"
+                  style="--strand: 3"
+                ></path>
+                <path
+                  d="M30 139 C200 59 250 131.2 375 236.2 S515 483.4 785 323.4"
+                  style="--strand: 4"
+                ></path>
+                <path
+                  d="M30 147.5 C200 67.5 250 134 375 239 S515 488 785 328"
+                  style="--strand: 5"
+                ></path>
+                <path
+                  d="M30 156 C200 76 250 136.8 375 241.8 S515 492.6 785 332.6"
+                  style="--strand: 6"
+                ></path>
+                <path
+                  d="M30 164.5 C200 84.5 250 139.6 375 244.6 S515 497.2 785 337.2"
+                  style="--strand: 7"
+                ></path>
+                <path
+                  d="M30 173 C200 93 250 142.4 375 247.4 S515 501.8 785 341.8"
+                  style="--strand: 8"
+                ></path>
+                <path
+                  d="M30 181.5 C200 101.5 250 145.2 375 250.2 S515 506.4 785 346.4"
+                  style="--strand: 9"
+                ></path>
+                <path
+                  d="M30 190 C200 110 250 148 375 253 S515 511 785 351"
+                  style="--strand: 10"
+                ></path>
+                <path
+                  d="M30 198.5 C200 118.5 250 150.8 375 255.8 S515 515.6 785 355.6"
+                  style="--strand: 11"
+                ></path>
+                <path
+                  d="M30 207 C200 127 250 153.60000000000002 375 258.6 S515 520.2 785 360.2"
+                  style="--strand: 12"
+                ></path>
+                <path
+                  d="M30 215.5 C200 135.5 250 156.39999999999998 375 261.4 S515 524.8 785 364.8"
+                  style="--strand: 13"
+                ></path>
+                <path
+                  d="M30 224 C200 144 250 159.2 375 264.2 S515 529.4 785 369.4"
+                  style="--strand: 14"
+                ></path>
+                <path
+                  d="M30 232.5 C200 152.5 250 162 375 267 S515 534 785 374"
+                  style="--strand: 15"
+                ></path>
+                <path
+                  d="M30 241 C200 161 250 164.8 375 269.8 S515 538.6 785 378.6"
+                  style="--strand: 16"
+                ></path>
+                <path
+                  d="M30 249.5 C200 169.5 250 167.60000000000002 375 272.6 S515 543.2 785 383.2"
+                  style="--strand: 17"
+                ></path>
+                <path
+                  d="M30 258 C200 178 250 170.39999999999998 375 275.4 S515 547.8 785 387.8"
+                  style="--strand: 18"
+                ></path>
+                <path
+                  d="M30 266.5 C200 186.5 250 173.2 375 278.2 S515 552.4 785 392.4"
+                  style="--strand: 19"
+                ></path>
+                <path
+                  d="M30 275 C200 195 250 176 375 281 S515 557 785 397"
+                  style="--strand: 20"
+                ></path>
+                <path
+                  d="M30 283.5 C200 203.5 250 178.8 375 283.8 S515 561.6 785 401.6"
+                  style="--strand: 21"
+                ></path>
+                <path
+                  d="M30 292 C200 212 250 181.60000000000002 375 286.6 S515 566.2 785 406.2"
+                  style="--strand: 22"
+                ></path>
+                <path
+                  d="M30 300.5 C200 220.5 250 184.39999999999998 375 289.4 S515 570.8 785 410.8"
+                  style="--strand: 23"
+                ></path>
+                <path
+                  d="M30 309 C200 229 250 187.2 375 292.2 S515 575.4 785 415.4"
+                  style="--strand: 24"
+                ></path>
+                <path
+                  d="M30 317.5 C200 237.5 250 190 375 295 S515 580 785 420"
+                  style="--strand: 25"
+                ></path>
+                <path
+                  d="M30 326 C200 246 250 192.8 375 297.8 S515 584.6 785 424.6"
+                  style="--strand: 26"
+                ></path>
+                <path
+                  d="M30 334.5 C200 254.5 250 195.60000000000002 375 300.6 S515 589.2 785 429.2"
+                  style="--strand: 27"
+                ></path>
+                <path
+                  d="M30 343 C200 263 250 198.39999999999998 375 303.4 S515 593.8 785 433.79999999999995"
+                  style="--strand: 28"
+                ></path>
+                <path
+                  d="M30 351.5 C200 271.5 250 201.2 375 306.2 S515 598.4 785 438.4"
+                  style="--strand: 29"
+                ></path>
+              </g>
+              <g class="flow-guides">
+                <path
+                  d="M145 96V49H240M636 365V233H715M175 353V449H100M610 480V572H698"
+                ></path>
+              </g>
+              <g class="flow-nodes">
+                <circle cx="145" cy="96" r="4"></circle>
+                <circle cx="636" cy="365" r="4"></circle>
+                <circle cx="175" cy="353" r="4"></circle>
+                <circle cx="610" cy="480" r="4"></circle>
+              </g>
+              <g class="flow-labels">
+                <text x="150" y="34">AGENTIC AI</text>
+                <text x="650" y="217">VISION</text>
+                <text x="54" y="477">FORECASTING</text>
+                <text x="661" y="599">NLP</text>
+              </g>
+              <g class="flow-annotation">
+                <text x="310" y="535">Orchestrate. Ground. Validate.</text>
+                <text x="310" y="558">The thinking behind Dark Agent.</text>
+              </g>
+            </svg>
           </div>
         </div>
         <div class="hero-bottom wrap">
-          <div><strong>6</strong><span>End-to-end AI builds</span></div>
-          <span>From the first model<br />to the final interaction.</span
-          ><a href="#about"
-            >Meet the engineer<span aria-hidden="true">↓</span></a
-          >
+          <p>
+            <span class="status-dot" aria-hidden="true"></span> Available
+            immediately
+          </p>
+          <a href="#about"
+            >Meet the engineer <span aria-hidden="true">↓</span></a
+          ><span class="hero-edition">Selected work / 2026</span>
         </div>
       </section>
       <section
@@ -522,46 +430,37 @@
         id="about"
         aria-labelledby="profileTitle"
       >
-        <div class="portrait-composition" data-reveal>
-          <div class="portrait-halo" aria-hidden="true"></div>
+        <div class="portrait-composition" data-reveal="">
           <figure class="portrait">
             <img
               src="assets/optimized/personal-photo.webp"
               width="640"
               height="961"
               alt="Mohamed Bassam, AI Engineer based in Dubai"
-              class=""
               loading="lazy"
               decoding="async"
             />
-            <figcaption>Mohamed Bassam<span>AI Engineer</span></figcaption>
+            <figcaption>Mohamed Bassam <span>Dubai, UAE</span></figcaption>
           </figure>
-          <div class="portrait-note note-one">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="m12 3 10 6-10 6L2 9zm-9 10 9 5 9-5M3 17l9 5 9-5" /></svg
-            ><span>AI degree<strong>Class of 2025</strong></span>
-          </div>
-          <div class="portrait-note note-two">
-            <span class="status-dot" aria-hidden="true"></span
-            ><span>Dubai, UAE<strong>UAE Golden Visa</strong></span>
-          </div>
         </div>
-        <div class="profile-copy" data-reveal>
-          <p class="eyebrow">The person behind the systems</p>
+        <div class="profile-copy" data-reveal="">
+          <p class="eyebrow">A little about me</p>
           <h2 id="profileTitle">
             I build beyond<br /><span class="gradient-text">the model.</span>
           </h2>
           <p>
-            I’m an AI Engineer working across agentic AI, machine learning,
-            computer vision, and NLP. My strongest work connects the
-            intelligence to APIs, interfaces, reliable workflows, and a usable
-            product.
+            I’m Mohamed, an AI Engineer connecting agentic AI, machine learning,
+            vision, and language to the APIs, workflows, and interfaces people
+            actually use.
           </p>
           <p>
-            I’m looking for an AI engineering team where I can contribute, learn
-            from experienced engineers, and keep building systems that solve
-            real problems.
+            I’m looking for a team where I can contribute, learn from
+            experienced engineers, and build useful AI products.
           </p>
+          <div class="profile-facts">
+            <span>UAE Golden Visa</span><span>AI degree · 2025</span
+            ><span>Available immediately</span>
+          </div>
           <div
             class="build-chain"
             role="group"
@@ -570,24 +469,10 @@
             <span>Data</span><span>Model</span><span>API</span
             ><span>Product</span><span>User</span>
           </div>
-          <div class="beliefs">
-            <div>
-              <strong>Understand</strong
-              ><span>Start with the real problem.</span>
-            </div>
-            <div>
-              <strong>Model</strong
-              ><span>Build or integrate the intelligence.</span>
-            </div>
-            <div>
-              <strong>Engineer</strong
-              ><span>APIs, product logic, interfaces, security.</span>
-            </div>
-            <div>
-              <strong>Ship</strong
-              ><span>Make it usable outside the notebook.</span>
-            </div>
-          </div>
+          <p class="human-note">
+            Away from the build: gaming, sports, and always something new to
+            learn.
+          </p>
         </div>
       </section>
       <section
@@ -595,16 +480,15 @@
         id="skills"
         aria-labelledby="capTitle"
       >
-        <div class="section-heading" data-reveal>
+        <div class="section-heading" data-reveal="">
           <p class="eyebrow">Connected capabilities</p>
           <h2 id="capTitle">
-            Intelligence is only<br /><span class="gradient-text"
-              >the beginning.</span
+            The disciplines.<br /><span class="gradient-text"
+              >One connected practice.</span
             >
           </h2>
           <p class="section-description">
-            Explore the disciplines that turn a model into a complete AI
-            product.
+            Explore what connects the model to the product.
           </p>
         </div>
         <div class="skill-ecosystem">
@@ -619,11 +503,7 @@
                 tabindex="0"
                 data-tab="0"
               >
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path
-                    d="M6 8V6h12v12H6V8m3 1h6v6H9zm-6 0h3m12 0h3M3 15h3m12 0h3M9 3v3m6-3v3M9 18v3m6-3v3"
-                  /></svg
-                ><span>Agentic AI</span></button
+                <span>Agentic systems</span></button
               ><button
                 type="button"
                 role="tab"
@@ -633,9 +513,7 @@
                 tabindex="-1"
                 data-tab="1"
               >
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M4 4v16h16M7 14l4-4 4 2 5-7" /></svg
-                ><span>Machine learning</span></button
+                <span>Machine learning</span></button
               ><button
                 type="button"
                 role="tab"
@@ -645,11 +523,7 @@
                 tabindex="-1"
                 data-tab="2"
               >
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path
-                    d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12m13 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0"
-                  /></svg
-                ><span>Computer vision</span></button
+                <span>Vision</span></button
               ><button
                 type="button"
                 role="tab"
@@ -659,9 +533,7 @@
                 tabindex="-1"
                 data-tab="3"
               >
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M5 4h14v16H5zm3 4h8m-8 4h8m-8 4h5" /></svg
-                ><span>NLP</span></button
+                <span>NLP</span></button
               ><button
                 type="button"
                 role="tab"
@@ -671,11 +543,7 @@
                 tabindex="-1"
                 data-tab="4"
               >
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path
-                    d="m12 3 10 6-10 6L2 9zm-9 10 9 5 9-5M3 17l9 5 9-5"
-                  /></svg
-                ><span>Product engineering</span></button
+                <span>Product engineering</span></button
               ><button
                 type="button"
                 role="tab"
@@ -685,11 +553,7 @@
                 tabindex="-1"
                 data-tab="5"
               >
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path
-                    d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6zm-4 9 3 3 5-6"
-                  /></svg
-                ><span>Cloud &amp; security</span>
+                <span>Cloud &amp; security</span>
               </button>
             </div>
             <div class="tab-panels">
@@ -701,12 +565,6 @@
                 data-panel="0"
               >
                 <div class="skill-detail">
-                  <span class="skill-icon"
-                    ><svg viewBox="0 0 24 24" aria-hidden="true">
-                      <path
-                        d="M6 8V6h12v12H6V8m3 1h6v6H9zm-6 0h3m12 0h3M3 15h3m12 0h3M9 3v3m6-3v3M9 18v3m6-3v3"
-                      /></svg
-                  ></span>
                   <p class="eyebrow">Agentic AI</p>
                   <h3>Give intelligence a governed route.</h3>
                   <p>
@@ -735,12 +593,17 @@
                       viewBox="0 0 24 24"
                       aria-hidden="true"
                     >
-                      <path d="M5 12h14m-6-6 6 6-6 6" /></svg
+                      <path d="M5 12h14m-6-6 6 6-6 6"></path></svg
                   ></a>
-                  <p class="fine-print">
-                    LangGraph → FastAPI → PostgreSQL → WebSockets. Clerk and
-                    Stripe enforce access and entitlements.
-                  </p>
+                  <details class="skill-context">
+                    <summary>
+                      Applied in practice <span aria-hidden="true">+</span>
+                    </summary>
+                    <p class="fine-print">
+                      LangGraph → FastAPI → PostgreSQL → WebSockets. Clerk and
+                      Stripe enforce access and entitlements.
+                    </p>
+                  </details>
                 </div>
               </div>
               <div
@@ -752,10 +615,6 @@
                 hidden
               >
                 <div class="skill-detail">
-                  <span class="skill-icon"
-                    ><svg viewBox="0 0 24 24" aria-hidden="true">
-                      <path d="M4 4v16h16M7 14l4-4 4 2 5-7" /></svg
-                  ></span>
                   <p class="eyebrow">Machine learning</p>
                   <h3>Choose the model for the problem.</h3>
                   <p>
@@ -781,13 +640,18 @@
                       viewBox="0 0 24 24"
                       aria-hidden="true"
                     >
-                      <path d="M5 12h14m-6-6 6 6-6 6" /></svg
+                      <path d="M5 12h14m-6-6 6 6-6 6"></path></svg
                   ></a>
-                  <p class="fine-print">
-                    Time-series forecasting, real-time PPE detection, and
-                    document summarization are separate problems with separate
-                    evaluation needs.
-                  </p>
+                  <details class="skill-context">
+                    <summary>
+                      Applied in practice <span aria-hidden="true">+</span>
+                    </summary>
+                    <p class="fine-print">
+                      Time-series forecasting, real-time PPE detection, and
+                      document summarization are separate problems with separate
+                      evaluation needs.
+                    </p>
+                  </details>
                 </div>
               </div>
               <div
@@ -799,12 +663,6 @@
                 hidden
               >
                 <div class="skill-detail">
-                  <span class="skill-icon"
-                    ><svg viewBox="0 0 24 24" aria-hidden="true">
-                      <path
-                        d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12m13 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0"
-                      /></svg
-                  ></span>
                   <p class="eyebrow">Computer vision</p>
                   <h3>See the conditions. Act on the risk.</h3>
                   <p>
@@ -834,12 +692,17 @@
                       viewBox="0 0 24 24"
                       aria-hidden="true"
                     >
-                      <path d="M5 12h14m-6-6 6 6-6 6" /></svg
+                      <path d="M5 12h14m-6-6 6 6-6 6"></path></svg
                   ></a>
-                  <p class="fine-print">
-                    A complete workflow from visual inference to workplace
-                    safety alerts.
-                  </p>
+                  <details class="skill-context">
+                    <summary>
+                      Applied in practice <span aria-hidden="true">+</span>
+                    </summary>
+                    <p class="fine-print">
+                      A complete workflow from visual inference to workplace
+                      safety alerts.
+                    </p>
+                  </details>
                 </div>
               </div>
               <div
@@ -851,10 +714,6 @@
                 hidden
               >
                 <div class="skill-detail">
-                  <span class="skill-icon"
-                    ><svg viewBox="0 0 24 24" aria-hidden="true">
-                      <path d="M5 4h14v16H5zm3 4h8m-8 4h8m-8 4h5" /></svg
-                  ></span>
                   <p class="eyebrow">NLP</p>
                   <h3>Turn language into something useful.</h3>
                   <p>
@@ -883,12 +742,17 @@
                       viewBox="0 0 24 24"
                       aria-hidden="true"
                     >
-                      <path d="M5 12h14m-6-6 6 6-6 6" /></svg
+                      <path d="M5 12h14m-6-6 6 6-6 6"></path></svg
                   ></a>
-                  <p class="fine-print">
-                    Model integration is one part of the document-to-product
-                    workflow.
-                  </p>
+                  <details class="skill-context">
+                    <summary>
+                      Applied in practice <span aria-hidden="true">+</span>
+                    </summary>
+                    <p class="fine-print">
+                      Model integration is one part of the document-to-product
+                      workflow.
+                    </p>
+                  </details>
                 </div>
               </div>
               <div
@@ -900,12 +764,6 @@
                 hidden
               >
                 <div class="skill-detail">
-                  <span class="skill-icon"
-                    ><svg viewBox="0 0 24 24" aria-hidden="true">
-                      <path
-                        d="m12 3 10 6-10 6L2 9zm-9 10 9 5 9-5M3 17l9 5 9-5"
-                      /></svg
-                  ></span>
                   <p class="eyebrow">Product engineering</p>
                   <h3>Make the model usable.</h3>
                   <p>
@@ -934,12 +792,17 @@
                       viewBox="0 0 24 24"
                       aria-hidden="true"
                     >
-                      <path d="M5 12h14m-6-6 6 6-6 6" /></svg
+                      <path d="M5 12h14m-6-6 6 6-6 6"></path></svg
                   ></a>
-                  <p class="fine-print">
-                    Typed APIs connect the reasoning layer to persistent
-                    products and real-time interfaces.
-                  </p>
+                  <details class="skill-context">
+                    <summary>
+                      Applied in practice <span aria-hidden="true">+</span>
+                    </summary>
+                    <p class="fine-print">
+                      Typed APIs connect the reasoning layer to persistent
+                      products and real-time interfaces.
+                    </p>
+                  </details>
                 </div>
               </div>
               <div
@@ -951,12 +814,6 @@
                 hidden
               >
                 <div class="skill-detail">
-                  <span class="skill-icon"
-                    ><svg viewBox="0 0 24 24" aria-hidden="true">
-                      <path
-                        d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6zm-4 9 3 3 5-6"
-                      /></svg
-                  ></span>
                   <p class="eyebrow">Cloud &amp; security</p>
                   <h3>Make the boundaries explicit.</h3>
                   <p>
@@ -985,23 +842,23 @@
                       viewBox="0 0 24 24"
                       aria-hidden="true"
                     >
-                      <path d="M5 12h14m-6-6 6 6-6 6" /></svg
+                      <path d="M5 12h14m-6-6 6 6-6 6"></path></svg
                   ></a>
-                  <p class="fine-print">
-                    Azure-ready infrastructure; Azure deployment preparation.
-                    Secrets are isolated behind a Key Vault boundary.
-                  </p>
+                  <details class="skill-context">
+                    <summary>
+                      Applied in practice <span aria-hidden="true">+</span>
+                    </summary>
+                    <p class="fine-print">
+                      Azure-ready infrastructure; Azure deployment preparation.
+                      Secrets are isolated behind a Key Vault boundary.
+                    </p>
+                  </details>
                 </div>
               </div>
             </div>
           </div>
           <div class="skill-map-core" aria-hidden="true">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                d="M6 8V6h12v12H6V8m3 1h6v6H9zm-6 0h3m12 0h3M3 15h3m12 0h3M9 3v3m6-3v3M9 18v3m6-3v3"
-              /></svg
-            ><strong>AI<br />Engineering</strong
-            ><span>Connected by design</span>
+            <strong>AI<br />Engineering</strong>
           </div>
           <svg
             class="skill-connections"
@@ -1010,11 +867,7 @@
           >
             <path
               d="M300 300Q150 300 120 110M300 300Q300 150 480 110M300 300H110M300 300H490M300 300Q150 300 120 490M300 300Q300 450 480 490"
-            />
-            <path
-              class="data-pulse"
-              d="M300 300Q150 300 120 110M300 300Q300 150 480 110M300 300H110M300 300H490M300 300Q150 300 120 490M300 300Q300 450 480 490"
-            />
+            ></path>
           </svg>
         </div>
         <details class="data-notes">
@@ -1053,21 +906,18 @@
         aria-labelledby="darkTitle"
       >
         <div class="world-entry" aria-hidden="true"></div>
-        <div class="dark-entry wrap" data-reveal>
+        <div class="dark-entry wrap" data-reveal="">
           <p class="product-kicker">
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path
                 d="M6 8V6h12v12H6V8m3 1h6v6H9zm-6 0h3m12 0h3M3 15h3m12 0h3M9 3v3m6-3v3M9 18v3m6-3v3"
-              /></svg
+              ></path></svg
             ><span>Dark Agent</span
             ><span class="release-badge">V1.0 Release Candidate</span>
           </p>
           <p class="eyebrow">Governed Multi-Agent AI Mission Control</p>
           <h2 id="darkTitle">Don’t chat.<br /><span>Command.</span></h2>
-          <p class="dark-lead">
-            Specialized agents. Grounded evidence. Accountable execution.<br />A
-            mission control for intelligence you can inspect.
-          </p>
+
           <p class="deployment-status">
             Azure-ready infrastructure <span>·</span> Azure deployment
             preparation
@@ -1077,7 +927,7 @@
               viewBox="0 0 24 24"
               aria-hidden="true"
             >
-              <path d="M5 12h14m-6-6 6 6-6 6" /></svg
+              <path d="M5 12h14m-6-6 6 6-6 6"></path></svg
           ></a>
         </div>
         <div class="screen-story" id="dark-agent-screenshots">
@@ -1106,7 +956,6 @@
                 data-title="Live Swarm Execution"
                 data-description="A live journal exposes execution steps and telemetry, with connection recovery for the ongoing mission."
                 aria-pressed="false"
-                class=""
               >
                 <span class="screen-number">02</span>Swarm Execution</button
               ><button
@@ -1117,7 +966,6 @@
                 data-title="Telemetry"
                 data-description="Agents, model routing, latency, tokens, approximate cost, and execution events remain visible to the operator."
                 aria-pressed="false"
-                class=""
               >
                 <span class="screen-number">03</span>Live Telemetry</button
               ><button
@@ -1128,7 +976,6 @@
                 data-title="Security"
                 data-description="Workspace policy, human approval, and governed controls make the execution boundary inspectable."
                 aria-pressed="false"
-                class=""
               >
                 <span class="screen-number">04</span>Security</button
               ><button
@@ -1139,7 +986,6 @@
                 data-title="Subscriptions"
                 data-description="Subscription tiers govern model access, credit limits, agent limits, and features through Stripe fulfillment."
                 aria-pressed="false"
-                class=""
               >
                 <span class="screen-number">05</span>Billing</button
               ><button
@@ -1150,18 +996,12 @@
                 data-title="Sentinels"
                 data-description="Scheduled intelligence missions run apart from interactive requests and deliver formatted reports."
                 aria-pressed="false"
-                class=""
               >
                 <span class="screen-number">06</span>Autonomous Sentinels
               </button>
             </div>
             <div class="product-aura" aria-hidden="true"></div>
             <div class="browser-frame">
-              <div class="browser-chrome">
-                <span class="mini-lights" aria-hidden="true"></span
-                ><span>Dark Agent / mission control</span
-                ><span class="live-label"><i></i> Product walkthrough</span>
-              </div>
               <a
                 id="darkScreen"
                 class="image-button"
@@ -1175,7 +1015,6 @@
                   width="1440"
                   height="707"
                   alt="Dark Agent mission control workspace"
-                  class=""
                   loading="lazy"
                   decoding="async" /><span
                   class="image-affordance"
@@ -1183,7 +1022,7 @@
                   >Expand interface<svg viewBox="0 0 24 24" aria-hidden="true">
                     <path
                       d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12m13 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0"
-                    /></svg></span
+                    ></path></svg></span
               ></a>
             </div>
             <div class="screen-caption">
@@ -1213,7 +1052,7 @@
                   viewBox="0 0 24 24"
                   aria-hidden="true"
                 >
-                  <path d="M5 12h14m-6-6 6 6-6 6" /></svg></a
+                  <path d="M5 12h14m-6-6 6 6-6 6"></path></svg></a
               ><a
                 href="assets/dark-agent-02.png"
                 data-preview="assets/dark-agent-02.png"
@@ -1223,7 +1062,7 @@
                   viewBox="0 0 24 24"
                   aria-hidden="true"
                 >
-                  <path d="M5 12h14m-6-6 6 6-6 6" /></svg></a
+                  <path d="M5 12h14m-6-6 6 6-6 6"></path></svg></a
               ><a
                 href="assets/dark-agent-03.png"
                 data-preview="assets/dark-agent-03.png"
@@ -1233,7 +1072,7 @@
                   viewBox="0 0 24 24"
                   aria-hidden="true"
                 >
-                  <path d="M5 12h14m-6-6 6 6-6 6" /></svg></a
+                  <path d="M5 12h14m-6-6 6 6-6 6"></path></svg></a
               ><a
                 href="assets/dark-agent-04.png"
                 data-preview="assets/dark-agent-04.png"
@@ -1243,7 +1082,7 @@
                   viewBox="0 0 24 24"
                   aria-hidden="true"
                 >
-                  <path d="M5 12h14m-6-6 6 6-6 6" /></svg></a
+                  <path d="M5 12h14m-6-6 6 6-6 6"></path></svg></a
               ><a
                 href="assets/dark-agent-05.png"
                 data-preview="assets/dark-agent-05.png"
@@ -1253,7 +1092,7 @@
                   viewBox="0 0 24 24"
                   aria-hidden="true"
                 >
-                  <path d="M5 12h14m-6-6 6 6-6 6" /></svg></a
+                  <path d="M5 12h14m-6-6 6 6-6 6"></path></svg></a
               ><a
                 href="assets/dark-agent-06.png"
                 data-preview="assets/dark-agent-06.png"
@@ -1263,7 +1102,7 @@
                   viewBox="0 0 24 24"
                   aria-hidden="true"
                 >
-                  <path d="M5 12h14m-6-6 6 6-6 6" /></svg></a
+                  <path d="M5 12h14m-6-6 6 6-6 6"></path></svg></a
               ><a
                 href="assets/dark-agent-07.png"
                 data-preview="assets/dark-agent-07.png"
@@ -1273,7 +1112,7 @@
                   viewBox="0 0 24 24"
                   aria-hidden="true"
                 >
-                  <path d="M5 12h14m-6-6 6 6-6 6" /></svg></a
+                  <path d="M5 12h14m-6-6 6 6-6 6"></path></svg></a
               ><a
                 href="assets/dark-agent-08.png"
                 data-preview="assets/dark-agent-08.png"
@@ -1283,7 +1122,7 @@
                   viewBox="0 0 24 24"
                   aria-hidden="true"
                 >
-                  <path d="M5 12h14m-6-6 6 6-6 6" /></svg></a
+                  <path d="M5 12h14m-6-6 6 6-6 6"></path></svg></a
               ><a
                 href="assets/dark-agent-09.png"
                 data-preview="assets/dark-agent-09.png"
@@ -1293,7 +1132,7 @@
                   viewBox="0 0 24 24"
                   aria-hidden="true"
                 >
-                  <path d="M5 12h14m-6-6 6 6-6 6" /></svg></a
+                  <path d="M5 12h14m-6-6 6 6-6 6"></path></svg></a
               ><a
                 href="assets/dark-agent-10.png"
                 data-preview="assets/dark-agent-10.png"
@@ -1303,7 +1142,7 @@
                   viewBox="0 0 24 24"
                   aria-hidden="true"
                 >
-                  <path d="M5 12h14m-6-6 6 6-6 6" /></svg></a
+                  <path d="M5 12h14m-6-6 6 6-6 6"></path></svg></a
               ><a
                 href="assets/dark-agent-11.png"
                 data-preview="assets/dark-agent-11.png"
@@ -1313,7 +1152,7 @@
                   viewBox="0 0 24 24"
                   aria-hidden="true"
                 >
-                  <path d="M5 12h14m-6-6 6 6-6 6" /></svg></a
+                  <path d="M5 12h14m-6-6 6 6-6 6"></path></svg></a
               ><a
                 href="assets/dark-agent-12.png"
                 data-preview="assets/dark-agent-12.png"
@@ -1323,7 +1162,7 @@
                   viewBox="0 0 24 24"
                   aria-hidden="true"
                 >
-                  <path d="M5 12h14m-6-6 6 6-6 6" /></svg></a
+                  <path d="M5 12h14m-6-6 6 6-6 6"></path></svg></a
               ><a
                 href="assets/dark-agent-13.png"
                 data-preview="assets/dark-agent-13.png"
@@ -1333,13 +1172,13 @@
                   viewBox="0 0 24 24"
                   aria-hidden="true"
                 >
-                  <path d="M5 12h14m-6-6 6 6-6 6" /></svg
+                  <path d="M5 12h14m-6-6 6 6-6 6"></path></svg
               ></a>
             </div>
           </details>
         </div>
         <div class="architecture-section wrap" id="dark-agent-architecture">
-          <div class="section-heading" data-reveal>
+          <div class="section-heading" data-reveal="">
             <p class="eyebrow">Inside the intelligence</p>
             <h2>
               Every handoff.<br /><span class="green-text"
@@ -1347,12 +1186,10 @@
               >
             </h2>
             <p class="section-description">
-              Most AI products hide their execution: tools, evidence, cost,
-              validation, permissions, retrieval, and models. Dark Agent exposes
-              the chain.
+              Follow a mission from identity to accountable execution.
             </p>
           </div>
-          <div class="architecture-story" data-reveal>
+          <div class="architecture-story" data-reveal="">
             <div
               class="architecture-map"
               role="group"
@@ -1366,11 +1203,11 @@
               >
                 <path
                   d="M140 70H760Q850 70 850 140T760 210H140Q50 210 50 280T140 350H760"
-                />
+                ></path>
                 <path
                   class="data-pulse"
                   d="M140 70H760Q850 70 850 140T760 210H140Q50 210 50 280T140 350H760"
-                /></svg
+                ></path></svg
               ><button
                 type="button"
                 class="architecture-node is-current"
@@ -1378,13 +1215,7 @@
                 aria-pressed="true"
                 aria-controls="architecture-detail-0"
               >
-                <span class="node-icon"
-                  ><svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6zm-4 9 3 3 5-6"
-                    /></svg></span
-                ><strong>Clerk</strong
-                ><span class="node-meta">Identity</span></button
+                <strong>Clerk</strong></button
               ><button
                 type="button"
                 class="architecture-node"
@@ -1392,13 +1223,7 @@
                 aria-pressed="false"
                 aria-controls="architecture-detail-1"
               >
-                <span class="node-icon"
-                  ><svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6zm-4 9 3 3 5-6"
-                    /></svg></span
-                ><strong>Policy Guard</strong
-                ><span class="node-meta">Permissions</span></button
+                <strong>Policy</strong></button
               ><button
                 type="button"
                 class="architecture-node"
@@ -1406,13 +1231,7 @@
                 aria-pressed="false"
                 aria-controls="architecture-detail-2"
               >
-                <span class="node-icon"
-                  ><svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      d="M6 8V6h12v12H6V8m3 1h6v6H9zm-6 0h3m12 0h3M3 15h3m12 0h3M9 3v3m6-3v3M9 18v3m6-3v3"
-                    /></svg></span
-                ><strong>Planner</strong
-                ><span class="node-meta">Execution route</span></button
+                <strong>Planner</strong></button
               ><button
                 type="button"
                 class="architecture-node"
@@ -1420,13 +1239,7 @@
                 aria-pressed="false"
                 aria-controls="architecture-detail-3"
               >
-                <span class="node-icon"
-                  ><svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      d="m12 3 10 6-10 6L2 9zm-9 10 9 5 9-5M3 17l9 5 9-5"
-                    /></svg></span
-                ><strong>Specialists</strong
-                ><span class="node-meta">Investigation</span></button
+                <strong>Agents</strong></button
               ><button
                 type="button"
                 class="architecture-node"
@@ -1434,11 +1247,7 @@
                 aria-pressed="false"
                 aria-controls="architecture-detail-4"
               >
-                <span class="node-icon"
-                  ><svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M5 4h14v16H5zm3 4h8m-8 4h8m-8 4h5" /></svg></span
-                ><strong>Hybrid RAG</strong
-                ><span class="node-meta">Grounding</span></button
+                <strong>Hybrid RAG</strong></button
               ><button
                 type="button"
                 class="architecture-node"
@@ -1446,13 +1255,7 @@
                 aria-pressed="false"
                 aria-controls="architecture-detail-5"
               >
-                <span class="node-icon"
-                  ><svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      d="m12 3 10 6-10 6L2 9zm-9 10 9 5 9-5M3 17l9 5 9-5"
-                    /></svg></span
-                ><strong>Synthesizer</strong
-                ><span class="node-meta">Response</span></button
+                <strong>Synthesizer</strong></button
               ><button
                 type="button"
                 class="architecture-node red-node"
@@ -1460,13 +1263,7 @@
                 aria-pressed="false"
                 aria-controls="architecture-detail-6"
               >
-                <span class="node-icon"
-                  ><svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6zm-4 9 3 3 5-6"
-                    /></svg></span
-                ><strong>Red Team</strong
-                ><span class="node-meta">Validation</span></button
+                <strong>Red Team</strong></button
               ><button
                 type="button"
                 class="architecture-node"
@@ -1474,11 +1271,7 @@
                 aria-pressed="false"
                 aria-controls="architecture-detail-7"
               >
-                <span class="node-icon"
-                  ><svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M4 4v16h16M7 14l4-4 4 2 5-7" /></svg></span
-                ><strong>Stream</strong
-                ><span class="node-meta">Telemetry</span></button
+                <strong>Stream</strong></button
               ><button
                 type="button"
                 class="architecture-node"
@@ -1486,13 +1279,7 @@
                 aria-pressed="false"
                 aria-controls="architecture-detail-8"
               >
-                <span class="node-icon"
-                  ><svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      d="M6 8V6h12v12H6V8m3 1h6v6H9zm-6 0h3m12 0h3M3 15h3m12 0h3M9 3v3m6-3v3M9 18v3m6-3v3"
-                    /></svg></span
-                ><strong>Settlement</strong
-                ><span class="node-meta">Success-only credits</span>
+                <strong>Settlement</strong>
               </button>
             </div>
             <div class="architecture-details">
@@ -1503,7 +1290,6 @@
               >
                 <span class="step-count mono">01 / 09</span>
                 <div>
-                  <p class="eyebrow">Clerk Identity</p>
                   <h3>Bind the user.</h3>
                   <p>
                     Identity establishes which user and tenant own the mission.
@@ -1511,7 +1297,6 @@
                     access.
                   </p>
                 </div>
-                <span class="architecture-output">User + tenant binding</span>
               </article>
               <article
                 class="architecture-detail"
@@ -1521,7 +1306,6 @@
               >
                 <span class="step-count mono">02 / 09</span>
                 <div>
-                  <p class="eyebrow">FastAPI Policy Guard</p>
                   <h3>Check permission before execution.</h3>
                   <p>
                     Entitlements, model access, and rate limits are verified on
@@ -1529,9 +1313,6 @@
                     access.
                   </p>
                 </div>
-                <span class="architecture-output"
-                  >Entitlements + rate limits</span
-                >
               </article>
               <article
                 class="architecture-detail"
@@ -1541,16 +1322,12 @@
               >
                 <span class="step-count mono">03 / 09</span>
                 <div>
-                  <p class="eyebrow">LangGraph Planner</p>
                   <h3>Make the route inspectable.</h3>
                   <p>
                     The Planner decomposes a mission into an execution route.
                     Operators can choose required agents and approve the plan.
                   </p>
                 </div>
-                <span class="architecture-output"
-                  >Execution route + approval</span
-                >
               </article>
               <article
                 class="architecture-detail"
@@ -1560,7 +1337,6 @@
               >
                 <span class="step-count mono">04 / 09</span>
                 <div>
-                  <p class="eyebrow">Specialist Agents</p>
                   <h3>Select the right investigators.</h3>
                   <p>
                     Researcher and Analyst responsibilities are explicit.
@@ -1568,9 +1344,6 @@
                     available to each role.
                   </p>
                 </div>
-                <span class="architecture-output"
-                  >Authorized investigation</span
-                >
               </article>
               <article
                 class="architecture-detail"
@@ -1580,7 +1353,6 @@
               >
                 <span class="step-count mono">05 / 09</span>
                 <div>
-                  <p class="eyebrow">Hybrid Retrieval</p>
                   <h3>Find meaning and exact matches.</h3>
                   <p>
                     PostgreSQL/pgvector semantic results and BM25 keyword
@@ -1588,7 +1360,6 @@
                     remain tenant-scoped.
                   </p>
                 </div>
-                <span class="architecture-output">BM25 + pgvector + RRF</span>
               </article>
               <article
                 class="architecture-detail"
@@ -1598,7 +1369,6 @@
               >
                 <span class="step-count mono">06 / 09</span>
                 <div>
-                  <p class="eyebrow">Synthesizer</p>
                   <h3>Build the response from evidence.</h3>
                   <p>
                     The Synthesizer composes the proposed answer from the
@@ -1606,7 +1376,6 @@
                     challenge layer.
                   </p>
                 </div>
-                <span class="architecture-output">Evidence-bound response</span>
               </article>
               <article
                 class="architecture-detail"
@@ -1616,7 +1385,6 @@
               >
                 <span class="step-count mono">07 / 09</span>
                 <div>
-                  <p class="eyebrow">Red Team Validator</p>
                   <h3>Challenge the proposed answer.</h3>
                   <p>
                     Adversarial evaluation looks for unsupported claims,
@@ -1624,7 +1392,6 @@
                     before delivery.
                   </p>
                 </div>
-                <span class="architecture-output">Adversarial evaluation</span>
               </article>
               <article
                 class="architecture-detail"
@@ -1634,7 +1401,6 @@
               >
                 <span class="step-count mono">08 / 09</span>
                 <div>
-                  <p class="eyebrow">WebSocket Stream</p>
                   <h3>Expose the execution.</h3>
                   <p>
                     The control plane streams mission steps, agents, model
@@ -1642,7 +1408,6 @@
                     validation state.
                   </p>
                 </div>
-                <span class="architecture-output">Live mission telemetry</span>
               </article>
               <article
                 class="architecture-detail"
@@ -1652,7 +1417,6 @@
               >
                 <span class="step-count mono">09 / 09</span>
                 <div>
-                  <p class="eyebrow">Transactional Settlement</p>
                   <h3>Settle only successful work.</h3>
                   <p>
                     Credits are deducted after successful response generation.
@@ -1660,7 +1424,6 @@
                     overspending the balance.
                   </p>
                 </div>
-                <span class="architecture-output">Success-only credits</span>
               </article>
             </div>
             <p class="interaction-hint">
@@ -1668,417 +1431,434 @@
             </p>
           </div>
         </div>
-        <div class="swarm-section wrap">
-          <div class="section-heading" data-reveal>
-            <p class="eyebrow">A deliberate division of work</p>
-            <h2>Four agents.<br />One accountable mission.</h2>
-            <p class="section-description">
-              Only the specialists the mission needs. Each role has a clear
-              responsibility and a constrained tool surface.
-            </p>
-          </div>
-          <div class="tabs agent-tabs" data-tabs="agent-roles">
-            <div class="tab-list" role="tablist" aria-label="agent roles">
-              <button
-                type="button"
-                role="tab"
-                id="agent-roles-tab-0"
-                aria-controls="agent-roles-panel-0"
-                aria-selected="true"
-                tabindex="0"
-                data-tab="0"
+        <div class="case-notes wrap">
+          <details class="case-note">
+            <summary>
+              <span class="note-number">01</span>Four specialist agents<span
+                class="note-plus"
+                aria-hidden="true"
+                >+</span
               >
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path
-                    d="M6 8V6h12v12H6V8m3 1h6v6H9zm-6 0h3m12 0h3M3 15h3m12 0h3M9 3v3m6-3v3M9 18v3m6-3v3"
-                  /></svg
-                >Planner</button
-              ><button
-                type="button"
-                role="tab"
-                id="agent-roles-tab-1"
-                aria-controls="agent-roles-panel-1"
-                aria-selected="false"
-                tabindex="-1"
-                data-tab="1"
-              >
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path
-                    d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12m13 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0"
-                  /></svg
-                >Researcher</button
-              ><button
-                type="button"
-                role="tab"
-                id="agent-roles-tab-2"
-                aria-controls="agent-roles-panel-2"
-                aria-selected="false"
-                tabindex="-1"
-                data-tab="2"
-              >
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M4 4v16h16M7 14l4-4 4 2 5-7" /></svg
-                >Analyst</button
-              ><button
-                type="button"
-                role="tab"
-                id="agent-roles-tab-3"
-                aria-controls="agent-roles-panel-3"
-                aria-selected="false"
-                tabindex="-1"
-                data-tab="3"
-              >
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path
-                    d="m12 3 10 6-10 6L2 9zm-9 10 9 5 9-5M3 17l9 5 9-5"
-                  /></svg
-                >Synthesizer
-              </button>
+            </summary>
+            <div class="swarm-section">
+              <div class="section-heading" data-reveal="">
+                <p class="eyebrow">A deliberate division of work</p>
+                <h2>Four agents.<br />One accountable mission.</h2>
+                <p class="section-description">
+                  Only the specialists the mission needs. Each role has a clear
+                  responsibility and a constrained tool surface.
+                </p>
+              </div>
+              <div class="tabs agent-tabs" data-tabs="agent-roles">
+                <div class="tab-list" role="tablist" aria-label="agent roles">
+                  <button
+                    type="button"
+                    role="tab"
+                    id="agent-roles-tab-0"
+                    aria-controls="agent-roles-panel-0"
+                    aria-selected="true"
+                    tabindex="0"
+                    data-tab="0"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M6 8V6h12v12H6V8m3 1h6v6H9zm-6 0h3m12 0h3M3 15h3m12 0h3M9 3v3m6-3v3M9 18v3m6-3v3"
+                      ></path></svg
+                    >Planner</button
+                  ><button
+                    type="button"
+                    role="tab"
+                    id="agent-roles-tab-1"
+                    aria-controls="agent-roles-panel-1"
+                    aria-selected="false"
+                    tabindex="-1"
+                    data-tab="1"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12m13 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0"
+                      ></path></svg
+                    >Researcher</button
+                  ><button
+                    type="button"
+                    role="tab"
+                    id="agent-roles-tab-2"
+                    aria-controls="agent-roles-panel-2"
+                    aria-selected="false"
+                    tabindex="-1"
+                    data-tab="2"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M4 4v16h16M7 14l4-4 4 2 5-7"></path></svg
+                    >Analyst</button
+                  ><button
+                    type="button"
+                    role="tab"
+                    id="agent-roles-tab-3"
+                    aria-controls="agent-roles-panel-3"
+                    aria-selected="false"
+                    tabindex="-1"
+                    data-tab="3"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="m12 3 10 6-10 6L2 9zm-9 10 9 5 9-5M3 17l9 5 9-5"
+                      ></path></svg
+                    >Synthesizer
+                  </button>
+                </div>
+                <div class="tab-panels">
+                  <div
+                    role="tabpanel"
+                    id="agent-roles-panel-0"
+                    aria-labelledby="agent-roles-tab-0"
+                    tabindex="0"
+                    data-panel="0"
+                  >
+                    <div class="agent-role-visual" aria-hidden="true">
+                      <span>01</span
+                      ><svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path
+                          d="M6 8V6h12v12H6V8m3 1h6v6H9zm-6 0h3m12 0h3M3 15h3m12 0h3M9 3v3m6-3v3M9 18v3m6-3v3"
+                        ></path>
+                      </svg>
+                    </div>
+                    <div class="agent-role-copy">
+                      <p class="eyebrow">Planner</p>
+                      <h3>Route the mission.</h3>
+                      <p>
+                        Decompose the request and form an inspectable execution
+                        plan.
+                      </p>
+                      <div class="permission-boundary">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                          <path
+                            d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6zm-4 9 3 3 5-6"
+                          ></path>
+                        </svg>
+                        <p>
+                          Plans remain subject to execution policy and operator
+                          approval.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    role="tabpanel"
+                    id="agent-roles-panel-1"
+                    aria-labelledby="agent-roles-tab-1"
+                    tabindex="0"
+                    data-panel="1"
+                    hidden
+                  >
+                    <div class="agent-role-visual" aria-hidden="true">
+                      <span>02</span
+                      ><svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path
+                          d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12m13 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0"
+                        ></path>
+                      </svg>
+                    </div>
+                    <div class="agent-role-copy">
+                      <p class="eyebrow">Researcher</p>
+                      <h3>Find the evidence.</h3>
+                      <p>
+                        Investigate the task through the permitted retrieval and
+                        tool surface.
+                      </p>
+                      <div class="permission-boundary">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                          <path
+                            d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6zm-4 9 3 3 5-6"
+                          ></path>
+                        </svg>
+                        <p>
+                          Retrieval is tenant-scoped; tool access follows the
+                          agent allowlist.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    role="tabpanel"
+                    id="agent-roles-panel-2"
+                    aria-labelledby="agent-roles-tab-2"
+                    tabindex="0"
+                    data-panel="2"
+                    hidden
+                  >
+                    <div class="agent-role-visual" aria-hidden="true">
+                      <span>03</span
+                      ><svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M4 4v16h16M7 14l4-4 4 2 5-7"></path>
+                      </svg>
+                    </div>
+                    <div class="agent-role-copy">
+                      <p class="eyebrow">Analyst</p>
+                      <h3>Interrogate the material.</h3>
+                      <p>
+                        Resolve patterns and claims in the evidence gathered for
+                        the mission.
+                      </p>
+                      <div class="permission-boundary">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                          <path
+                            d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6zm-4 9 3 3 5-6"
+                          ></path>
+                        </svg>
+                        <p>
+                          Works within explicit execution policies and
+                          agent-level tool permissions.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    role="tabpanel"
+                    id="agent-roles-panel-3"
+                    aria-labelledby="agent-roles-tab-3"
+                    tabindex="0"
+                    data-panel="3"
+                    hidden
+                  >
+                    <div class="agent-role-visual" aria-hidden="true">
+                      <span>04</span
+                      ><svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path
+                          d="m12 3 10 6-10 6L2 9zm-9 10 9 5 9-5M3 17l9 5 9-5"
+                        ></path>
+                      </svg>
+                    </div>
+                    <div class="agent-role-copy">
+                      <p class="eyebrow">Synthesizer</p>
+                      <h3>Construct the response.</h3>
+                      <p>
+                        Bring the findings together into an evidence-bound
+                        answer.
+                      </p>
+                      <div class="permission-boundary">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                          <path
+                            d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6zm-4 9 3 3 5-6"
+                          ></path>
+                        </svg>
+                        <p>
+                          The proposed response is challenged by the Red Team
+                          before delivery.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="tab-panels">
-              <div
-                role="tabpanel"
-                id="agent-roles-panel-0"
-                aria-labelledby="agent-roles-tab-0"
-                tabindex="0"
-                data-panel="0"
+          </details>
+          <details class="case-note">
+            <summary>
+              <span class="note-number">02</span>Hybrid retrieval<span
+                class="note-plus"
+                aria-hidden="true"
+                >+</span
               >
-                <div class="agent-role-visual" aria-hidden="true">
-                  <span>01</span
-                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+            </summary>
+            <div class="rag-section">
+              <div>
+                <p class="eyebrow">Hybrid retrieval</p>
+                <h2>
+                  Meaning meets<br /><span class="green-text"
+                    >exact matches.</span
+                  >
+                </h2>
+                <p>
+                  Semantic retrieval understands the intent. Keyword retrieval
+                  finds precise identifiers, technical terms, and code symbols.
+                  Both signals matter.
+                </p>
+              </div>
+              <div class="rag-flow">
+                <div class="retrieval-inputs">
+                  <div>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="m12 3 10 6-10 6L2 9zm-9 10 9 5 9-5M3 17l9 5 9-5"
+                      ></path></svg
+                    ><strong>pgvector</strong><span>Related meaning</span>
+                  </div>
+                  <span aria-hidden="true">+</span>
+                  <div>
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M5 4h14v16H5zm3 4h8m-8 4h8m-8 4h5"></path></svg
+                    ><strong>BM25</strong><span>Exact terms</span>
+                  </div>
+                </div>
+                <div class="merge-lines" aria-hidden="true"></div>
+                <div class="fusion">
+                  <span class="eyebrow">Merge the rankings</span>
+                  <h3>Reciprocal Rank Fusion</h3>
+                  <p>Two ranked result lists. One evidence set.</p>
+                </div>
+                <p class="evidence-output">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
                     <path
-                      d="M6 8V6h12v12H6V8m3 1h6v6H9zm-6 0h3m12 0h3M3 15h3m12 0h3M9 3v3m6-3v3M9 18v3m6-3v3"
-                    />
-                  </svg>
-                </div>
-                <div class="agent-role-copy">
-                  <p class="eyebrow">Planner</p>
-                  <h3>Route the mission.</h3>
-                  <p>
-                    Decompose the request and form an inspectable execution
-                    plan.
-                  </p>
-                  <div class="permission-boundary">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <path
-                        d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6zm-4 9 3 3 5-6"
-                      />
-                    </svg>
-                    <p>
-                      Plans remain subject to execution policy and operator
-                      approval.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div
-                role="tabpanel"
-                id="agent-roles-panel-1"
-                aria-labelledby="agent-roles-tab-1"
-                tabindex="0"
-                data-panel="1"
-                hidden
-              >
-                <div class="agent-role-visual" aria-hidden="true">
-                  <span>02</span
-                  ><svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path
-                      d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12m13 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0"
-                    />
-                  </svg>
-                </div>
-                <div class="agent-role-copy">
-                  <p class="eyebrow">Researcher</p>
-                  <h3>Find the evidence.</h3>
-                  <p>
-                    Investigate the task through the permitted retrieval and
-                    tool surface.
-                  </p>
-                  <div class="permission-boundary">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <path
-                        d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6zm-4 9 3 3 5-6"
-                      />
-                    </svg>
-                    <p>
-                      Retrieval is tenant-scoped; tool access follows the agent
-                      allowlist.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div
-                role="tabpanel"
-                id="agent-roles-panel-2"
-                aria-labelledby="agent-roles-tab-2"
-                tabindex="0"
-                data-panel="2"
-                hidden
-              >
-                <div class="agent-role-visual" aria-hidden="true">
-                  <span>03</span
-                  ><svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M4 4v16h16M7 14l4-4 4 2 5-7" />
-                  </svg>
-                </div>
-                <div class="agent-role-copy">
-                  <p class="eyebrow">Analyst</p>
-                  <h3>Interrogate the material.</h3>
-                  <p>
-                    Resolve patterns and claims in the evidence gathered for the
-                    mission.
-                  </p>
-                  <div class="permission-boundary">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <path
-                        d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6zm-4 9 3 3 5-6"
-                      />
-                    </svg>
-                    <p>
-                      Works within explicit execution policies and agent-level
-                      tool permissions.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div
-                role="tabpanel"
-                id="agent-roles-panel-3"
-                aria-labelledby="agent-roles-tab-3"
-                tabindex="0"
-                data-panel="3"
-                hidden
-              >
-                <div class="agent-role-visual" aria-hidden="true">
-                  <span>04</span
-                  ><svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="m12 3 10 6-10 6L2 9zm-9 10 9 5 9-5M3 17l9 5 9-5" />
-                  </svg>
-                </div>
-                <div class="agent-role-copy">
-                  <p class="eyebrow">Synthesizer</p>
-                  <h3>Construct the response.</h3>
-                  <p>
-                    Bring the findings together into an evidence-bound answer.
-                  </p>
-                  <div class="permission-boundary">
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <path
-                        d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6zm-4 9 3 3 5-6"
-                      />
-                    </svg>
-                    <p>
-                      The proposed response is challenged by the Red Team before
-                      delivery.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="rag-section wrap" data-reveal>
-          <div>
-            <p class="eyebrow">Hybrid retrieval</p>
-            <h2>
-              Meaning meets<br /><span class="green-text">exact matches.</span>
-            </h2>
-            <p>
-              Semantic retrieval understands the intent. Keyword retrieval finds
-              precise identifiers, technical terms, and code symbols. Both
-              signals matter.
-            </p>
-          </div>
-          <div class="rag-flow">
-            <div class="retrieval-inputs">
-              <div>
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path
-                    d="m12 3 10 6-10 6L2 9zm-9 10 9 5 9-5M3 17l9 5 9-5"
-                  /></svg
-                ><strong>pgvector</strong><span>Related meaning</span>
-              </div>
-              <span aria-hidden="true">+</span>
-              <div>
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M5 4h14v16H5zm3 4h8m-8 4h8m-8 4h5" /></svg
-                ><strong>BM25</strong><span>Exact terms</span>
-              </div>
-            </div>
-            <div class="merge-lines" aria-hidden="true"></div>
-            <div class="fusion">
-              <span class="eyebrow">Merge the rankings</span>
-              <h3>Reciprocal Rank Fusion</h3>
-              <p>Two ranked result lists. One evidence set.</p>
-            </div>
-            <p class="evidence-output">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6zm-4 9 3 3 5-6"
-                /></svg
-              >Tenant-scoped evidence
-            </p>
-          </div>
-        </div>
-        <div class="redteam-section wrap" data-reveal>
-          <div>
-            <p class="eyebrow">The challenge layer</p>
-            <h2>
-              Good answers<br />stand up to<br /><span class="violet-text"
-                >hard questions.</span
-              >
-            </h2>
-            <p>
-              A separate Red Team validator challenges the synthesized response
-              before delivery. Evaluation makes weaknesses inspectable; it is
-              not a claim of infallibility.
-            </p>
-          </div>
-          <div class="validation-demo" data-validation>
-            <div class="validation-top">
-              <span>Response validation</span
-              ><span class="mono">Illustrated workflow</span>
-            </div>
-            <div class="validation-signal" aria-hidden="true">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6zm-4 9 3 3 5-6" />
-              </svg>
-            </div>
-            <ul>
-              <li style="--check: 0">
-                <span class="check-mark" aria-hidden="true">✓</span>Claims &amp;
-                hallucinations<span class="check-label">Checked</span>
-              </li>
-              <li style="--check: 1">
-                <span class="check-mark" aria-hidden="true">✓</span
-                >Evidence<span class="check-label">Checked</span>
-              </li>
-              <li style="--check: 2">
-                <span class="check-mark" aria-hidden="true">✓</span>Logic<span
-                  class="check-label"
-                  >Checked</span
-                >
-              </li>
-              <li style="--check: 3">
-                <span class="check-mark" aria-hidden="true">✓</span
-                >Contradictions<span class="check-label">Checked</span>
-              </li>
-              <li style="--check: 4">
-                <span class="check-mark" aria-hidden="true">✓</span
-                >Assumptions<span class="check-label">Checked</span>
-              </li>
-            </ul>
-            <div class="validation-result">
-              <span class="status-dot" aria-hidden="true"></span>Validated
-            </div>
-            <button class="text-link" type="button" data-replay>
-              Replay validation<span aria-hidden="true">↻</span>
-            </button>
-          </div>
-        </div>
-        <div class="decisions-section wrap">
-          <div>
-            <p class="eyebrow">The thinking behind the build</p>
-            <h2>Every constraint<br />has a reason.</h2>
-          </div>
-          <div class="decision-log">
-            <details>
-              <summary>
-                Why selective agents?<span aria-hidden="true">+</span>
-              </summary>
-              <p>
-                Reduce unnecessary model calls and token consumption by running
-                only the agents a mission needs.
-              </p>
-            </details>
-            <details>
-              <summary>
-                Why success-only credits?<span aria-hidden="true">+</span>
-              </summary>
-              <p>
-                Users should not pay for failed execution. Deduction happens
-                only after successful response generation.
-              </p>
-            </details>
-            <details>
-              <summary>
-                Why database transactions?<span aria-hidden="true">+</span>
-              </summary>
-              <p>
-                Concurrent requests must not overspend the same credit balance.
-                Settlement is a transactional operation.
-              </p>
-            </details>
-            <details>
-              <summary>
-                Why query-level tenant scoping?<span aria-hidden="true">+</span>
-              </summary>
-              <p>
-                Isolation cannot depend on frontend behavior. Retrieval and
-                mission-journal queries are scoped to the authenticated Clerk
-                user.
-              </p>
-            </details>
-            <details>
-              <summary>
-                Why tool allowlists?<span aria-hidden="true">+</span>
-              </summary>
-              <p>
-                Each agent receives only its permitted tool surface. Least
-                privilege makes the boundary explicit.
-              </p>
-            </details>
-            <details>
-              <summary>
-                Why separate background workers?<span aria-hidden="true"
-                  >+</span
-                >
-              </summary>
-              <p>
-                Durable workloads and scheduled Sentinels are separated from
-                interactive requests. Azure Service Bus supports the
-                infrastructure preparation.
-              </p>
-            </details>
-            <details>
-              <summary>
-                Why backend entitlements?<span aria-hidden="true">+</span>
-              </summary>
-              <p>
-                Subscription fulfillment, model access, rate limits, and
-                idempotent webhooks must be verified by the server.
-              </p>
-            </details>
-            <details class="operations-notes">
-              <summary>
-                Security, context &amp; operations
-                <span aria-hidden="true">+</span>
-              </summary>
-              <div>
-                <h4>Black Vault &amp; Ghost Mode</h4>
-                <p>
-                  Black Vault supports local evidence sanitization and
-                  cryptographic manifests before documents enter the workflow.
-                  Ghost Mode provides an ephemeral path designed to avoid
-                  retaining mission content in persistent conversation history.
-                </p>
-                <h4>Model routing &amp; secure MCP</h4>
-                <p>
-                  Provider-aware routing selects OpenAI and Anthropic models
-                  according to task complexity, entitlement, latency, and cost
-                  requirements. Read-only GitHub and Notion connectors retrieve
-                  credentials through a Key Vault boundary rather than raw
-                  tokens in application tables.
-                </p>
-                <h4>Product infrastructure</h4>
-                <p>
-                  Next.js 16 and TypeScript connect to Python, FastAPI,
-                  LangGraph, PostgreSQL, and WebSockets. Docker, Azure Service
-                  Bus, and Azure Key Vault support Azure deployment preparation.
+                      d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6zm-4 9 3 3 5-6"
+                    ></path></svg
+                  >Tenant-scoped evidence
                 </p>
               </div>
-            </details>
-          </div>
+            </div>
+          </details>
+          <details class="case-note">
+            <summary>
+              <span class="note-number">03</span>Adversarial validation<span
+                class="note-plus"
+                aria-hidden="true"
+                >+</span
+              >
+            </summary>
+            <div class="redteam-section">
+              <div>
+                <p class="eyebrow">The challenge layer</p>
+                <h2>
+                  Good answers<br />stand up to<br /><span class="violet-text"
+                    >hard questions.</span
+                  >
+                </h2>
+                <p>
+                  An independent Red Team checks the proposed answer before
+                  delivery. Evaluation exposes weaknesses; it is not a claim of
+                  infallibility.
+                </p>
+              </div>
+              <div class="validation-demo">
+                <div class="validation-top">
+                  <span>Review before delivery</span
+                  ><span class="mono">Illustrated workflow</span>
+                </div>
+
+                <ul>
+                  <li style="--check: 0">Claims &amp; hallucinations</li>
+                  <li style="--check: 1">Evidence</li>
+                  <li style="--check: 2">Logic</li>
+                  <li style="--check: 3">Contradictions</li>
+                  <li style="--check: 4">Assumptions</li>
+                </ul>
+              </div>
+            </div>
+          </details>
+          <details class="case-note">
+            <summary>
+              <span class="note-number">04</span>Design decisions &amp;
+              operations<span class="note-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="decisions-section">
+              <div>
+                <p class="eyebrow">The thinking behind the build</p>
+                <h2>Every constraint<br />has a reason.</h2>
+              </div>
+              <div class="decision-log">
+                <details>
+                  <summary>
+                    Why selective agents?<span aria-hidden="true">+</span>
+                  </summary>
+                  <p>
+                    Reduce unnecessary model calls and token consumption by
+                    running only the agents a mission needs.
+                  </p>
+                </details>
+                <details>
+                  <summary>
+                    Why success-only credits?<span aria-hidden="true">+</span>
+                  </summary>
+                  <p>
+                    Users should not pay for failed execution. Deduction happens
+                    only after successful response generation.
+                  </p>
+                </details>
+                <details>
+                  <summary>
+                    Why database transactions?<span aria-hidden="true">+</span>
+                  </summary>
+                  <p>
+                    Concurrent requests must not overspend the same credit
+                    balance. Settlement is a transactional operation.
+                  </p>
+                </details>
+                <details>
+                  <summary>
+                    Why query-level tenant scoping?<span aria-hidden="true"
+                      >+</span
+                    >
+                  </summary>
+                  <p>
+                    Isolation cannot depend on frontend behavior. Retrieval and
+                    mission-journal queries are scoped to the authenticated
+                    Clerk user.
+                  </p>
+                </details>
+                <details>
+                  <summary>
+                    Why tool allowlists?<span aria-hidden="true">+</span>
+                  </summary>
+                  <p>
+                    Each agent receives only its permitted tool surface. Least
+                    privilege makes the boundary explicit.
+                  </p>
+                </details>
+                <details>
+                  <summary>
+                    Why separate background workers?<span aria-hidden="true"
+                      >+</span
+                    >
+                  </summary>
+                  <p>
+                    Durable workloads and scheduled Sentinels are separated from
+                    interactive requests. Azure Service Bus supports the
+                    infrastructure preparation.
+                  </p>
+                </details>
+                <details>
+                  <summary>
+                    Why backend entitlements?<span aria-hidden="true">+</span>
+                  </summary>
+                  <p>
+                    Subscription fulfillment, model access, rate limits, and
+                    idempotent webhooks must be verified by the server.
+                  </p>
+                </details>
+                <details class="operations-notes">
+                  <summary>
+                    Security, context &amp; operations
+                    <span aria-hidden="true">+</span>
+                  </summary>
+                  <div>
+                    <h4>Black Vault &amp; Ghost Mode</h4>
+                    <p>
+                      Black Vault supports local evidence sanitization and
+                      cryptographic manifests before documents enter the
+                      workflow. Ghost Mode provides an ephemeral path designed
+                      to avoid retaining mission content in persistent
+                      conversation history.
+                    </p>
+                    <h4>Model routing &amp; secure MCP</h4>
+                    <p>
+                      Provider-aware routing selects OpenAI and Anthropic models
+                      according to task complexity, entitlement, latency, and
+                      cost requirements. Read-only GitHub and Notion connectors
+                      retrieve credentials through a Key Vault boundary rather
+                      than raw tokens in application tables.
+                    </p>
+                    <h4>Product infrastructure</h4>
+                    <p>
+                      Next.js 16 and TypeScript connect to Python, FastAPI,
+                      LangGraph, PostgreSQL, and WebSockets. Docker, Azure
+                      Service Bus, and Azure Key Vault support Azure deployment
+                      preparation.
+                    </p>
+                  </div>
+                </details>
+              </div>
+            </div>
+          </details>
         </div>
       </section>
       <section
@@ -2086,419 +1866,490 @@
         id="smartinvest"
         aria-labelledby="financeTitle"
       >
-        <div class="finance-light" aria-hidden="true"></div>
         <div class="wrap">
-          <div class="finance-heading" data-reveal>
+          <div class="finance-heading" data-reveal="">
             <p class="product-kicker">
               <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M4 4v16h16M7 14l4-4 4 2 5-7" /></svg
+                <path d="M4 4v16h16M7 14l4-4 4 2 5-7"></path></svg
               >SmartInvest AI V2
             </p>
             <h2 id="financeTitle">
-              From market data<br />to
-              <span class="gradient-text">guarded<br />paper execution.</span>
+              SmartInvest <span class="gradient-text">AI V2.</span>
             </h2>
-            <p>
-              Forecasting is the beginning. The product connects model
-              ensembles, explainable decisions, risk controls, and a
-              paper-trading workflow.
-            </p>
+            <p>From market data to guarded paper execution.</p>
             <a
               class="text-link"
               href="https://github.com/mohamedbassam-1/AI-Stock-Price-Prediction-V2"
               target="_blank"
               rel="noreferrer"
               >Explore the source<svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M5 12h14m-6-6 6 6-6 6" /></svg></a
+                <path d="M5 12h14m-6-6 6 6-6 6"></path></svg></a
             ><svg class="market-lines" viewBox="0 0 650 280" aria-hidden="true">
               <defs>
                 <linearGradient id="chartGradient">
-                  <stop stop-color="#44d9f9" />
-                  <stop offset="1" stop-color="#aa92ff" />
+                  <stop stop-color="#44d9f9"></stop>
+                  <stop offset="1" stop-color="#aa92ff"></stop>
                 </linearGradient>
               </defs>
               <path
                 class="chart-grid"
                 d="M0 70H650M0 140H650M0 210H650M80 0V280M220 0V280M360 0V280M500 0V280"
-              />
+              ></path>
               <path
                 class="chart-trace"
                 d="M0 210 40 198 65 224 98 163 122 177 155 143 185 166 224 119 246 131 281 90 309 121 330 91 361 115 400 48 427 80 470 45 491 57 528 17 559 36 597 10 650 28"
-              />
+              ></path>
             </svg>
           </div>
-          <div class="tabs finance-tabs" data-tabs="finance-pipeline">
-            <div class="tab-list" role="tablist" aria-label="finance pipeline">
-              <button
-                type="button"
-                role="tab"
-                id="finance-pipeline-tab-0"
-                aria-controls="finance-pipeline-panel-0"
-                aria-selected="true"
-                tabindex="0"
-                data-tab="0"
-              >
-                <span class="pipeline-dot">01</span>Market data</button
-              ><button
-                type="button"
-                role="tab"
-                id="finance-pipeline-tab-1"
-                aria-controls="finance-pipeline-panel-1"
-                aria-selected="false"
-                tabindex="-1"
-                data-tab="1"
-              >
-                <span class="pipeline-dot">02</span>Models</button
-              ><button
-                type="button"
-                role="tab"
-                id="finance-pipeline-tab-2"
-                aria-controls="finance-pipeline-panel-2"
-                aria-selected="false"
-                tabindex="-1"
-                data-tab="2"
-              >
-                <span class="pipeline-dot">03</span>Ensemble</button
-              ><button
-                type="button"
-                role="tab"
-                id="finance-pipeline-tab-3"
-                aria-controls="finance-pipeline-panel-3"
-                aria-selected="false"
-                tabindex="-1"
-                data-tab="3"
-              >
-                <span class="pipeline-dot">04</span>Confidence</button
-              ><button
-                type="button"
-                role="tab"
-                id="finance-pipeline-tab-4"
-                aria-controls="finance-pipeline-panel-4"
-                aria-selected="false"
-                tabindex="-1"
-                data-tab="4"
-              >
-                <span class="pipeline-dot">05</span>Risk</button
-              ><button
-                type="button"
-                role="tab"
-                id="finance-pipeline-tab-5"
-                aria-controls="finance-pipeline-panel-5"
-                aria-selected="false"
-                tabindex="-1"
-                data-tab="5"
-              >
-                <span class="pipeline-dot">06</span>Paper trade
-              </button>
-            </div>
-            <div class="tab-panels">
-              <div
-                role="tabpanel"
-                id="finance-pipeline-panel-0"
-                aria-labelledby="finance-pipeline-tab-0"
-                tabindex="0"
-                data-panel="0"
-              >
-                <div class="finance-visual">
-                  <a
-                    class="image-button"
-                    href="assets/smartinvest-1.png"
-                    data-preview="assets/smartinvest-1.png"
-                    data-title="SmartInvest — Market data"
-                    aria-label="Expand SmartInvest — Market data"
-                    aria-haspopup="dialog"
-                    ><img
-                      src="assets/optimized/smartinvest-1.webp"
-                      width="418"
-                      height="831"
-                      alt="SmartInvest — Market data"
-                      class=""
-                      loading="lazy"
-                      decoding="async" /><span
-                      class="image-affordance"
-                      aria-hidden="true"
-                      >Expand
-                      <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path
-                          d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12m13 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0"
-                        /></svg></span
-                  ></a>
-                </div>
-                <div class="finance-description">
-                  <div>
-                    <p class="eyebrow">Market data</p>
-                    <h3>Start with the inputs.</h3>
-                  </div>
-                  <div>
-                    <p>
-                      Market prices, technical indicators, and sentiment context
-                      feed the analysis. The global momentum view places
-                      individual symbols in context.
-                    </p>
-                    <p class="finance-tech">
-                      Yahoo Finance · Alpha Vantage · Technical indicators
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div
-                role="tabpanel"
-                id="finance-pipeline-panel-1"
-                aria-labelledby="finance-pipeline-tab-1"
-                tabindex="0"
-                data-panel="1"
-                hidden
-              >
-                <div class="finance-visual">
-                  <a
-                    class="image-button"
-                    href="assets/smartinvest-1.png"
-                    data-preview="assets/smartinvest-1.png"
-                    data-title="SmartInvest — Multi-model AI"
-                    aria-label="Expand SmartInvest — Multi-model AI"
-                    aria-haspopup="dialog"
-                    ><img
-                      src="assets/optimized/smartinvest-1.webp"
-                      width="418"
-                      height="831"
-                      alt="SmartInvest — Multi-model AI"
-                      class=""
-                      loading="lazy"
-                      decoding="async" /><span
-                      class="image-affordance"
-                      aria-hidden="true"
-                      >Expand
-                      <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path
-                          d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12m13 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0"
-                        /></svg></span
-                  ></a>
-                </div>
-                <div class="finance-description">
-                  <div>
-                    <p class="eyebrow">Multi-model AI</p>
-                    <h3>Compare more than one signal.</h3>
-                  </div>
-                  <div>
-                    <p>
-                      LSTM forecasting works alongside supporting ML models and
-                      weighted voting. Model outputs feed a decision layer with
-                      confidence and explainable reasoning.
-                    </p>
-                    <p class="finance-tech">
-                      LSTM · ML ensemble · Weighted model voting
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div
-                role="tabpanel"
-                id="finance-pipeline-panel-2"
-                aria-labelledby="finance-pipeline-tab-2"
-                tabindex="0"
-                data-panel="2"
-                hidden
-              >
-                <div class="finance-visual">
-                  <a
-                    class="image-button"
-                    href="assets/smartinvest-1.png"
-                    data-preview="assets/smartinvest-1.png"
-                    data-title="SmartInvest — Ensemble"
-                    aria-label="Expand SmartInvest — Ensemble"
-                    aria-haspopup="dialog"
-                    ><img
-                      src="assets/optimized/smartinvest-1.webp"
-                      width="418"
-                      height="831"
-                      alt="SmartInvest — Ensemble"
-                      class=""
-                      loading="lazy"
-                      decoding="async" /><span
-                      class="image-affordance"
-                      aria-hidden="true"
-                      >Expand
-                      <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path
-                          d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12m13 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0"
-                        /></svg></span
-                  ></a>
-                </div>
-                <div class="finance-description">
-                  <div>
-                    <p class="eyebrow">Ensemble</p>
-                    <h3>Let the models meet.</h3>
-                  </div>
-                  <div>
-                    <p>
-                      Weighted model voting brings supporting forecasts together
-                      into a decision layer.
-                    </p>
-                    <p class="finance-tech">
-                      LSTM · ML ensemble · Weighted model voting
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div
-                role="tabpanel"
-                id="finance-pipeline-panel-3"
-                aria-labelledby="finance-pipeline-tab-3"
-                tabindex="0"
-                data-panel="3"
-                hidden
-              >
-                <div class="finance-visual">
-                  <a
-                    class="image-button"
-                    href="assets/smartinvest-1.png"
-                    data-preview="assets/smartinvest-1.png"
-                    data-title="SmartInvest — Confidence"
-                    aria-label="Expand SmartInvest — Confidence"
-                    aria-haspopup="dialog"
-                    ><img
-                      src="assets/optimized/smartinvest-1.webp"
-                      width="418"
-                      height="831"
-                      alt="SmartInvest — Confidence"
-                      class=""
-                      loading="lazy"
-                      decoding="async" /><span
-                      class="image-affordance"
-                      aria-hidden="true"
-                      >Expand
-                      <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path
-                          d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12m13 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0"
-                        /></svg></span
-                  ></a>
-                </div>
-                <div class="finance-description">
-                  <div>
-                    <p class="eyebrow">Confidence</p>
-                    <h3>Show the reasoning.</h3>
-                  </div>
-                  <div>
-                    <p>
-                      BUY / SELL / HOLD decisions include confidence, an entry
-                      point, stop-loss, take-profit, and reasoning. The
-                      interface makes the proposed trade setup inspectable.
-                    </p>
-                    <p class="finance-tech">
-                      Explainable outputs · Confidence scoring
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div
-                role="tabpanel"
-                id="finance-pipeline-panel-4"
-                aria-labelledby="finance-pipeline-tab-4"
-                tabindex="0"
-                data-panel="4"
-                hidden
-              >
-                <div class="finance-visual">
-                  <a
-                    class="image-button"
-                    href="assets/smartinvest-3.png"
-                    data-preview="assets/smartinvest-3.png"
-                    data-title="SmartInvest — Risk guardrails"
-                    aria-label="Expand SmartInvest — Risk guardrails"
-                    aria-haspopup="dialog"
-                    ><img
-                      src="assets/optimized/smartinvest-3.webp"
-                      width="406"
-                      height="872"
-                      alt="SmartInvest — Risk guardrails"
-                      class=""
-                      loading="lazy"
-                      decoding="async" /><span
-                      class="image-affordance"
-                      aria-hidden="true"
-                      >Expand
-                      <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path
-                          d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12m13 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0"
-                        /></svg></span
-                  ></a>
-                </div>
-                <div class="finance-description">
-                  <div>
-                    <p class="eyebrow">Risk guardrails</p>
-                    <h3>Evaluate before execution.</h3>
-                  </div>
-                  <div>
-                    <p>
-                      Historical backtesting and walk-forward validation examine
-                      drawdown, Sharpe ratio, win rate, and prediction error.
-                      Stops and targets constrain the proposed setup.
-                    </p>
-                    <p class="finance-tech">
-                      Backtesting · Walk-forward validation · RMSE / MAE
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div
-                role="tabpanel"
-                id="finance-pipeline-panel-5"
-                aria-labelledby="finance-pipeline-tab-5"
-                tabindex="0"
-                data-panel="5"
-                hidden
-              >
-                <div class="finance-visual">
-                  <a
-                    class="image-button"
-                    href="assets/smartinvest-2.png"
-                    data-preview="assets/smartinvest-2.png"
-                    data-title="SmartInvest — Paper broker"
-                    aria-label="Expand SmartInvest — Paper broker"
-                    aria-haspopup="dialog"
-                    ><img
-                      src="assets/optimized/smartinvest-2.webp"
-                      width="394"
-                      height="896"
-                      alt="SmartInvest — Paper broker"
-                      class=""
-                      loading="lazy"
-                      decoding="async" /><span
-                      class="image-affordance"
-                      aria-hidden="true"
-                      >Expand
-                      <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path
-                          d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12m13 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0"
-                        /></svg></span
-                  ></a>
-                </div>
-                <div class="finance-description">
-                  <div>
-                    <p class="eyebrow">Paper broker</p>
-                    <h3>Close the product loop.</h3>
-                  </div>
-                  <div>
-                    <p>
-                      Alpaca paper trading connects the decision to portfolio
-                      tracking, trade history, journaling, duplicate protection,
-                      and bracket orders.
-                    </p>
-                    <p class="finance-tech">
-                      Alpaca · Portfolio tracking · Trade journal
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div class="finance-showcase">
+            <figure>
+              <a
+                class="image-button"
+                href="assets/smartinvest-1.png"
+                data-preview="assets/smartinvest-1.png"
+                data-title="SmartInvest — Market data"
+                aria-label="Expand SmartInvest — Market data"
+                aria-haspopup="dialog"
+                ><img
+                  src="assets/optimized/smartinvest-1.webp"
+                  width="418"
+                  height="831"
+                  alt="SmartInvest — Market data"
+                  loading="lazy"
+                  decoding="async" /><span
+                  class="image-affordance"
+                  aria-hidden="true"
+                  >Expand
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12m13 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0"
+                    ></path></svg></span
+              ></a>
+              <figcaption>Predictive Core</figcaption>
+            </figure>
+            <figure>
+              <a
+                class="image-button"
+                href="assets/smartinvest-2.png"
+                data-preview="assets/smartinvest-2.png"
+                data-title="SmartInvest — Paper broker"
+                aria-label="Expand SmartInvest — Paper broker"
+                aria-haspopup="dialog"
+                ><img
+                  src="assets/optimized/smartinvest-2.webp"
+                  width="394"
+                  height="896"
+                  alt="SmartInvest — Paper broker"
+                  loading="lazy"
+                  decoding="async" /><span
+                  class="image-affordance"
+                  aria-hidden="true"
+                  >Expand
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12m13 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0"
+                    ></path></svg></span
+              ></a>
+              <figcaption>Trading Intelligence</figcaption>
+            </figure>
+            <figure>
+              <a
+                class="image-button"
+                href="assets/smartinvest-3.png"
+                data-preview="assets/smartinvest-3.png"
+                data-title="SmartInvest — Risk guardrails"
+                aria-label="Expand SmartInvest — Risk guardrails"
+                aria-haspopup="dialog"
+                ><img
+                  src="assets/optimized/smartinvest-3.webp"
+                  width="406"
+                  height="872"
+                  alt="SmartInvest — Risk guardrails"
+                  loading="lazy"
+                  decoding="async" /><span
+                  class="image-affordance"
+                  aria-hidden="true"
+                  >Expand
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12m13 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0"
+                    ></path></svg></span
+              ></a>
+              <figcaption>Validation &amp; Risk</figcaption>
+            </figure>
           </div>
+          <details class="finance-explainer">
+            <summary>
+              From data to decision <span aria-hidden="true">+</span>
+            </summary>
+            <div class="tabs finance-tabs" data-tabs="finance-pipeline">
+              <div
+                class="tab-list"
+                role="tablist"
+                aria-label="finance pipeline"
+              >
+                <button
+                  type="button"
+                  role="tab"
+                  id="finance-pipeline-tab-0"
+                  aria-controls="finance-pipeline-panel-0"
+                  aria-selected="true"
+                  tabindex="0"
+                  data-tab="0"
+                >
+                  <span class="pipeline-dot">01</span>Market data</button
+                ><button
+                  type="button"
+                  role="tab"
+                  id="finance-pipeline-tab-1"
+                  aria-controls="finance-pipeline-panel-1"
+                  aria-selected="false"
+                  tabindex="-1"
+                  data-tab="1"
+                >
+                  <span class="pipeline-dot">02</span>Models</button
+                ><button
+                  type="button"
+                  role="tab"
+                  id="finance-pipeline-tab-2"
+                  aria-controls="finance-pipeline-panel-2"
+                  aria-selected="false"
+                  tabindex="-1"
+                  data-tab="2"
+                >
+                  <span class="pipeline-dot">03</span>Ensemble</button
+                ><button
+                  type="button"
+                  role="tab"
+                  id="finance-pipeline-tab-3"
+                  aria-controls="finance-pipeline-panel-3"
+                  aria-selected="false"
+                  tabindex="-1"
+                  data-tab="3"
+                >
+                  <span class="pipeline-dot">04</span>Decision</button
+                ><button
+                  type="button"
+                  role="tab"
+                  id="finance-pipeline-tab-4"
+                  aria-controls="finance-pipeline-panel-4"
+                  aria-selected="false"
+                  tabindex="-1"
+                  data-tab="4"
+                >
+                  <span class="pipeline-dot">05</span>Risk</button
+                ><button
+                  type="button"
+                  role="tab"
+                  id="finance-pipeline-tab-5"
+                  aria-controls="finance-pipeline-panel-5"
+                  aria-selected="false"
+                  tabindex="-1"
+                  data-tab="5"
+                >
+                  <span class="pipeline-dot">06</span>Paper execution
+                </button>
+              </div>
+              <div class="tab-panels">
+                <div
+                  role="tabpanel"
+                  id="finance-pipeline-panel-0"
+                  aria-labelledby="finance-pipeline-tab-0"
+                  tabindex="0"
+                  data-panel="0"
+                >
+                  <div class="finance-visual">
+                    <a
+                      class="image-button"
+                      href="assets/smartinvest-1.png"
+                      data-preview="assets/smartinvest-1.png"
+                      data-title="SmartInvest — Market data"
+                      aria-label="Expand SmartInvest — Market data"
+                      aria-haspopup="dialog"
+                      ><img
+                        src="assets/optimized/smartinvest-1.webp"
+                        width="418"
+                        height="831"
+                        alt="SmartInvest — Market data"
+                        loading="lazy"
+                        decoding="async" /><span
+                        class="image-affordance"
+                        aria-hidden="true"
+                        >Expand
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                          <path
+                            d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12m13 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0"
+                          ></path></svg></span
+                    ></a>
+                  </div>
+                  <div class="finance-description">
+                    <div>
+                      <p class="eyebrow">Market data</p>
+                      <h3>Start with the inputs.</h3>
+                    </div>
+                    <div>
+                      <p>
+                        Market prices, technical indicators, and sentiment
+                        context feed the analysis. The global momentum view
+                        places individual symbols in context.
+                      </p>
+                      <p class="finance-tech">
+                        Yahoo Finance · Alpha Vantage · Technical indicators
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  role="tabpanel"
+                  id="finance-pipeline-panel-1"
+                  aria-labelledby="finance-pipeline-tab-1"
+                  tabindex="0"
+                  data-panel="1"
+                  hidden
+                >
+                  <div class="finance-visual">
+                    <a
+                      class="image-button"
+                      href="assets/smartinvest-1.png"
+                      data-preview="assets/smartinvest-1.png"
+                      data-title="SmartInvest — Multi-model AI"
+                      aria-label="Expand SmartInvest — Multi-model AI"
+                      aria-haspopup="dialog"
+                      ><img
+                        src="assets/optimized/smartinvest-1.webp"
+                        width="418"
+                        height="831"
+                        alt="SmartInvest — Multi-model AI"
+                        loading="lazy"
+                        decoding="async" /><span
+                        class="image-affordance"
+                        aria-hidden="true"
+                        >Expand
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                          <path
+                            d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12m13 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0"
+                          ></path></svg></span
+                    ></a>
+                  </div>
+                  <div class="finance-description">
+                    <div>
+                      <p class="eyebrow">Multi-model AI</p>
+                      <h3>Compare more than one signal.</h3>
+                    </div>
+                    <div>
+                      <p>
+                        LSTM forecasting works alongside supporting ML models
+                        and weighted voting. Model outputs feed a decision layer
+                        with confidence and explainable reasoning.
+                      </p>
+                      <p class="finance-tech">
+                        LSTM · ML ensemble · Weighted model voting
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  role="tabpanel"
+                  id="finance-pipeline-panel-2"
+                  aria-labelledby="finance-pipeline-tab-2"
+                  tabindex="0"
+                  data-panel="2"
+                  hidden
+                >
+                  <div class="finance-visual">
+                    <a
+                      class="image-button"
+                      href="assets/smartinvest-1.png"
+                      data-preview="assets/smartinvest-1.png"
+                      data-title="SmartInvest — Ensemble"
+                      aria-label="Expand SmartInvest — Ensemble"
+                      aria-haspopup="dialog"
+                      ><img
+                        src="assets/optimized/smartinvest-1.webp"
+                        width="418"
+                        height="831"
+                        alt="SmartInvest — Ensemble"
+                        loading="lazy"
+                        decoding="async" /><span
+                        class="image-affordance"
+                        aria-hidden="true"
+                        >Expand
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                          <path
+                            d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12m13 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0"
+                          ></path></svg></span
+                    ></a>
+                  </div>
+                  <div class="finance-description">
+                    <div>
+                      <p class="eyebrow">Ensemble</p>
+                      <h3>Let the models meet.</h3>
+                    </div>
+                    <div>
+                      <p>
+                        Weighted model voting brings supporting forecasts
+                        together into a decision layer.
+                      </p>
+                      <p class="finance-tech">
+                        LSTM · ML ensemble · Weighted model voting
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  role="tabpanel"
+                  id="finance-pipeline-panel-3"
+                  aria-labelledby="finance-pipeline-tab-3"
+                  tabindex="0"
+                  data-panel="3"
+                  hidden
+                >
+                  <div class="finance-visual">
+                    <a
+                      class="image-button"
+                      href="assets/smartinvest-1.png"
+                      data-preview="assets/smartinvest-1.png"
+                      data-title="SmartInvest — Confidence"
+                      aria-label="Expand SmartInvest — Confidence"
+                      aria-haspopup="dialog"
+                      ><img
+                        src="assets/optimized/smartinvest-1.webp"
+                        width="418"
+                        height="831"
+                        alt="SmartInvest — Confidence"
+                        loading="lazy"
+                        decoding="async" /><span
+                        class="image-affordance"
+                        aria-hidden="true"
+                        >Expand
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                          <path
+                            d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12m13 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0"
+                          ></path></svg></span
+                    ></a>
+                  </div>
+                  <div class="finance-description">
+                    <div>
+                      <p class="eyebrow">Confidence</p>
+                      <h3>Show the reasoning.</h3>
+                    </div>
+                    <div>
+                      <p>
+                        BUY / SELL / HOLD decisions include confidence, an entry
+                        point, stop-loss, take-profit, and reasoning. The
+                        interface makes the proposed trade setup inspectable.
+                      </p>
+                      <p class="finance-tech">
+                        Explainable outputs · Confidence scoring
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  role="tabpanel"
+                  id="finance-pipeline-panel-4"
+                  aria-labelledby="finance-pipeline-tab-4"
+                  tabindex="0"
+                  data-panel="4"
+                  hidden
+                >
+                  <div class="finance-visual">
+                    <a
+                      class="image-button"
+                      href="assets/smartinvest-3.png"
+                      data-preview="assets/smartinvest-3.png"
+                      data-title="SmartInvest — Risk guardrails"
+                      aria-label="Expand SmartInvest — Risk guardrails"
+                      aria-haspopup="dialog"
+                      ><img
+                        src="assets/optimized/smartinvest-3.webp"
+                        width="406"
+                        height="872"
+                        alt="SmartInvest — Risk guardrails"
+                        loading="lazy"
+                        decoding="async" /><span
+                        class="image-affordance"
+                        aria-hidden="true"
+                        >Expand
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                          <path
+                            d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12m13 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0"
+                          ></path></svg></span
+                    ></a>
+                  </div>
+                  <div class="finance-description">
+                    <div>
+                      <p class="eyebrow">Risk guardrails</p>
+                      <h3>Evaluate before execution.</h3>
+                    </div>
+                    <div>
+                      <p>
+                        Historical backtesting and walk-forward validation
+                        examine drawdown, Sharpe ratio, win rate, and prediction
+                        error. Stops and targets constrain the proposed setup.
+                      </p>
+                      <p class="finance-tech">
+                        Backtesting · Walk-forward validation · RMSE / MAE
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  role="tabpanel"
+                  id="finance-pipeline-panel-5"
+                  aria-labelledby="finance-pipeline-tab-5"
+                  tabindex="0"
+                  data-panel="5"
+                  hidden
+                >
+                  <div class="finance-visual">
+                    <a
+                      class="image-button"
+                      href="assets/smartinvest-2.png"
+                      data-preview="assets/smartinvest-2.png"
+                      data-title="SmartInvest — Paper broker"
+                      aria-label="Expand SmartInvest — Paper broker"
+                      aria-haspopup="dialog"
+                      ><img
+                        src="assets/optimized/smartinvest-2.webp"
+                        width="394"
+                        height="896"
+                        alt="SmartInvest — Paper broker"
+                        loading="lazy"
+                        decoding="async" /><span
+                        class="image-affordance"
+                        aria-hidden="true"
+                        >Expand
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                          <path
+                            d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12m13 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0"
+                          ></path></svg></span
+                    ></a>
+                  </div>
+                  <div class="finance-description">
+                    <div>
+                      <p class="eyebrow">Paper broker</p>
+                      <h3>Close the product loop.</h3>
+                    </div>
+                    <div>
+                      <p>
+                        Alpaca paper trading connects the decision to portfolio
+                        tracking, trade history, journaling, duplicate
+                        protection, and bracket orders.
+                      </p>
+                      <p class="finance-tech">
+                        Alpaca · Portfolio tracking · Trade journal
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </details>
           <div class="finance-note">
-            <span>Real interfaces. Paper execution.</span>
-            <p>
-              BUY / SELL / HOLD decisions expose confidence, entry points,
-              stop-loss, take-profit, and reasoning. Evaluation includes
-              drawdown, Sharpe ratio, win rate, RMSE, and MAE.
-            </p>
+            <span
+              >Real interfaces. Paper execution. No claimed live returns.</span
+            >
           </div>
           <details class="finance-archive">
             <summary>
@@ -2516,7 +2367,7 @@
                   viewBox="0 0 24 24"
                   aria-hidden="true"
                 >
-                  <path d="M5 12h14m-6-6 6 6-6 6" /></svg></a
+                  <path d="M5 12h14m-6-6 6 6-6 6"></path></svg></a
               ><a
                 href="assets/smartinvest-2.png"
                 data-preview="assets/smartinvest-2.png"
@@ -2526,7 +2377,7 @@
                   viewBox="0 0 24 24"
                   aria-hidden="true"
                 >
-                  <path d="M5 12h14m-6-6 6 6-6 6" /></svg></a
+                  <path d="M5 12h14m-6-6 6 6-6 6"></path></svg></a
               ><a
                 href="assets/smartinvest-3.png"
                 data-preview="assets/smartinvest-3.png"
@@ -2536,7 +2387,7 @@
                   viewBox="0 0 24 24"
                   aria-hidden="true"
                 >
-                  <path d="M5 12h14m-6-6 6 6-6 6" /></svg></a
+                  <path d="M5 12h14m-6-6 6 6-6 6"></path></svg></a
               ><a
                 href="assets/smartinvest-4.png"
                 data-preview="assets/smartinvest-4.png"
@@ -2546,7 +2397,7 @@
                   viewBox="0 0 24 24"
                   aria-hidden="true"
                 >
-                  <path d="M5 12h14m-6-6 6 6-6 6" /></svg></a
+                  <path d="M5 12h14m-6-6 6 6-6 6"></path></svg></a
               ><a
                 href="assets/smartinvest-5.png"
                 data-preview="assets/smartinvest-5.png"
@@ -2556,7 +2407,7 @@
                   viewBox="0 0 24 24"
                   aria-hidden="true"
                 >
-                  <path d="M5 12h14m-6-6 6 6-6 6" /></svg
+                  <path d="M5 12h14m-6-6 6 6-6 6"></path></svg
               ></a>
             </div>
           </details>
@@ -2568,22 +2419,22 @@
         aria-labelledby="projectsTitle"
       >
         <div class="wrap">
-          <div class="section-heading" data-reveal>
-            <p class="eyebrow">Selected work</p>
-            <h2 id="projectsTitle">
-              Different problems.<br /><span class="gradient-text"
-                >The same product mindset.</span
-              >
-            </h2>
+          <div class="section-heading" data-reveal="">
+            <div>
+              <p class="eyebrow">Selected work</p>
+              <h2 id="projectsTitle">
+                Built to be<br /><span class="gradient-text">used.</span>
+              </h2>
+            </div>
             <p class="section-description">
-              Six builds. Real interfaces. Explore the engineering behind each
-              one.
+              Six projects. Different problems. A common drive to make them
+              work.
             </p>
           </div>
           <div
             class="tabs project-gallery"
             data-tabs="project-index"
-            data-swipe
+            data-swipe=""
           >
             <div class="tab-list" role="tablist" aria-label="project index">
               <button
@@ -2669,7 +2520,6 @@
                       width="1440"
                       height="707"
                       alt="Governed multi-agent AI"
-                      class=""
                       loading="lazy"
                       decoding="async" /><span
                       class="image-affordance"
@@ -2678,13 +2528,13 @@
                       <svg viewBox="0 0 24 24" aria-hidden="true">
                         <path
                           d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12m13 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0"
-                        /></svg></span
+                        ></path></svg></span
                   ></a>
                 </div>
                 <div class="project-information">
                   <div>
                     <p class="eyebrow">Agentic AI / Secure SaaS</p>
-                    <h3>Governed multi-agent AI</h3>
+                    <h3>Dark Agent</h3>
                     <p class="project-stack">
                       LangGraph · FastAPI · Next.js 16 · PostgreSQL
                     </p>
@@ -2701,7 +2551,7 @@
                           viewBox="0 0 24 24"
                           aria-hidden="true"
                         >
-                          <path d="M5 12h14m-6-6 6 6-6 6" /></svg
+                          <path d="M5 12h14m-6-6 6 6-6 6"></path></svg
                       ></a>
                     </div>
                     <details>
@@ -2738,7 +2588,6 @@
                       width="418"
                       height="831"
                       alt="From forecast to paper execution"
-                      class=""
                       loading="lazy"
                       decoding="async" /><span
                       class="image-affordance"
@@ -2747,13 +2596,13 @@
                       <svg viewBox="0 0 24 24" aria-hidden="true">
                         <path
                           d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12m13 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0"
-                        /></svg></span
+                        ></path></svg></span
                   ></a>
                 </div>
                 <div class="project-information">
                   <div>
                     <p class="eyebrow">Forecasting / Finance</p>
-                    <h3>From forecast to paper execution</h3>
+                    <h3>SmartInvest AI V2</h3>
                     <p class="project-stack">
                       LSTM · Flask · Model ensemble · Alpaca
                     </p>
@@ -2770,14 +2619,14 @@
                           viewBox="0 0 24 24"
                           aria-hidden="true"
                         >
-                          <path d="M5 12h14m-6-6 6 6-6 6" /></svg></a
+                          <path d="M5 12h14m-6-6 6 6-6 6"></path></svg></a
                       ><a
                         class="text-link"
                         href="https://github.com/mohamedbassam-1/AI-Stock-Price-Prediction-V2"
                         target="_blank"
                         rel="noreferrer"
                         >View GitHub<svg viewBox="0 0 24 24" aria-hidden="true">
-                          <path d="M5 12h14m-6-6 6 6-6 6" /></svg
+                          <path d="M5 12h14m-6-6 6 6-6 6"></path></svg
                       ></a>
                     </div>
                     <details>
@@ -2814,7 +2663,6 @@
                       width="1302"
                       height="711"
                       alt="AI Industrial Safety Monitoring"
-                      class=""
                       loading="lazy"
                       decoding="async" /><span
                       class="image-affordance"
@@ -2823,13 +2671,13 @@
                       <svg viewBox="0 0 24 24" aria-hidden="true">
                         <path
                           d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12m13 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0"
-                        /></svg></span
+                        ></path></svg></span
                   ></a>
                 </div>
                 <div class="project-information">
                   <div>
                     <p class="eyebrow">Computer vision / Workplace safety</p>
-                    <h3>AI Industrial Safety Monitoring</h3>
+                    <h3>Industrial Safety</h3>
                     <p class="project-stack">YOLO11 · OpenCV · CUDA · n8n</p>
                   </div>
                   <div>
@@ -2845,7 +2693,7 @@
                         target="_blank"
                         rel="noreferrer"
                         >View GitHub<svg viewBox="0 0 24 24" aria-hidden="true">
-                          <path d="M5 12h14m-6-6 6 6-6 6" /></svg
+                          <path d="M5 12h14m-6-6 6 6-6 6"></path></svg
                       ></a>
                     </div>
                     <details>
@@ -2882,7 +2730,6 @@
                       width="1440"
                       height="712"
                       alt="AI Stock Price Prediction — Foundation"
-                      class=""
                       loading="lazy"
                       decoding="async" /><span
                       class="image-affordance"
@@ -2891,13 +2738,13 @@
                       <svg viewBox="0 0 24 24" aria-hidden="true">
                         <path
                           d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12m13 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0"
-                        /></svg></span
+                        ></path></svg></span
                   ></a>
                 </div>
                 <div class="project-information">
                   <div>
                     <p class="eyebrow">Machine learning / Financial data</p>
-                    <h3>AI Stock Price Prediction — Foundation</h3>
+                    <h3>Stock Prediction</h3>
                     <p class="project-stack">
                       LSTM · Yahoo Finance · Alpha Vantage · Flask
                     </p>
@@ -2915,7 +2762,7 @@
                         target="_blank"
                         rel="noreferrer"
                         >View GitHub<svg viewBox="0 0 24 24" aria-hidden="true">
-                          <path d="M5 12h14m-6-6 6 6-6 6" /></svg
+                          <path d="M5 12h14m-6-6 6 6-6 6"></path></svg
                       ></a>
                     </div>
                     <details>
@@ -2952,7 +2799,6 @@
                       width="1440"
                       height="717"
                       alt="AI Study Assistant"
-                      class=""
                       loading="lazy"
                       decoding="async" /><span
                       class="image-affordance"
@@ -2961,13 +2807,13 @@
                       <svg viewBox="0 0 24 24" aria-hidden="true">
                         <path
                           d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12m13 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0"
-                        /></svg></span
+                        ></path></svg></span
                   ></a>
                 </div>
                 <div class="project-information">
                   <div>
                     <p class="eyebrow">NLP / Student productivity</p>
-                    <h3>AI Study Assistant</h3>
+                    <h3>Study Assistant</h3>
                     <p class="project-stack">
                       BART · Hugging Face · PDF processing · Flask
                     </p>
@@ -2985,7 +2831,7 @@
                         target="_blank"
                         rel="noreferrer"
                         >View GitHub<svg viewBox="0 0 24 24" aria-hidden="true">
-                          <path d="M5 12h14m-6-6 6 6-6 6" /></svg
+                          <path d="M5 12h14m-6-6 6 6-6 6"></path></svg
                       ></a>
                     </div>
                     <details>
@@ -3022,7 +2868,6 @@
                       width="1440"
                       height="752"
                       alt="AI Writer Web Application"
-                      class=""
                       loading="lazy"
                       decoding="async" /><span
                       class="image-affordance"
@@ -3031,13 +2876,13 @@
                       <svg viewBox="0 0 24 24" aria-hidden="true">
                         <path
                           d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12m13 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0"
-                        /></svg></span
+                        ></path></svg></span
                   ></a>
                 </div>
                 <div class="project-information">
                   <div>
                     <p class="eyebrow">Full-stack AI / Writing</p>
-                    <h3>AI Writer Web Application</h3>
+                    <h3>AI Writer</h3>
                     <p class="project-stack">
                       Flask · SQLite · Authentication · REST APIs
                     </p>
@@ -3055,7 +2900,7 @@
                         target="_blank"
                         rel="noreferrer"
                         >View GitHub<svg viewBox="0 0 24 24" aria-hidden="true">
-                          <path d="M5 12h14m-6-6 6 6-6 6" /></svg
+                          <path d="M5 12h14m-6-6 6 6-6 6"></path></svg
                       ></a>
                     </div>
                     <details>
@@ -3071,6 +2916,24 @@
                 </div>
               </div>
             </div>
+            <div class="reel-navigation">
+              <span class="reel-position" aria-hidden="true">01 / 06</span>
+              <div>
+                <button
+                  type="button"
+                  data-reel-prev=""
+                  aria-label="Previous project"
+                >
+                  ←</button
+                ><button
+                  type="button"
+                  data-reel-next=""
+                  aria-label="Next project"
+                >
+                  →
+                </button>
+              </div>
+            </div>
           </div>
           <p class="gallery-hint">
             Select a project to explore <span>· Swipe on touch</span>
@@ -3083,14 +2946,14 @@
               target="_blank"
               rel="noreferrer"
               >Heart ML notebook<svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M5 12h14m-6-6 6 6-6 6" /></svg></a
+                <path d="M5 12h14m-6-6 6 6-6 6"></path></svg></a
             ><a
               class="text-link"
               href="https://www.kaggle.com/code/mohamedbassam/first-project"
               target="_blank"
               rel="noreferrer"
               >First ML notebook<svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M5 12h14m-6-6 6 6-6 6" /></svg
+                <path d="M5 12h14m-6-6 6 6-6 6"></path></svg
             ></a>
           </div>
         </div>
@@ -3112,42 +2975,52 @@
 
         <article class="experience-entry">
           <div class="experience-date">
-            <span>2025</span><small>THREE MONTHS</small
-            ><span class="mono">BUILD → ENGINEER</span>
+            <span>2025</span><small>THREE MONTHS</small>
           </div>
           <div>
             <h3>AI Engineering Practicum</h3>
             <p class="experience-org">Independent, Project-Based</p>
             <p>
-              Built and evaluated applied AI prototypes spanning document NLP,
-              LLM-assisted workflows, computer vision, retrieval pipelines, REST
-              inference services, and production-focused model evaluation.
-              Documented latency, relevance, failure cases, architectural
-              decisions, and deployment requirements using reproducible
-              Git-based workflows.
+              Applied AI across document NLP, computer vision, retrieval, and
+              REST inference.
             </p>
-            <p class="experience-detail mono">
-              DOCUMENT NLP / VISION / RETRIEVAL / REST INFERENCE
-            </p>
+            <details>
+              <summary>
+                What I worked on <span aria-hidden="true">+</span>
+              </summary>
+              <p>
+                Built and evaluated applied AI prototypes spanning document NLP,
+                LLM-assisted workflows, computer vision, retrieval pipelines,
+                REST inference services, and production-focused model
+                evaluation. Documented latency, relevance, failure cases,
+                architectural decisions, and deployment requirements using
+                reproducible Git-based workflows.
+              </p>
+            </details>
           </div>
         </article>
         <article class="experience-entry">
           <div class="experience-date">
-            <span>2024</span><small>MACHINE LEARNING INTERNSHIP</small
-            ><span class="mono">LEARN → EXPERIMENT</span>
+            <span>2024</span><small>MACHINE LEARNING INTERNSHIP</small>
           </div>
           <div>
             <h3>Machine Learning Intern</h3>
             <p class="experience-org">CodeAlpha · Remote</p>
             <p>
-              Built and evaluated SVM and neural-network classification models.
-              Applied TensorFlow and OpenCV to object recognition and
-              classification workflows, and worked with ROC curves, confusion
-              matrices, precision, and recall.
+              Classification, object recognition, and model evaluation with
+              TensorFlow and OpenCV.
             </p>
-            <p class="experience-detail mono">
-              NUMPY / PANDAS / MATPLOTLIB / KERAS / TENSORFLOW / OPENCV
-            </p>
+            <details>
+              <summary>
+                What I worked on <span aria-hidden="true">+</span>
+              </summary>
+              <p>
+                Built and evaluated SVM and neural-network classification
+                models. Applied TensorFlow and OpenCV to object recognition and
+                classification workflows, and worked with ROC curves, confusion
+                matrices, precision, and recall.
+              </p>
+            </details>
           </div>
         </article>
       </section>
@@ -3156,7 +3029,7 @@
         id="education"
         aria-labelledby="educationTitle"
       >
-        <div class="education-copy" data-reveal>
+        <div class="education-copy" data-reveal="">
           <p class="eyebrow">A foundation in intelligence</p>
           <span class="graduation-year">2025</span>
           <h2 id="educationTitle">
@@ -3178,18 +3051,18 @@
               target="_blank"
               rel="noreferrer"
               >View certificates<svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M5 12h14m-6-6 6 6-6 6" /></svg></a
+                <path d="M5 12h14m-6-6 6 6-6 6"></path></svg></a
             ><a
               class="text-link"
               href="assets/MohamedBassam%20CV%20Improved%20.pdf"
               target="_blank"
               rel="noreferrer"
               >Open CV<svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M5 12h14m-6-6 6 6-6 6" /></svg
+                <path d="M5 12h14m-6-6 6 6-6 6"></path></svg
             ></a>
           </div>
         </div>
-        <figure class="certificate" data-reveal>
+        <figure class="certificate" data-reveal="">
           <a
             class="image-button"
             href="assets/university-certificate.jpeg"
@@ -3202,7 +3075,6 @@
               width="960"
               height="1280"
               alt="The Open University certificate for Mohamed Bassam"
-              class=""
               loading="lazy"
               decoding="async" /><span
               class="image-affordance"
@@ -3211,7 +3083,7 @@
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path
                   d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12m13 0a3 3 0 1 1-6 0 3 3 0 0 1 6 0"
-                /></svg></span
+                ></path></svg></span
           ></a>
           <figcaption>Part of the journey. Always more to learn.</figcaption>
         </figure>
@@ -3227,7 +3099,7 @@
             <span class="status-dot" aria-hidden="true"></span>Available
             immediately · UAE Golden Visa
           </p>
-          <h2 id="contactTitle" data-reveal>
+          <h2 id="contactTitle" data-reveal="">
             Let’s build<br />what comes <span>next.</span>
           </h2>
           <p class="contact-intro">
@@ -3237,7 +3109,7 @@
           <div class="contact-links">
             <a class="email-link" href="mailto:mobassam135@gmail.com"
               >mobassam135@gmail.com<svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M5 12h14m-6-6 6 6-6 6" /></svg></a
+                <path d="M5 12h14m-6-6 6 6-6 6"></path></svg></a
             ><button
               type="button"
               class="copy-email"
@@ -3253,34 +3125,31 @@
               target="_blank"
               rel="noreferrer"
               >GitHub<svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M5 12h14m-6-6 6 6-6 6" /></svg></a
+                <path d="M5 12h14m-6-6 6 6-6 6"></path></svg></a
             ><a
               class="text-link"
               href="https://wa.me/971503613525"
               target="_blank"
               rel="noreferrer"
               >WhatsApp<svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M5 12h14m-6-6 6 6-6 6" /></svg></a
+                <path d="M5 12h14m-6-6 6 6-6 6"></path></svg></a
             ><a
               class="text-link"
               href="assets/MohamedBassam%20CV%20Improved%20.pdf"
               target="_blank"
               rel="noreferrer"
               >Open CV<svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M5 12h14m-6-6 6 6-6 6" /></svg></a
+                <path d="M5 12h14m-6-6 6 6-6 6"></path></svg></a
             ><a
               class="text-link"
               id="cv"
               href="assets/MohamedBassam%20CV%20Improved%20.pdf"
               download
               >Download CV<svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M5 12h14m-6-6 6 6-6 6" /></svg
+                <path d="M5 12h14m-6-6 6 6-6 6"></path></svg
             ></a>
           </div>
-          <p class="human-note">
-            Still learning. Still building. There’s always another problem worth
-            understanding.
-          </p>
+
           <footer class="site-footer">
             <a class="brand" href="#top"
               ><span class="brand-mark" aria-hidden="true">m<span>b</span></span

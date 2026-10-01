@@ -2,16 +2,16 @@
 
 [mohamed-bassam.vercel.app](https://mohamed-bassam.vercel.app)
 
-A personal AI engineering portfolio built with semantic HTML, CSS, and small, dependency-free browser scripts. V4 connects real project interfaces through an atmospheric, spatial experience with a floating navigation dock.
+A personal AI engineering portfolio built with semantic HTML, CSS, and small, dependency-free browser scripts. V5 gives the real engineering work room to speak through open compositions, a personal portrait, large product screenshots, and three focused interactions. The redesign is on `v5-preview`; production remains unchanged pending visual approval.
 
 ## Experience
 
-- A pointer-responsive intelligence sculpture connects five real project previews, led by Dark Agent.
-- A large portrait and floating personal facts introduce Mohamed; a timeline preserves his experience.
-- Six connected capability branches reveal technologies and project evidence. Data and automation remain available as the connective layer.
-- Dark Agent combines full-width product screens, a flowing nine-stage architecture, selectable agent roles, hybrid retrieval, an illustrated Red Team validation sequence, release evidence, and engineering decisions.
-- SmartInvest has its own financial atmosphere and six-stage market-data-to-paper-execution walkthrough.
-- A six-project visual gallery supports keyboard selection and touch swiping.
+- An open SVG signal composition responds subtly to the pointer; the hero has no tabs, dashboard, or custom cursor.
+- The real portrait blends into the page, with personal facts and a short introduction.
+- A calm capability map reveals six disciplines without a badge wall.
+- Dark Agent leads with a large screenshot journey and a nine-step architecture. Existing agent, retrieval, validation, and operations details remain available in disclosures. The removed engineering metrics block stays removed.
+- SmartInvest opens with real product screenshots in an indigo atmosphere; its six-stage pipeline remains available on demand.
+- A six-project reel gives most of the composition to imagery, with keyboard selection, previous/next controls, and touch swiping.
 - ICE and NIGHT themes retain the existing saved preference.
 
 Dark Agent remains **V1.0 Release Candidate**, with **Azure-ready infrastructure / Azure deployment preparation**. Its private source repository is not linked. The 309 backend tests are documented Dark Agent evidence, separate from this portfolio's tests. SmartInvest demonstrates paper trading, not claimed live investment performance.
