@@ -9,6 +9,83 @@
   };
   const clamp = (value, min = 0, max = 1) =>
     Math.min(max, Math.max(min, value));
+  const motion = new Set();
+  const activeMotion = new WeakMap();
+  const ease = "cubic-bezier(.2,.75,.2,1)";
+  function animate(element, frames, options = {}) {
+    if (!element || reducedMotion.matches) return null;
+    activeMotion.get(element)?.cancel();
+    const animation = element.animate(frames, {
+      duration: 600,
+      easing: ease,
+      ...options,
+    });
+    activeMotion.set(element, animation);
+    motion.add(animation);
+    animation.finished
+      .then(
+        () => animation.cancel(),
+        () => {},
+      )
+      .finally(() => motion.delete(animation));
+    return animation;
+  }
+  function imageExit(image, host) {
+    host.querySelectorAll(".motion-snapshot").forEach((el) => {
+      activeMotion.get(el)?.cancel();
+      el.remove();
+    });
+    if (reducedMotion.matches || !image?.complete || !image.checkVisibility())
+      return;
+    const box = image.getBoundingClientRect(),
+      bounds = host.getBoundingClientRect();
+    const snapshot = image.cloneNode();
+    snapshot.removeAttribute("id");
+    snapshot.className = "motion-snapshot";
+    snapshot.alt = "";
+    snapshot.setAttribute("aria-hidden", "true");
+    Object.assign(snapshot.style, {
+      left: box.left - bounds.left + "px",
+      top: box.top - bounds.top + "px",
+      width: box.width + "px",
+      height: box.height + "px",
+    });
+    host.append(snapshot);
+    const exit = animate(
+      snapshot,
+      [
+        { opacity: 1, transform: "scale(1)", filter: "blur(0)" },
+        {
+          opacity: 0,
+          transform: "scale(.985)",
+          filter: desktop.matches ? "blur(1.5px)" : "blur(0)",
+        },
+      ],
+      { duration: 320 },
+    );
+    exit?.finished.then(
+      () => snapshot.remove(),
+      () => snapshot.remove(),
+    );
+  }
+  function imageEnter(image, duration = 600) {
+    animate(
+      image,
+      [
+        {
+          opacity: 0.25,
+          transform: "translateY(8px) scale(1.015)",
+          clipPath: "inset(0 0 7% 0)",
+        },
+        {
+          opacity: 1,
+          transform: "translateY(0) scale(1)",
+          clipPath: "inset(0 0 0% 0)",
+        },
+      ],
+      { duration },
+    );
+  }
 
   function setupTheme() {
     const button = document.getElementById("themeToggle");
@@ -21,7 +98,7 @@
         "Switch to " + destination.toLowerCase() + " theme",
       );
       document.querySelector('meta[name="theme-color"]').content =
-        theme === "night" ? "#0c1524" : "#f2f5f9";
+        theme === "night" ? "#07111f" : "#f3f7fb";
     };
     apply(root.dataset.theme === "night" ? "night" : "ice");
     button.addEventListener("click", () => {
@@ -87,31 +164,52 @@
       let current = 0;
       const activate = (index, focus = false) => {
         const changed = index !== current;
+        const reel = group.hasAttribute("data-swipe");
+        if (changed && reel)
+          imageExit(
+            panels[current].querySelector(".project-visual img"),
+            group.querySelector(".tab-panels"),
+          );
         current = index;
+        group.dataset.stage = String(index);
+        if (reel) group.closest(".projects").dataset.project = String(index);
         tabs.forEach((tab, i) => {
           tab.setAttribute("aria-selected", String(i === index));
           tab.tabIndex = i === index ? 0 : -1;
+          tab.classList.toggle("is-past", i < index);
           panels[i].hidden = i !== index;
         });
         const position = group.querySelector(".reel-position");
         if (position)
           position.textContent = String(index + 1).padStart(2, "0") + " / 06";
-        if (changed && !reducedMotion.matches)
-          panels[index].animate(
+        if (changed && reel) {
+          imageEnter(panels[index].querySelector(".project-visual img"), 650);
+          animate(
+            panels[index].querySelector("h3"),
             [
-              {
-                opacity: 0.2,
-                transform: group.hasAttribute("data-swipe")
-                  ? "translateX(18px)"
-                  : "translateY(4px)",
-              },
-              { opacity: 1, transform: "translate(0)" },
+              { clipPath: "inset(0 0 100% 0)", transform: "translateY(10px)" },
+              { clipPath: "inset(0 0 0% 0)", transform: "none" },
             ],
-            {
-              duration: group.hasAttribute("data-swipe") ? 650 : 300,
-              easing: "cubic-bezier(.2,.75,.2,1)",
-            },
+            { duration: 550 },
           );
+          animate(
+            panels[index].querySelector(".project-stack"),
+            [{ opacity: 0.2 }, { opacity: 1 }],
+            { duration: 420, delay: 100, fill: "backwards" },
+          );
+          animate(position, [{ opacity: 0.25 }, { opacity: 1 }], {
+            duration: 300,
+          });
+        } else if (changed) {
+          animate(
+            panels[index],
+            [
+              { opacity: 0.3, transform: "translateY(6px)" },
+              { opacity: 1, transform: "none" },
+            ],
+            { duration: 350 },
+          );
+        }
         if (focus) tabs[index].focus({ preventScroll: true });
       };
       tabs.forEach((tab, index) => {
@@ -300,6 +398,7 @@
       preload.src = button.dataset.optimized;
       const apply = () => {
         if (ticket !== version) return;
+        imageExit(image, link);
         image.src = button.dataset.optimized;
         image.alt = "Dark Agent — " + button.dataset.title;
         link.href = link.dataset.preview = button.dataset.file;
@@ -312,14 +411,7 @@
           String(index + 1).padStart(2, "0") + " / 06";
         document.getElementById("darkScreenCaption").textContent =
           button.dataset.description;
-        if (!reducedMotion.matches)
-          image.animate(
-            [
-              { opacity: 0.3, transform: "scale(1.012)" },
-              { opacity: 1, transform: "scale(1)" },
-            ],
-            { duration: 500, easing: "ease-out" },
-          );
+        imageEnter(image);
       };
       preload.decode().then(apply, apply);
     };
@@ -339,12 +431,22 @@
     const nodes = [...document.querySelectorAll("[data-architecture-node]")];
     const panels = [...document.querySelectorAll("[data-architecture-step]")];
     const map = document.querySelector(".architecture-map");
+    const pulse = map.querySelector(".data-pulse");
+    const mobileSignal = document.createElement("span");
+    mobileSignal.className = "architecture-mobile-signal";
+    mobileSignal.setAttribute("aria-hidden", "true");
+    map.append(mobileSignal);
+    // Node positions along the fixed SVG route, normalized to its pathLength=1000.
+    // Keeping these with the route avoids SVG geometry work during first paint.
+    const positions = [0, 130, 260, 370, 500, 630, 740, 870, 1000];
     let current = 0,
-      manualAt = -Infinity;
+      inspecting = false;
     const select = (index, manual = false) => {
-      if (manual) manualAt = window.scrollY;
+      if (manual) inspecting = true;
       if (current === index) return;
+      const previous = current;
       current = index;
+      map.dataset.stage = String(index);
       nodes.forEach((node, i) => {
         node.classList.toggle("is-current", i === index);
         node.classList.toggle("is-past", i < index);
@@ -353,6 +455,51 @@
         else node.removeAttribute("aria-current");
         panels[i].hidden = i !== index;
       });
+      const signalColor = index === 6 ? "#bd9bd1" : "#35e6ad";
+      if (innerWidth > 600) {
+        animate(
+          pulse,
+          [
+            {
+              strokeDashoffset: -positions[previous],
+              opacity: 0,
+              stroke: "#6bdcff",
+            },
+            { opacity: 1, offset: 0.2 },
+            {
+              strokeDashoffset: -positions[index],
+              opacity: 1,
+              stroke: signalColor,
+              offset: 0.8,
+            },
+            {
+              strokeDashoffset: -positions[index],
+              opacity: 0,
+              stroke: "#35e6ad",
+            },
+          ],
+          { duration: 700 },
+        );
+      } else {
+        const y = (i) => nodes[i].offsetTop + nodes[i].offsetHeight / 2 - 7;
+        animate(
+          mobileSignal,
+          [
+            { transform: `translateY(${y(previous)}px)`, opacity: 0 },
+            { opacity: 1, offset: 0.2 },
+            { transform: `translateY(${y(index)}px)`, opacity: 0 },
+          ],
+          { duration: 500 },
+        );
+      }
+      animate(
+        panels[index],
+        [
+          { opacity: 0.35, transform: "translateY(8px)" },
+          { opacity: 1, transform: "none" },
+        ],
+        { duration: 420 },
+      );
       if (manual)
         announce(
           nodes[index].querySelector("strong").textContent +
@@ -360,11 +507,29 @@
             panels[index].querySelector("h3").textContent,
         );
     };
+    let pointerPosition = null;
+    map.addEventListener(
+      "pointermove",
+      (event) => {
+        if (
+          !desktop.matches ||
+          !finePointer.matches ||
+          event.pointerType !== "mouse"
+        )
+          return;
+        if (
+          pointerPosition?.x === event.clientX &&
+          pointerPosition?.y === event.clientY
+        )
+          return;
+        pointerPosition = { x: event.clientX, y: event.clientY };
+        const node = event.target.closest("[data-architecture-node]");
+        if (node) select(Number(node.dataset.architectureNode), true);
+      },
+      { passive: true },
+    );
     nodes.forEach((node, i) => {
       node.addEventListener("click", () => select(i, true));
-      node.addEventListener("pointerenter", (event) => {
-        if (event.pointerType === "mouse") select(i, true);
-      });
       node.addEventListener("keydown", (event) => {
         const delta = {
           ArrowRight: 1,
@@ -387,9 +552,15 @@
     });
     nodes[0].setAttribute("aria-current", "step");
     return () => {
-      if (Math.abs(window.scrollY - manualAt) < 120) return;
       const rect = map.getBoundingClientRect();
-      if (rect.top > innerHeight * 0.85 || rect.bottom < 0) return;
+      if (rect.top > innerHeight || rect.bottom < 0) {
+        inspecting = false;
+        return;
+      }
+      // A chosen stage must remain readable while scrolling down to its detail.
+      // Touch layouts use direct selection; desktop scroll progression resumes on re-entry.
+      if (!desktop.matches || inspecting || rect.top > innerHeight * 0.85)
+        return;
       const progress = clamp(
         (innerHeight * 0.6 - rect.top) / (rect.height + innerHeight * 0.15),
       );
@@ -402,10 +573,12 @@
     const progress = document.getElementById("scrollProgress");
     const chapters = [...document.querySelectorAll("main > section")];
     const links = [...document.querySelectorAll("[data-chapter-link]")];
+    const darkScene = document.getElementById("dark-agent");
     const screenUpdate = setupProductStory(),
       architectureUpdate = setupArchitecture();
     let queued = false,
       lastScroll = 0,
+      lastArrival = "",
       lastChapter = "";
     const update = () => {
       queued = false;
@@ -425,6 +598,7 @@
           current = chapter;
       if (current.id !== lastChapter) {
         lastChapter = current.id;
+        header.dataset.chapter = current.id;
         header.dataset.world = ["dark-agent", "smartinvest"].includes(
           current.id,
         )
@@ -435,6 +609,14 @@
             link.setAttribute("aria-current", "location");
           else link.removeAttribute("aria-current");
         });
+      }
+      const arrival = clamp(
+        (innerHeight - darkScene.getBoundingClientRect().top) /
+          (innerHeight * 1.2),
+      ).toFixed(2);
+      if (arrival !== lastArrival) {
+        darkScene.style.setProperty("--dark-arrival", arrival);
+        lastArrival = arrival;
       }
       screenUpdate();
       architectureUpdate();
@@ -478,6 +660,76 @@
     sculpture.addEventListener("pointerleave", reset);
     reducedMotion.addEventListener("change", reset);
     desktop.addEventListener("change", reset);
+    finePointer.addEventListener("change", reset);
+
+    document
+      .querySelectorAll(
+        ".project-visual .image-button, .finance-showcase .image-button",
+      )
+      .forEach((surface) => {
+        surface.setAttribute("data-image-depth", "");
+        let imageFrame = 0;
+        const clear = () => {
+          cancelAnimationFrame(imageFrame);
+          ["--image-x", "--image-y", "--image-rx", "--image-ry"].forEach(
+            (name) => surface.style.removeProperty(name),
+          );
+        };
+        surface.addEventListener(
+          "pointermove",
+          (event) => {
+            if (
+              reducedMotion.matches ||
+              !desktop.matches ||
+              !finePointer.matches ||
+              event.pointerType !== "mouse"
+            )
+              return;
+            cancelAnimationFrame(imageFrame);
+            imageFrame = requestAnimationFrame(() => {
+              const bounds = surface.getBoundingClientRect();
+              const x =
+                clamp((event.clientX - bounds.left) / bounds.width) - 0.5;
+              const y =
+                clamp((event.clientY - bounds.top) / bounds.height) - 0.5;
+              surface.style.setProperty("--image-x", x * 6 + "px");
+              surface.style.setProperty("--image-y", y * 6 + "px");
+              surface.style.setProperty("--image-rx", -y * 0.8 + "deg");
+              surface.style.setProperty("--image-ry", x * 0.8 + "deg");
+            });
+          },
+          { passive: true },
+        );
+        surface.addEventListener("pointerleave", clear);
+        [reducedMotion, desktop, finePointer].forEach((query) =>
+          query.addEventListener("change", clear),
+        );
+      });
+
+    const stopMotion = () => {
+      if (!reducedMotion.matches) return;
+      root.classList.remove("js-reveals");
+      motion.forEach((animation) => animation.cancel());
+      document
+        .querySelectorAll(".motion-snapshot")
+        .forEach((el) => el.remove());
+    };
+    reducedMotion.addEventListener("change", stopMotion);
+    document.addEventListener("visibilitychange", () => {
+      root.classList.toggle("motion-paused", document.hidden);
+      motion.forEach((animation) =>
+        document.hidden ? animation.pause() : animation.play(),
+      );
+    });
+    document.addEventListener("focusin", (event) => {
+      const group = event.target.closest("[data-reveal]");
+      group?.classList.add("is-in-view");
+      motion.forEach((animation) => {
+        const target = animation.effect?.target;
+        if (target?.contains(event.target)) animation.finish();
+      });
+    });
+
     if (!("IntersectionObserver" in window)) return;
     if (!reducedMotion.matches) root.classList.add("js-reveals");
     const motionObserver = new IntersectionObserver(
@@ -491,23 +743,123 @@
       { threshold: 0.05 },
     );
     document
-      .querySelectorAll(".hero,.architecture-map")
+      .querySelectorAll(".hero,.finance-heading")
       .forEach((el) => motionObserver.observe(el));
     const observer = new IntersectionObserver(
       (entries) =>
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
-          entry.target.classList.add("is-in-view");
+          const element = entry.target;
+          element.classList.add("is-in-view");
+          if (!element.matches(".capabilities")) {
+            const media = element.matches(
+              ".portrait-composition, .screen-stage, .finance-showcase, .certificate",
+            );
+            if (media) imageEnter(element, 700);
+            else {
+              animate(
+                element,
+                [
+                  { opacity: 0.2, transform: "translateY(14px)" },
+                  { opacity: 1, transform: "none" },
+                ],
+                { duration: 650 },
+              );
+              const heading = element.matches("h2")
+                ? element
+                : element.querySelector("h2");
+              if (desktop.matches)
+                animate(
+                  heading,
+                  [
+                    {
+                      clipPath: "inset(0 0 100% 0)",
+                      transform: "translateY(16px)",
+                    },
+                    { clipPath: "inset(0 0 0% 0)", transform: "none" },
+                  ],
+                  { duration: 750 },
+                );
+              if (element.matches(".dark-entry")) {
+                animate(
+                  element.querySelector(".product-kicker"),
+                  [{ opacity: 0.1 }, { opacity: 1 }],
+                  { duration: 500 },
+                );
+                animate(
+                  heading,
+                  [
+                    { clipPath: "inset(0 0 100% 0)" },
+                    { clipPath: "inset(0 0 0% 0)" },
+                  ],
+                  { duration: 800, delay: 150, fill: "backwards" },
+                );
+              }
+            }
+          }
           observer.unobserve(entry.target);
         }),
       { threshold: 0.12, rootMargin: "0px 0px -20px 0px" },
     );
     document
-      .querySelectorAll("[data-reveal], .finance-heading, .experience-entry")
+      .querySelectorAll(
+        "[data-reveal], .finance-heading, .experience-entry, .capabilities, .screen-stage, .finance-showcase",
+      )
       .forEach((el) => observer.observe(el));
-    reducedMotion.addEventListener("change", () => {
-      if (reducedMotion.matches) root.classList.remove("js-reveals");
-    });
+    const validationObserver = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          const validation = entry.target;
+          if (!entry.isIntersecting) {
+            validation.classList.remove("is-validating");
+            continue;
+          }
+          if (!reducedMotion.matches) validation.classList.add("is-validating");
+        }
+      },
+      { threshold: 0.3 },
+    );
+    document
+      .querySelectorAll(".validation-demo")
+      .forEach((element) => validationObserver.observe(element));
+  }
+
+  function setupEntrance() {
+    if (scrollY > 40 || location.hash || reducedMotion.matches) return;
+    const reveal = (selector, delay, duration, mask = false) => {
+      const element = document.querySelector(selector);
+      const frames =
+        mask && desktop.matches
+          ? [
+              { clipPath: "inset(0 0 100% 0)", transform: "translateY(12px)" },
+              { clipPath: "inset(0 0 0% 0)", transform: "none" },
+            ]
+          : [
+              { opacity: 0.15, transform: "translateY(6px)" },
+              { opacity: 1, transform: "none" },
+            ];
+      animate(element, frames, {
+        delay: desktop.matches ? delay : delay * 0.5,
+        duration: desktop.matches ? duration : duration * 0.7,
+        fill: "backwards",
+      });
+    };
+    reveal(".site-header", 0, 400);
+    reveal(".hero-identity", 70, 400);
+    reveal(".hero-intro", 140, 450);
+    reveal(".hero-model", 180, 500, true);
+    reveal(".hero-product", 270, 550, true);
+    reveal(".hero-disciplines", 420, 450);
+    reveal(".hero-actions", 540, 450);
+    reveal(".intelligence-art", 650, 600);
+    // Finish an entrance promptly when a visitor starts navigating or scrolling.
+    const finish = () =>
+      motion.forEach((animation) => {
+        if (animation.effect?.target?.closest(".hero, .site-header"))
+          animation.finish();
+      });
+    addEventListener("wheel", finish, { once: true, passive: true });
+    addEventListener("touchstart", finish, { once: true, passive: true });
   }
 
   setupTheme();
@@ -517,4 +869,5 @@
   setupCopy();
   setupScroll();
   setupAtmosphere();
+  setupEntrance();
 })();

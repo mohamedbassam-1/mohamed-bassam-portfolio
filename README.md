@@ -2,7 +2,7 @@
 
 [mohamed-bassam.vercel.app](https://mohamed-bassam.vercel.app)
 
-A personal AI engineering portfolio built with semantic HTML, CSS, and small, dependency-free browser scripts. V5 gives the real engineering work room to speak through open compositions, a personal portrait, large product screenshots, and three focused interactions. The redesign is on `v5-preview`; production remains unchanged pending visual approval.
+A personal AI engineering portfolio built with semantic HTML, CSS, and small, dependency-free browser scripts. V5.1 keeps V5's open compositions, personal portrait, large product screenshots, and three focused interactions, adding controlled color and motion. The update is on `v5-preview`; production remains unchanged pending visual approval.
 
 ## Experience
 
@@ -13,6 +13,8 @@ A personal AI engineering portfolio built with semantic HTML, CSS, and small, de
 - SmartInvest opens with real product screenshots in an indigo atmosphere; its six-stage pipeline remains available on demand.
 - A six-project reel gives most of the composition to imagery, with keyboard selection, previous/next controls, and touch swiping.
 - ICE and NIGHT themes retain the existing saved preference.
+
+V5.1 adds cyan/lavender light to ICE, layered navy/indigo to NIGHT, project-specific ambient color, a short entrance, and restrained signal and screenshot transitions. The Red Team sequence is explicitly illustrative. Mobile drops continuous animation and pointer depth; reduced motion also stops active transitions immediately. No animation dependency or new image asset is added.
 
 Dark Agent remains **V1.0 Release Candidate**, with **Azure-ready infrastructure / Azure deployment preparation**. Its private source repository is not linked. The 309 backend tests are documented Dark Agent evidence, separate from this portfolio's tests. SmartInvest demonstrates paper trading, not claimed live investment performance.
 

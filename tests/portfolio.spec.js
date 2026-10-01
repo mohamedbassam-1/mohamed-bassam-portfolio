@@ -430,16 +430,83 @@ test("touch swipe changes the project without opening its image", async ({
   await context.close();
 });
 
+test("motion interruptions preserve the selected project and native interaction", async ({
+  page,
+}) => {
+  await page.goto("/");
+  await page.locator("#projects").scrollIntoViewIfNeeded();
+  await page.locator("[data-reel-next]").evaluate((button) => {
+    for (let i = 0; i < 9; i++) button.click();
+  });
+  await expect(page.locator("#project-index-panel-3")).toBeVisible();
+  await expect(
+    page.locator('.project-gallery [role="tabpanel"]:visible'),
+  ).toHaveCount(1);
+  expect(
+    await page.locator(".project-gallery .motion-snapshot").count(),
+  ).toBeLessThanOrEqual(1);
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await expect(page.locator(".motion-snapshot")).toHaveCount(0);
+  await expect
+    .poll(() =>
+      page.evaluate(
+        () =>
+          document.getAnimations().filter((a) => a.playState === "running")
+            .length,
+      ),
+    )
+    .toBe(0);
+  await expect(page.locator("#project-index-panel-3")).toBeVisible();
+  await page.locator("#project-index-panel-3 .image-button").click();
+  await expect(page.locator("#previewModal")).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(
+    page.locator("#project-index-panel-3 .image-button"),
+  ).toBeFocused();
+});
+
+test("validation and pipeline motion keep evidence readable and respond to reduced motion", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 375, height: 844 });
+  await page.goto("/");
+  await page.locator('[data-architecture-node="6"]').click();
+  await page.locator(".validation-inline").scrollIntoViewIfNeeded();
+  await expect(page.locator("#architecture-detail-6")).toBeVisible();
+  await expect(page.locator(".validation-inline")).toHaveClass(/is-validating/);
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  const checks = await page
+    .locator(".validation-inline li, .validation-inline .validation-result")
+    .evaluateAll((items) => items.map((el) => getComputedStyle(el).opacity));
+  expect(checks).toEqual(["1", "1", "1", "1", "1", "1"]);
+  await page.locator('[data-architecture-node="6"]').press("End");
+  await expect(page.locator('[data-architecture-node="8"]')).toBeFocused();
+  await page.locator(".finance-explainer > summary").click();
+  await page.locator("#finance-pipeline-tab-4").click();
+  await expect(page.locator("#finance-pipeline-panel-4")).toBeVisible();
+  await expect(page.locator('.finance-tabs [role="tab"].is-past')).toHaveCount(
+    4,
+  );
+  await page.locator("#finance-pipeline-tab-4").press("ArrowRight");
+  await expect(page.locator("#finance-pipeline-tab-5")).toHaveAttribute(
+    "aria-selected",
+    "true",
+  );
+  await expect(page.locator("#finance-pipeline-panel-5")).toBeVisible();
+});
+
 test("deeper evidence remains available and reel controls work", async ({
   page,
 }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
   await page.locator(".case-note > summary").nth(2).click();
-  await expect(page.locator(".validation-demo")).toContainText(
+  await expect(page.locator(".redteam-section .validation-demo")).toContainText(
     "Illustrated workflow",
   );
-  await expect(page.locator(".validation-demo li")).toHaveCount(5);
+  await expect(
+    page.locator(".redteam-section .validation-demo li"),
+  ).toHaveCount(5);
   await page.locator(".finance-explainer > summary").click();
   await page.getByRole("tab", { name: "Decision", exact: false }).click();
   await expect(page.locator("#finance-pipeline-panel-3")).toContainText(
