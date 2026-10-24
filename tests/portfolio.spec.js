@@ -234,6 +234,102 @@ test("screen storytelling and all original image evidence remain inspectable", a
   }
 });
 
+test("navigation stays calm through small scroll reversals and resize", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/");
+  const header = page.locator(".site-header");
+  const scroll = (top) =>
+    page.evaluate(async (y) => {
+      scrollTo({ top: y, behavior: "instant" });
+      await new Promise((resolve) =>
+        requestAnimationFrame(() => requestAnimationFrame(resolve)),
+      );
+    }, top);
+  await scroll(600);
+  await expect(header).toHaveClass(/is-descending/);
+  await scroll(599);
+  await expect(header).toHaveClass(/is-descending/);
+  await page.setViewportSize({ width: 1439, height: 1000 });
+  await expect(header).toHaveClass(/is-descending/);
+  for (const y of [597, 594, 591, 586]) await scroll(y);
+  await expect(header).not.toHaveClass(/is-descending/);
+  await scroll(587);
+  await expect(header).not.toHaveClass(/is-descending/);
+  await scroll(610);
+  await expect(header).toHaveClass(/is-descending/);
+  await scroll(0);
+  await expect(header).not.toHaveClass(/is-descending/);
+});
+
+test("screenshot selection keeps visible evidence consistent while loading and ignores stale responses", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  let capture;
+  const requested = new Promise((resolve) => {
+    capture = resolve;
+  });
+  await page.route("**/assets/optimized/dark-agent-02.webp", (route) =>
+    capture(route),
+  );
+  await page.goto("/");
+  const steps = page.locator("[data-screen-step]");
+  const screen = page.locator("#darkScreen");
+  await steps.nth(1).click();
+  const delayed = await requested;
+  await expect(steps.first()).toHaveAttribute("aria-pressed", "true");
+  await expect(screen).toHaveAttribute("data-preview", /dark-agent-01\.png/);
+  await expect(page.locator("#darkScreenCount")).toHaveText("01 / 06");
+  // A newer choice must win even when the older response arrives last.
+  await steps.nth(2).click();
+  await expect(screen).toHaveAttribute("data-preview", /dark-agent-10\.png/);
+  await delayed.fulfill({ response: await delayed.fetch() });
+  await page.waitForLoadState("networkidle");
+  await expect(steps.nth(2)).toHaveAttribute("aria-pressed", "true");
+  await expect(screen.locator("img:not(.motion-snapshot)")).toHaveAttribute(
+    "src",
+    /dark-agent-10\.webp/,
+  );
+  await expect(page.locator("#darkScreenCount")).toHaveText("03 / 06");
+});
+
+test("failed screenshot requests retain the current image and allow retry", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.route("**/assets/optimized/dark-agent-02.webp", (route) =>
+    route.abort(),
+  );
+  await page.goto("/");
+  const steps = page.locator("[data-screen-step]");
+  const screen = page.locator("#darkScreen");
+  await steps.nth(1).click();
+  await expect(page.locator("#announcement")).toContainText("could not load");
+  await expect(steps.first()).toHaveAttribute("aria-pressed", "true");
+  await expect(screen).toHaveAttribute("data-preview", /dark-agent-01\.png/);
+  expect(
+    await screen
+      .locator("img")
+      .evaluate((image) => image.complete && image.naturalWidth > 0),
+  ).toBe(true);
+  await page.unroute("**/assets/optimized/dark-agent-02.webp");
+  await steps.nth(1).click();
+  await expect(steps.nth(1)).toHaveAttribute("aria-pressed", "true");
+  await expect(screen).toHaveAttribute("data-preview", /dark-agent-02\.png/);
+  await expect(page.locator("#darkScreenCaption")).toHaveText(
+    await steps.nth(1).getAttribute("data-description"),
+  );
+  await screen.click();
+  await expect(page.locator("#modalImage")).toHaveAttribute(
+    "src",
+    /dark-agent-02\.png/,
+  );
+});
+
 test("reduced motion, storage failure, and no JavaScript retain usable content", async ({
   page,
   browser,

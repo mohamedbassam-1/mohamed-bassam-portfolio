@@ -382,23 +382,34 @@
     const image = link.querySelector("img");
     const story = document.querySelector(".screen-story");
     let selected = 0,
+      pending = null,
       version = 0,
       manualAt = -Infinity;
     const select = (index, manual = false) => {
       if (manual) manualAt = window.scrollY;
-      if (index === selected) return;
-      selected = index;
+      if (index === pending || (index === selected && pending === null)) return;
       const ticket = ++version,
         button = buttons[index];
-      buttons.forEach((item, i) => {
-        item.classList.toggle("is-active", i === index);
-        item.setAttribute("aria-pressed", String(i === index));
-      });
+      // Keep the image, selected control, caption, and original link in sync.
+      // Returning to the visible screen also invalidates any pending response.
+      if (index === selected) {
+        pending = null;
+        link.removeAttribute("aria-busy");
+        return;
+      }
+      pending = index;
+      link.setAttribute("aria-busy", "true");
       const preload = new Image();
       preload.src = button.dataset.optimized;
       const apply = () => {
         if (ticket !== version) return;
+        pending = null;
+        selected = index;
         imageExit(image, link);
+        buttons.forEach((item, i) => {
+          item.classList.toggle("is-active", i === index);
+          item.setAttribute("aria-pressed", String(i === index));
+        });
         image.src = button.dataset.optimized;
         image.alt = "Dark Agent — " + button.dataset.title;
         link.href = link.dataset.preview = button.dataset.file;
@@ -411,9 +422,18 @@
           String(index + 1).padStart(2, "0") + " / 06";
         document.getElementById("darkScreenCaption").textContent =
           button.dataset.description;
+        link.removeAttribute("aria-busy");
         imageEnter(image);
       };
-      preload.decode().then(apply, apply);
+      preload.decode().then(apply, () => {
+        if (ticket !== version) return;
+        pending = null;
+        link.removeAttribute("aria-busy");
+        if (manual)
+          announce(
+            "This screenshot could not load. The previous image is still available; select the screen again to retry.",
+          );
+      });
     };
     buttons.forEach((button, i) =>
       button.addEventListener("click", () => select(i, true)),
@@ -577,25 +597,44 @@
     const screenUpdate = setupProductStory(),
       architectureUpdate = setupArchitecture();
     let queued = false,
-      lastScroll = 0,
+      lastScroll = scrollY,
+      direction = 0,
+      directionTravel = 0,
       lastArrival = "",
       lastChapter = "";
     const update = () => {
       queued = false;
-      header.classList.toggle("is-scrolled", scrollY > 60);
-      header.classList.toggle(
-        "is-descending",
-        scrollY > lastScroll && scrollY > 250,
+      const position = Math.max(0, scrollY);
+      const delta = position - lastScroll;
+      const nextDirection = Math.sign(delta);
+      const progressAmount = clamp(
+        position / Math.max(1, root.scrollHeight - innerHeight),
       );
-      lastScroll = scrollY;
-      progress.style.transform =
-        "scaleX(" +
-        clamp(scrollY / Math.max(1, root.scrollHeight - innerHeight)) +
-        ")";
       let current = chapters[0];
       for (const chapter of chapters)
         if (chapter.getBoundingClientRect().top < innerHeight * 0.35)
           current = chapter;
+      const arrival = clamp(
+        (innerHeight - darkScene.getBoundingClientRect().top) /
+          (innerHeight * 1.2),
+      ).toFixed(2);
+      header.classList.toggle("is-scrolled", position > 60);
+      if (position <= 250) {
+        header.classList.remove("is-descending");
+        direction = 0;
+        directionTravel = 0;
+      } else if (delta !== 0) {
+        directionTravel =
+          nextDirection === direction
+            ? directionTravel + Math.abs(delta)
+            : Math.abs(delta);
+        direction = nextDirection;
+        // Trackpad settling and resize events should not change the dock state.
+        if (directionTravel >= 12)
+          header.classList.toggle("is-descending", direction > 0);
+      }
+      lastScroll = position;
+      progress.style.transform = "scaleX(" + progressAmount + ")";
       if (current.id !== lastChapter) {
         lastChapter = current.id;
         header.dataset.chapter = current.id;
@@ -610,10 +649,6 @@
           else link.removeAttribute("aria-current");
         });
       }
-      const arrival = clamp(
-        (innerHeight - darkScene.getBoundingClientRect().top) /
-          (innerHeight * 1.2),
-      ).toFixed(2);
       if (arrival !== lastArrival) {
         darkScene.style.setProperty("--dark-arrival", arrival);
         lastArrival = arrival;

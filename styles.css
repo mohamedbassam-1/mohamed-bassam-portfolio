@@ -1649,6 +1649,7 @@ details strong {
   --accent: #accbff;
   padding: 130px 0 160px;
   background:
+    linear-gradient(#091725, #09172500 180px),
     radial-gradient(ellipse at 75% 38%, #5149dc33, transparent 60%),
     radial-gradient(ellipse at 15% 48%, #236dde30, transparent 55%),
     linear-gradient(#091725, #0b1938 20%, #151b43 78%);

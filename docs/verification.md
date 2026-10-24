@@ -1,4 +1,16 @@
-# V5.1 verification — 1 October 2026
+# V5.1 verification
+
+## Preview follow-up — 24 October 2026
+
+- The removed engineering metrics block and custom cursor remain absent. Dark Agent flows directly into SmartInvest with no empty section. A static gradient now softens the visible color seam without changing spacing or content.
+- Navigation waits for 12 px of movement in a consistent direction before changing its presentation, avoiding flicker from tiny trackpad reversals and resize events.
+- Dark Agent screenshot selection, caption, count, and original-image link update together after the new image decodes. Failed requests retain the previous image and allow retry; superseded responses cannot replace the latest selection.
+- Production validation and all **25 browser tests pass**, including three regression tests that reproduced the previous behavior. The existing seven responsive widths, native interactions, reduced motion, and both-theme accessibility checks remain covered. Both accessibility scans were repeated after the gradient adjustment, with no violations.
+- Six additional captures check the Dark Agent/SmartInvest transition at 375, 768, and 1440 px in both themes: adjacent sections, zero inter-section gap, no horizontal overflow, no removed block, no custom cursor, and no browser errors.
+- This follow-up adds **199 bytes combined with gzip** relative to the previous V5.1 preview: JavaScript 5,260 → 5,449 bytes; CSS 13,227 → 13,237 bytes. No dependencies, images, fonts, or continuous animations are added. The Lighthouse figures below belong to the earlier V5.1 audit and were not rerun for this follow-up.
+- Deployment remains restricted to `v5-preview`; production and `main` await visual approval.
+
+## Initial V5.1 audit — 1 October 2026
 
 ## Build and implementation
 
