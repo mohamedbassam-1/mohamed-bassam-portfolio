@@ -1,5 +1,15 @@
 # V5.1 verification
 
+## Image inspection and mobile usability — 25 October 2026
+
+- Mobile and touch screenshots expose an “Enlarge” action. The image dialog opens in fit mode, with a zoom/fit toggle, native touch panning, keyboard scrolling, a full-resolution original link, and preserved focus containment/restoration. Loading and failure states keep the controls usable.
+- Manual Dark Agent screenshot choices remain selected while the story is in view. Scroll selection resumes after leaving and re-entering the story. Mobile/tablet screenshot selectors use 12 px text and 48 px minimum height; phone captions use 13 px text.
+- The screenshot story and project reel prepare one adjacent optimized image while visible, at low fetch priority. Requests are shared with direct selection, failures remain retryable, and browser-reported data-saving/2G connections skip advance loading. No full-resolution originals are fetched by this mechanism.
+- All **29 browser tests pass**, including touch zoom/panning, manual selection persistence, adjacent-image loading, and data-saving behavior. Production validation passes. The touch test waits for native inertial scrolling to settle before tapping another control.
+- An additional **28 viewer checks** cover wide and portrait images at 375, 390, 430, 768, 1024, 1440, and 1920 px in both themes. Fit mode has no internal overflow; zoom permits native scrolling; closing restores focus. Four open-dialog accessibility scans report zero violations. Phone landscape and a shorter 375×667 viewport retain reachable controls, and project-reel advance loading is verified separately.
+- The HTML, CSS, and JavaScript add **870 bytes combined with gzip** over commit `0e26844`: HTML 20,076 → 20,175 bytes; CSS 13,237 → 13,435 bytes; JavaScript 5,449 → 6,022 bytes. No new dependencies or image files are added. Advance loading trades one nearby optimized-image request for quicker exploration; the earlier Lighthouse scores below were not rerun.
+- The removed metrics section and custom cursor remain absent. Factual content, contact details, CV, colors, and page structure are retained. Deployment remains on `v5-preview`, pending visual approval before production.
+
 ## Preview follow-up — 24 October 2026
 
 - The removed engineering metrics block and custom cursor remain absent. Dark Agent flows directly into SmartInvest with no empty section. A static gradient now softens the visible color seam without changing spacing or content.

@@ -234,6 +234,178 @@ test("screen storytelling and all original image evidence remain inspectable", a
   }
 });
 
+test("manual screenshot choices survive scrolling until the story is left", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/");
+  await page.locator('[data-screen-step="1"]').click();
+  const screen = page.locator("#darkScreen");
+  await expect(screen).toHaveAttribute("data-preview", /dark-agent-02\.png/);
+  const endOfStory = () =>
+    page.locator(".screen-story").evaluate(async (el) => {
+      scrollTo({
+        top: scrollY + el.getBoundingClientRect().bottom - innerHeight + 100,
+        behavior: "instant",
+      });
+      await new Promise((resolve) =>
+        requestAnimationFrame(() => requestAnimationFrame(resolve)),
+      );
+    });
+  await endOfStory();
+  await expect(screen).toHaveAttribute("data-preview", /dark-agent-02\.png/);
+  await page.locator("#smartinvest").scrollIntoViewIfNeeded();
+  await endOfStory();
+  await expect(screen).toHaveAttribute("data-preview", /dark-agent-07\.png/);
+});
+
+test("mobile image inspection fits, zooms, pans by touch, and restores focus", async ({
+  browser,
+  baseURL,
+}) => {
+  const context = await browser.newContext({
+    baseURL,
+    viewport: { width: 390, height: 844 },
+    isMobile: true,
+    hasTouch: true,
+    reducedMotion: "reduce",
+  });
+  const page = await context.newPage();
+  await page.goto("/");
+  const trigger = page.locator("#darkScreen");
+  await trigger.scrollIntoViewIfNeeded();
+  await expect(trigger.locator(".image-affordance")).toBeVisible();
+  await trigger.locator(".image-affordance").tap();
+  const viewport = page.locator("#modalViewport");
+  const zoom = page.locator("#modalZoom");
+  await expect(zoom).toBeEnabled();
+  expect(
+    await viewport.evaluate(
+      (el) =>
+        el.scrollWidth <= el.clientWidth + 1 &&
+        el.scrollHeight <= el.clientHeight + 1,
+    ),
+  ).toBe(true);
+  await zoom.tap();
+  await expect(zoom).toHaveText("Fit image");
+  expect(await viewport.evaluate((el) => el.scrollWidth > el.clientWidth)).toBe(
+    true,
+  );
+  const box = await viewport.boundingBox();
+  const session = await context.newCDPSession(page);
+  const y = box.y + Math.min(120, box.height / 2);
+  await session.send("Input.dispatchTouchEvent", {
+    type: "touchStart",
+    touchPoints: [{ x: box.x + box.width - 25, y }],
+  });
+  for (const x of [280, 230, 180, 100])
+    await session.send("Input.dispatchTouchEvent", {
+      type: "touchMove",
+      touchPoints: [{ x, y }],
+    });
+  await session.send("Input.dispatchTouchEvent", {
+    type: "touchEnd",
+    touchPoints: [],
+  });
+  await expect
+    .poll(() => viewport.evaluate((el) => el.scrollLeft))
+    .toBeGreaterThan(0);
+  // A tap during native momentum scrolling stops the fling before activating controls.
+  await expect
+    .poll(async () => {
+      const before = await viewport.evaluate((el) => el.scrollLeft);
+      await page.waitForTimeout(150);
+      return Math.abs(
+        before - (await viewport.evaluate((el) => el.scrollLeft)),
+      );
+    })
+    .toBeLessThan(1);
+  await page.screenshot({ path: ".qa/v5-1/mobile-inspection-zoom.png" });
+  await zoom.tap();
+  await expect(zoom).toHaveAttribute("aria-pressed", "false");
+  expect(
+    await viewport.evaluate(
+      (el) => el.scrollWidth <= el.clientWidth + 1 && el.scrollLeft === 0,
+    ),
+  ).toBe(true);
+  await page.screenshot({ path: ".qa/v5-1/mobile-inspection-fit.png" });
+  await page.locator("#modalClose").tap();
+  await expect(trigger).toBeFocused();
+  await trigger.tap();
+  await expect(zoom).toHaveAttribute("aria-pressed", "false");
+  await context.close();
+});
+
+test("screenshot warmup waits for exploration and loads only the next screen", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.addInitScript(() =>
+    Object.defineProperty(navigator, "connection", {
+      configurable: true,
+      value: { saveData: false, effectiveType: "4g" },
+    }),
+  );
+  const requested = new Set();
+  page.on("request", (request) => {
+    if (/optimized\/dark-agent-\d+\.webp/.test(request.url()))
+      requested.add(request.url().split("/").at(-1));
+  });
+  await page.goto("/");
+  await page.waitForTimeout(300);
+  expect(requested.has("dark-agent-02.webp")).toBe(false);
+  await page.locator("#darkScreen").scrollIntoViewIfNeeded();
+  await expect.poll(() => requested.has("dark-agent-02.webp")).toBe(true);
+  expect(
+    [...requested].filter(
+      (name) => !["dark-agent-01.webp", "dark-agent-02.webp"].includes(name),
+    ),
+  ).toEqual([]);
+  await page.locator('[data-screen-step="1"]').click();
+  await expect(page.locator("#darkScreen")).toHaveAttribute(
+    "data-preview",
+    /dark-agent-02\.png/,
+  );
+  await expect.poll(() => requested.has("dark-agent-10.webp")).toBe(true);
+  expect(
+    [...requested].filter(
+      (name) =>
+        ![
+          "dark-agent-01.webp",
+          "dark-agent-02.webp",
+          "dark-agent-10.webp",
+        ].includes(name),
+    ),
+  ).toEqual([]);
+});
+
+test("data saver skips screenshot warmup while direct selection still works", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.addInitScript(() =>
+    Object.defineProperty(navigator, "connection", {
+      configurable: true,
+      value: { saveData: true, effectiveType: "4g" },
+    }),
+  );
+  const requested = [];
+  page.on("request", (request) => requested.push(request.url()));
+  await page.goto("/");
+  await page.locator("#darkScreen").scrollIntoViewIfNeeded();
+  await page.waitForTimeout(500);
+  expect(requested.some((url) => url.endsWith("dark-agent-02.webp"))).toBe(
+    false,
+  );
+  await page.locator('[data-screen-step="1"]').click();
+  await expect(page.locator("#darkScreen")).toHaveAttribute(
+    "data-preview",
+    /dark-agent-02\.png/,
+  );
+});
+
 test("navigation stays calm through small scroll reversals and resize", async ({
   page,
 }) => {

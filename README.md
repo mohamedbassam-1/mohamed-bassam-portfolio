@@ -13,6 +13,7 @@ A personal AI engineering portfolio built with semantic HTML, CSS, and small, de
 - SmartInvest opens with real product screenshots in an indigo atmosphere; its six-stage pipeline remains available on demand.
 - A six-project reel gives most of the composition to imagery, with keyboard selection, previous/next controls, and touch swiping.
 - ICE and NIGHT themes retain the existing saved preference.
+- Mobile image actions open a fit/zoom viewer with native scrolling; larger screenshot controls and captions improve reading on phones. Manual screenshot choices persist until leaving the story, and the next optimized image loads ahead only while exploring, respecting browser-reported data-saving mode.
 
 V5.1 adds cyan/lavender light to ICE, layered navy/indigo to NIGHT, project-specific ambient color, a short entrance, and restrained signal and screenshot transitions. The Red Team sequence is explicitly illustrative. Mobile drops continuous animation and pointer depth; reduced motion also stops active transitions immediately. No animation dependency or new image asset is added.
 

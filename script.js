@@ -87,6 +87,54 @@
     );
   }
 
+  const imageRequests = new Map();
+  function loadImage(src, priority = "auto") {
+    const existing = imageRequests.get(src);
+    if (existing) {
+      if (priority !== "low") existing.image.fetchPriority = priority;
+      return existing.ready;
+    }
+    const image = new Image();
+    image.fetchPriority = priority;
+    image.src = src;
+    const request = { image, ready: null };
+    request.ready = image.decode().catch((error) => {
+      imageRequests.delete(src);
+      throw error;
+    });
+    imageRequests.set(src, request);
+    return request.ready;
+  }
+
+  function setupImageWarmup(surface, nextSource) {
+    let visible = false,
+      timer;
+    const schedule = () => {
+      clearTimeout(timer);
+      const connection = navigator.connection;
+      if (
+        !visible ||
+        connection?.saveData ||
+        /2g/.test(connection?.effectiveType || "")
+      )
+        return;
+      timer = setTimeout(() => {
+        if (document.hidden) return;
+        const src = nextSource();
+        if (src) loadImage(src, "low").catch(() => {});
+      }, 180);
+    };
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        visible = entry.isIntersecting;
+        schedule();
+      },
+      { threshold: 0.1 },
+    );
+    observer.observe(surface);
+    return schedule;
+  }
+
   function setupTheme() {
     const button = document.getElementById("themeToggle");
     const apply = (theme) => {
@@ -162,6 +210,13 @@
       const tabs = [...group.querySelectorAll('[role="tab"]')];
       const panels = [...group.querySelectorAll('[role="tabpanel"]')];
       let current = 0;
+      const warmNext = group.hasAttribute("data-swipe")
+        ? setupImageWarmup(group.querySelector(".tab-panels"), () =>
+            panels[(current + 1) % panels.length]
+              .querySelector(".project-visual img")
+              ?.getAttribute("src"),
+          )
+        : () => {};
       const activate = (index, focus = false) => {
         const changed = index !== current;
         const reel = group.hasAttribute("data-swipe");
@@ -211,6 +266,7 @@
           );
         }
         if (focus) tabs[index].focus({ preventScroll: true });
+        if (changed) warmNext();
       };
       tabs.forEach((tab, index) => {
         tab.addEventListener("click", () => activate(index));
@@ -294,7 +350,36 @@
     const dialog = document.getElementById("previewModal");
     const image = document.getElementById("modalImage");
     const closeButton = document.getElementById("modalClose");
+    const zoomButton = document.getElementById("modalZoom");
+    const viewport = document.getElementById("modalViewport");
+    const hint = document.getElementById("modalZoomHint");
     let trigger = null;
+    const setZoom = (zoomed) => {
+      if (zoomed)
+        image.style.width =
+          Math.max(image.naturalWidth, image.clientWidth * 2) + "px";
+      else image.style.removeProperty("width");
+      viewport.classList.toggle("is-zoomed", zoomed);
+      zoomButton.setAttribute("aria-pressed", String(zoomed));
+      zoomButton.textContent = zoomed ? "Fit image" : "Zoom in";
+      hint.textContent = zoomed
+        ? "Swipe or scroll to inspect"
+        : "Full image · Zoom for details";
+      viewport.scrollTo({ left: 0, top: 0, behavior: "instant" });
+    };
+    zoomButton.addEventListener("click", () =>
+      setZoom(!viewport.classList.contains("is-zoomed")),
+    );
+    image.addEventListener("load", () => {
+      if (!dialog.open) return;
+      zoomButton.disabled = image.naturalWidth === 0;
+      hint.textContent = "Full image · Zoom for details";
+    });
+    image.addEventListener("error", () => {
+      if (!dialog.open) return;
+      zoomButton.disabled = true;
+      hint.textContent = "Image unavailable. Try Open original below.";
+    });
     const close = () => {
       if (dialog.open) dialog.close();
     };
@@ -305,6 +390,10 @@
       event.preventDefault();
       trigger = source;
       const title = source.dataset.title || "Project evidence";
+      setZoom(false);
+      zoomButton.disabled = true;
+      hint.textContent = "Loading image…";
+      image.loading = "eager";
       image.src = source.dataset.preview;
       image.alt = title;
       document.getElementById("modalTitle").textContent = title;
@@ -318,7 +407,7 @@
       if (event.key !== "Tab") return;
       const controls = [
         ...dialog.querySelectorAll(
-          'button, a[href], [tabindex]:not([tabindex="-1"])',
+          'button:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])',
         ),
       ];
       const first = controls[0];
@@ -348,6 +437,8 @@
     });
     dialog.addEventListener("close", () => {
       document.body.classList.remove("modal-open");
+      setZoom(false);
+      zoomButton.disabled = true;
       image.removeAttribute("src");
       image.alt = "";
       trigger?.focus({ preventScroll: true });
@@ -384,9 +475,13 @@
     let selected = 0,
       pending = null,
       version = 0,
-      manualAt = -Infinity;
+      inspecting = false;
+    const warmNext = setupImageWarmup(
+      story.querySelector(".screen-stage"),
+      () => buttons[(selected + 1) % buttons.length].dataset.optimized,
+    );
     const select = (index, manual = false) => {
-      if (manual) manualAt = window.scrollY;
+      if (manual) inspecting = true;
       if (index === pending || (index === selected && pending === null)) return;
       const ticket = ++version,
         button = buttons[index];
@@ -399,8 +494,6 @@
       }
       pending = index;
       link.setAttribute("aria-busy", "true");
-      const preload = new Image();
-      preload.src = button.dataset.optimized;
       const apply = () => {
         if (ticket !== version) return;
         pending = null;
@@ -416,7 +509,7 @@
         link.dataset.title = "Dark Agent — " + button.dataset.title;
         link.setAttribute(
           "aria-label",
-          "Expand Dark Agent " + button.dataset.title,
+          "Enlarge Dark Agent " + button.dataset.title,
         );
         document.getElementById("darkScreenCount").textContent =
           String(index + 1).padStart(2, "0") + " / 06";
@@ -424,8 +517,9 @@
           button.dataset.description;
         link.removeAttribute("aria-busy");
         imageEnter(image);
+        warmNext();
       };
-      preload.decode().then(apply, () => {
+      loadImage(button.dataset.optimized).then(apply, () => {
         if (ticket !== version) return;
         pending = null;
         link.removeAttribute("aria-busy");
@@ -438,10 +532,16 @@
     buttons.forEach((button, i) =>
       button.addEventListener("click", () => select(i, true)),
     );
+    link.addEventListener("click", () => {
+      inspecting = true;
+    });
     return () => {
-      if (!desktop.matches || Math.abs(window.scrollY - manualAt) < 140) return;
       const rect = story.getBoundingClientRect();
-      if (rect.top > window.innerHeight || rect.bottom < 0) return;
+      if (rect.top > window.innerHeight || rect.bottom < 0) {
+        inspecting = false;
+        return;
+      }
+      if (!desktop.matches || inspecting) return;
       const travel = Math.max(1, rect.height - window.innerHeight + 100);
       select(Math.min(5, Math.floor(clamp((110 - rect.top) / travel) * 6)));
     };

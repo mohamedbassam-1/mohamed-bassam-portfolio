@@ -34,6 +34,10 @@ Desktop image response is limited to ±3 px and ±0.4 degrees, and is disabled f
 
 Native scrolling is preserved. Keyboard controls provide equivalent access to selections, and hover is supplementary. Reduced motion removes animated reveals, spatial response, smooth scrolling, and decorative loops. Image dialogs contain keyboard focus, close with Escape, and restore the trigger. Without JavaScript, project panels, architecture explanations, original-image links, and mobile navigation remain available. Decorative animation pauses outside the viewport.
 
+Mobile and touch image links show a quiet “Enlarge” action below the image. The native dialog starts with the whole image fitted into view, with an explicit zoom/fit control and native touch or keyboard scrolling for closer inspection. Controls remain visible while the image scrolls. Screenshot selectors use 12 px type and at least 48 px height on mobile/tablet; phone captions use 13 px type.
+
+A manually chosen Dark Agent screenshot stays selected until its story leaves the viewport. The automatic desktop sequence resumes on re-entry. The screenshot story and project reel prepare only their next optimized image while visible, using low-priority requests shared with direct selection. Advance loading is skipped when the browser reports data-saving mode or a 2G connection. Full-resolution originals still load only on inspection.
+
 ## Content and release boundaries
 
 Dark Agent remains V1.0 Release Candidate with Azure-ready infrastructure and Azure deployment preparation. Existing facts about four specialist agents, hybrid BM25 + pgvector retrieval, Red Team validation, tenant isolation, and success-only settlement are preserved in relevant content. The 309 backend tests remain documented project evidence in the README, distinct from portfolio tests. No private source link is introduced. SmartInvest uses paper trading; there are no invented users, revenue, benchmarks, adoption, or live-trading claims.
